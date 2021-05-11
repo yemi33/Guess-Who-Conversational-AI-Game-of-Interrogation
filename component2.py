@@ -21,3 +21,4 @@ def component2():
 
 if __name__ == "__name__":
   component2()
+
