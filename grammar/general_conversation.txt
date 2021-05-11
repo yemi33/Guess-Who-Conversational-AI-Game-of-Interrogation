@@ -1,0 +1,112 @@
+'''
+Structure:
+
+obligation&sentiment&subjective -> rule to achieve this obligation | rule to achieve this obligation | rule to achieve this obligation
+
+obligation&sentiment&objective -> rule to achieve this obligation | rule to achieve this obligation | rule to achieve this obligation
+
+Requirements:
+1. All the common obligations (refer to obligations.txt) + sentiment + subjective/objective 
+Statement-non-opinion:Acknowledgement,Statement-opinon,Response Acknowledgement,Wh-Question,Yes-No-Question,Declarative Yes-No-Question,Backchannel-in-question-form,Repeat-phrase
+Statement-opinion:Agree/Accept,Appreciation,Statement-opinion,Wh-Question,Response Acknowledgement,Non-verbal
+Hedge:Downplayer,Offers-Options Commits,Repeat-phrase,Apology
+Yes-No-Question:Yes Answer,No Answer,Repeat-phrase,Wh-Question,Acknowledgement
+2. Eliza cookie cutter grammar (negative vs positive)
+3. Cookie cutter for referring to extracted info
+4. Cookie cutter for dependency structure 
+5. Cookie cutter for dealing with profanity
+'''
+
+'''
+Obligations
+'''
+acknowledgement-positive-subjective -> Yep. | Go ahead.
+acknowledgement-negative-subjective -> Uh-huh.
+statement-opinion-positive-subjective -> It sounds good. | I totally agree.
+statement-opinion-neutral-subjective -> That sounds about right. | Okay then.
+statement-opinion-negative-subjective -> I disagree. | I don't think so.
+response-acknowledgement-postive-subjective -> Right. | Sounds correct. | That's right.
+reponse-acknowledgement-postive-objective -> Right. | Sounds correct. | That's right.
+reponse-acknowledgement-negative-subjective -> That's incorrect. | I disagree. | And why do you say that? I don't agree.
+reponse-acknowledgement-negative-objective -> I'm not sure that's not entirely true. | That doesn't sound right. | I have to disagree.
+response-acknowledgement-neutral-subjective -> Right. | Sounds correct. | That's right.
+response-acknowledgement-neutral-objective -> Right. | Sounds correct. | That's right.
+wh-question-positive-subjective -> Sounds right, where did this happen? | Sounds right, when did this happen? | Sounds right, why did this occur? 
+wh-question-positive-objective -> Right, where did this happen? | Right, when did this happen? | Right, why did this occur?
+wh-question-negative-subjective -> I'm not sure about that, where did this happen? | I'm not sure about that, when did this happen? | I'm not sure about that, why did this occur?
+wh-question-negative-objective -> That's not right, where did this happen? | That's not right, when did this happen? | That's not right, why did this occur?
+wh-question-neutral-subjective -> Okay, where did this happen? | Okay, when did this happen? | okay, why did this occur?
+wh-question-neutral-objective -> Okay, where did this happen? | Okay, when did this happen? | okay, why did this occur?
+yes-no-question-positive-subjective ->
+yes-no-question-positive-objective ->
+yes-no-question-negative-subjective ->
+yes-no-question-negative-objective ->
+yes-no-question-neutral-subjective ->
+yes-no-question-neutral-objective ->
+declaritive-yes-no-question-positive-subjective ->
+declaritive-yes-no-question-positive-objective ->
+declaritive-yes-no-question-negative-subjective ->
+declaritive-yes-no-question-negative-objective ->
+declaritive-yes-no-question-neutral-subjective ->
+declaritive-yes-no-question-neutral-objective ->
+backchannel-in-question-form-positive-subjective ->
+backchannel-in-question-form-positive-objective ->
+backchannel-in-question-form-negative-subjective ->
+backchannel-in-question-form-negative-objective ->
+backchannel-in-question-form-neutral-subjective ->
+backchannel-in-question-form-neutral-objective ->
+
+'''
+Eliza
+'''
+congratulating-eliza -> I'm <pos-adj-im> to hear that <fact>! | That's <pos-adj> that <fact>!
+pos-adj-im -> glad | happy | thrilled | excited
+pos-adj -> awesome | great | exciting
+empathetic-eliza -> I'm <neg-adj-im> to hear that <fact>. | Wow, I did not know that <fact>. | It must have been <neg-adj> to hear that <fact>.
+neg-adj-im -> sorry | sad | regretful
+neg-adj -> hard | difficult 
+neutral-eliza -> Thank you for telling me that <fact>. | I'm glad to know that <fact>. 
+
+'''
+Refer to Extracted Info
+'''
+question-about-extracted-info -> Is this <related-to> fact that <fact>? | Did <fact> have to do anything with it? | What does <fact> have to do with that? | Is this and <fact> related? | What are you implying with <fact>?
+related-to -> related to | correlated with | something related to | consistent with
+acknowledge-extracted-info -> <acknowledgement> You also mentioned before that <fact>. | You said that <fact>. 
+acknowledgement -> I see. | I just remembered. | You know what's funny? | What's interesting is that, | You know, |
+question-extracted-info -> Why did you say that <fact>? | What is the reason you say <fact? | What are you trying say with the fact that <fact>? | Is <fact> really true? | Why do you say that <fact>?
+express-anger-at-fact -> I'm <adj-phrase-mad> that you say that <fact>. 
+adj-phrase-mad -> <modifier> <adj-mad>
+modifier -> quite | kinda | a little | 
+adj-mad -> upset | angered | furious | mad
+express-sadness-at-fact -> I'm <adj-phrase-sad> that you that <fact>.
+adj-phrase-sad -> <modifier> <adj-sad>
+adj-sad -> sad | miserable | devastated
+express-gladness-at-fact -> I'm <adj-phrase-glad> that you that <fact>.
+adj-phrase-glad -> <modifier> <adj-glad>
+adj-glad -> glad | happy | grateful
+
+'''
+Dependency Structure
+verb -> verb | verb | verb
+'''
+
+'''
+Profanity
+'''
+profanity-guilty -> I <goal> to <vb>, but your language isn't helping. | Your language is <effect>. | I am only getting <emotion> when you swear.
+goal -> am trying | want | am attempting | would like
+vb -> calm down | settle down | relax | chill out
+effect -> stressing me out | making it hard to <vb> | unnecessary
+emotion -> angrier | more upset | more anxious | more nervous | less willing to answer
+profanity-innocent -> Your <adj> language is warranted, this is an <adj2> topic. | I get the <adj> language, I am <adj3> by what happend, too.
+adj -> strong | explicit | blunt | frank | unreserved
+adj2 -> intense | agonizing | stressful | tough
+adj3 -> enraged | infuriated | angered | upset
+
+
+like -> love | enjoy | like
+hate -> dislike | hate
+carry -> bring | take | carry
+use -> make use of | use
+kill -> murder | terminate | kill

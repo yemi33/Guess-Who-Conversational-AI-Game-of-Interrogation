@@ -1,0 +1,84 @@
+General Goal:
+
+Create a guessing game where the user determines whether a pseudo-person suspect bot is innocent or guilty of a criminal activity.
+
+What Does the Bot Do?
+
+1. It replies to the interrogator's questions or statements.
+2. In each simulation of the game, the bot can be either innocent or guilty 
+3. If the bot is innocent, it's just a normal conversation.
+4. If the bot is guilty, it needs to be able to "lie". It's purpose is to mimic innocence. For this we need to analyze what the grammatical structure and key phrases look like when a person is "lying." It needs to be as close as possible to a normal conversation.
+
+What Does the User Do?
+
+1. At the beginning of the game, the user is provided with a case file i.e. a pseudo scenario of a crime.
+2. The user is presented with multiple suspects for the single case, and the user can choose which suspect to talk to (this could be good for an extension on the current version of the project).
+3. The user is expected to ask questions (these questions can be anything they want). 
+
+NLU Module 
+
+1. Sentiment analysis 
+    - Identify the sentiment of the user input. eg: User expresses anger ("Why are you lying?") 
+    - Sample response for the guilty: "I'm not lying"! (angrily, crying) 
+    - Sample response for the innocent: "I'm really not guilty.. (expressing uncertainty) I don't know how else to say it. I don't know".   
+2. Potential obligations 
+    - Identify the dialogue tag of the user input. 
+    - ex. User takes an offensive position in the interrogation (actively soliciting info aka asking a question).
+    - Sample response for the guilty: they either say "I don't know", or say something related but not the truth (aka alibi) - they don't have to be consistent (randomly choose from a pool of reasonable locations).
+    - Sample response for the innocent would be stating a fact.
+3. Dependency structures
+    - Identify clauses within user's input (to be saved to the bot's "memory" - aka dictionary containing key value pairs in the form (type of info: fact).
+    - derive-question (from a statement)
+4. Eliza transformation potential
+    - Identify ways to rephrase inputs from users.
+    - ex. User says, "I know you did it."
+    - Sample response for guilty: "You think I did it? I'm telling you, I did not." The other extra stuff might incorporate elements that overlap with other components, such as replacing the word "know" with "think", and "I did not" as a way of denial. 
+5. Named entities 
+    - Identify what named entities are being mentioned. 
+    - ex. User asks, "Where did you put Eliza's body?" 
+    - In this case, "Eliza" is a named entity that is possibly stored in the $case file$ dictionary. The bot should recognize this name because the suspect will be related in one way or another to this person. 
+    - Sample response for guilty: "I was hanging out with Eliza and then I left. I don't know where she is." 
+    - Sample response for innocent: "Eliza and I were best friends. There is no way I would do such a thing to her." 
+6. Key phrases 
+    - Identify the key phrases that solicit some information. 
+    - ex. User asks "What did you do that night?" 
+    - In this case, the key phrase could be "What did you do"? 
+    - Sample response for guilty: "I was at a friend's house." 
+7. Profanity 
+    - Identify if there's profanity in the user's input. 
+8. Other features: Lie detector.
+
+Dialogue Manager
+
+1. Resolve obligation 
+    - Reply in a coherent manner. If it's a question, answer the question. If it's a statement, make a comment about the statement.
+2. Address sentiment 
+    - If the interrogator is expressing negative sentiment, how does an innocent person react? How does a guilty person react? 
+    - Usually, guilty people tend to try to protect or defend themselves first, instead of focusing on the case or the subject itself. 
+    - Innocent people tend to focus on the case and try their best to be helpful in providing as much information as possible.
+3. Address subjectivity 
+    - React differently if the user input is subjective (a hypothetical claim, such as "I think you killed him") vs objective (from the point of view of the case file, is it a "recorded" fact, such as 'the body was found in the garage', etc).
+4. ELIZA transformation 
+    - Apply Eliza style transformation as necessary.
+5. Refer to extracted information. 
+    - If the user said previously "Eliza was found dead in the garage." 
+    - Later put out a reply such as "How was Eliza when she was found in the garage?" etc.
+6. Key phrase trigger 
+    - Again, as mentioned previously, if the user says something like "What were you doing that night?" the keyword would be "What were you doing?" 
+    - For a guilty bot, in the entry for "action that night", there might be "killing Eliza." But you don't want to say that. So choose randomly from a pool of actions and say that instead aka "lie". 
+7. Utilize dependency structure 
+    - Rephrasing the word the user used in the conversation to make the bot answer the question more naturally.
+8. Markov-chain text 
+    - Pretty general. We can use our MarcovModel to train the model on some transcripts and source some lines from some suspect quotes and use that here. 
+9. Address profanity 
+    - Also pretty general. Prepare some lines we can use in cases where the user uses profanity. 
+10. Address other feature. 
+
+Things Specific To Our Project
+
+1. Generate a crime scenario (aka case file) that consists of a dictionary of facts related to the crime. For example, (place-where-body-was-found : garage) might be an entry. 
+2. Both a guilty bot and an innocent bot have a "memory" which is also a dictionary of facts that the bots have in store. For a guilty bot, that would be a memory of committing the crime and the related facts, for an innocent bot, that would be a memory that is completely irrelevant to the crime. 
+2. For a guilty bot, if a memory is "triggered", say the interrogator asks a pointed question to which the bot has an answer (ex. what did you use to murder Eliza? answer: wrench), then lie (aka select from random pool of facts which would of course be inconsistent with whatever else it was saying before, but that's partly the point). 
+3. Have a pool of random, but related, or feasible "facts" from which the guilty bot can choose its lies.
+4. Create general grammar for conversation which both the innocent bot and the guilty bot will use during the interrogation. 
+5. Create a "lying" grammar for the guilty bot to use in cases where it must lie. It must resemble general grammar, but might have elements that reveal that the bot is lying such as intermittent phrases such as "uh hum." or "uh.." 

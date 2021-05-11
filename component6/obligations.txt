@@ -1,0 +1,4 @@
+Statement-non-opinion:Acknowledgement,Statement-opinon,Response Acknowledgement,Wh-Question,Yes-No-Question,Declarative Yes-No-Question,Backchannel-in-question-form,Repeat-phrase
+Statement-opinion:Agree/Accept,Appreciation,Statement-opinion,Wh-Question,Response Acknowledgement,Non-verbal
+Hedge:Downplayer,Offers-Options Commits,Repeat-phrase,Apology
+Yes-No-Question:Yes Answer,No Answer,Repeat-phrase,Wh-Question,Acknowledgement

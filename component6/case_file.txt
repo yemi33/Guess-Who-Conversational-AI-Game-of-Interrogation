@@ -1,0 +1,27 @@
+'''
+Example file format:
+
+Innocent:
+ner text type_of_memory subject verb obj
+ner text type_of_memory subject verb obj
+ner text type_of_memory subject verb obj
+
+Guilty:
+ner text type_of_memory subject verb obj
+ner text type_of_memory subject verb obj
+ner text type_of_memory subject verb obj
+
+Case:
+ner text type_of_memory subject verb obj
+ner text type_of_memory subject verb obj
+ner text type_of_memory subject verb obj
+'''
+
+'''
+Types of Memory (You can add more if necessary)
+- Location
+- Action
+- Residence 
+- Relationship 
+- Age 
+'''
