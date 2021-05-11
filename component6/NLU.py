@@ -1,6 +1,6 @@
 from textblob import TextBlob
 import spacy
-import eliza
+from eliza import Eliza
 import dependency
 from better_profanity import profanity
 from grammar.grammar_engine import GrammarEngine 
@@ -16,7 +16,6 @@ pip install -U pip setuptools wheel
 pip install -U spacy
 python -m spacy download en_core_web_sm 
 pip install DialogTag
-
 """
 
 class NLU:
@@ -29,7 +28,7 @@ class NLU:
     self.named_entities = self.named_entities()#dictionary
     self.keyphrases = self.keyphrases()
     self.profanity = self.profanity()#bool
-    self.other = self.other()
+    self.lie = self.detect_lie()
 
   def sentiment(self):
     #returns tuple of polarity and subjectivity of message
@@ -47,7 +46,7 @@ class NLU:
 
     obligations = {}
     obligations_list = [] #list for a given dialog act
-    file = open("obligations.txt", "r")
+    file = open("grammar/obligations.txt", "r")
     for line in file:
       dialogue_acts = line.split(":")
       act = dialogue_acts[0]
@@ -71,16 +70,16 @@ class NLU:
     # obj = component3.find_direct_object(message)
     # subj = component3.find_subject(message)
     # return tuple((verbs,subjects,objects,question,obj,subj))
-    verb = component3.find_verb(message)
-    subj = component3.find_subject(message)
-    obj = component3.find_direct_object(message)
-    changed_verb = component3.changed_verb(message)
+    verb = dependency.find_verb(message)
+    subj = dependency.find_subject(message)
+    obj = dependency.find_direct_object(message)
+    changed_verb = dependency.change_verb(message)
     return tuple((subj, verb, obj, changed_verb))
 
   
   def eliza(self):
     #returns boolean value that represents whether an ELIZA-style transformation (of the form you coded up for Component 4) is possible. 
-    eliza = component4.Eliza()
+    eliza = Eliza()
     if self.message == eliza.swap_pronouns(self.message):
       return False
     return True
@@ -96,7 +95,7 @@ class NLU:
 
   def keyphrases(self):
     # A collection of keyphrases that may trigger certain kinds of responses. A keyphrase is like a keyword, but it may be a sequence spanning multiple words. I didn’t include this in a section above because it’s as straightforward as it sounds, though I will mention that you might consider using regular expressions or islander parsing to match keyphrases that can vary in their linguistic expression. 
-    grammar = GrammarEngine("grammar/keyphrases.txt").grammar
+    grammar = GrammarEngine("component6/grammar/keyphrases.txt").grammar
     parses = IslandParser(grammar).parse(self.message)
     return parses
 
@@ -117,3 +116,4 @@ if __name__ == "__main__":
   nlu = NLU("What were you doing last night?")
   print(nlu.named_entities)
   print(nlu.keyphrases)
+  print(nlu.obligations)

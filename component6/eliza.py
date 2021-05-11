@@ -1,5 +1,5 @@
 import spacy
-import component3
+import dependency
 import random
 
 class Eliza: 

@@ -2,9 +2,9 @@ class Suspect:
   '''
   Class that represents the suspect bot that will chat with the user
   '''
-  def __init__(self, identity, suspect_memory):
+  def __init__(self, identity, dialogue_manager):
     self.identity = identity
-    self.memory = suspect_memory
+    self.dialogue_manager = dialogue_manager
     '''
     Suspect Memory Architecture:
     suspect's self.memory is a list of Memory objects

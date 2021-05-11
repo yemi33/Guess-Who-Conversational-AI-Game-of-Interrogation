@@ -8,12 +8,6 @@ class Grammar:
     return str(self.grammar)
   
   def find(self, symbol_name):
-    '''
-    The grammar
-    should be a class that has a find() method that
-    accepts a 'symbol_name' and returns the NonterminalSymbol
-    object with the given name.
-    '''
     return self.grammar[symbol_name]
   
 

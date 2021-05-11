@@ -121,8 +121,11 @@ def change_verb(doc):
   Find the synonym of the verb
   '''
   verb = find_verb(doc)
-  grammar = GrammarEngine("C:\\grammar\\general_conversation.txt").grammar
-  rule = grammar.find(verb).rules
+  grammar = GrammarEngine("component6/grammar/general_conversation.txt").grammar
+  try:
+    rule = grammar.find(verb).rules
+  except:
+    return None
   index = random.randint(0, len(rule)-1)
   new_verb = str(rule[index])[7:-3]
   new_sentence = ""
@@ -134,7 +137,6 @@ def change_verb(doc):
     else:
       new_sentence = word.text
   return new_sentence
-
 
 
 if __name__ == "__main__":

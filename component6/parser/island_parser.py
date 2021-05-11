@@ -1,5 +1,5 @@
-from parser.recursive_descent_parser import RecursiveDescentParser
-from grammar.grammar_engine import GrammarEngine
+from component6.parser.recursive_descent_parser import RecursiveDescentParser
+from component6.grammar.grammar_engine import GrammarEngine
 
 class IslandParser:
   def __init__(self, grammar, verbose = False):

@@ -348,7 +348,7 @@ class MarcovModel:
       IOError:
         There is no corpus file with the given name in the 'corpora' folder.
     '''
-    corpus_text = open(f"corpora/{corpus_filename}").read()
+    corpus_text = open(corpus_filename).read()
     return corpus_text[:(len(corpus_text) * 8) // 100], corpus_text[:((len(corpus_text) * 8) // 10) + 1]
 
   def generate(self, length, prompt="\n"):

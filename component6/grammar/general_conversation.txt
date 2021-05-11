@@ -1,6 +1,5 @@
 '''
 Structure:
-
 obligation&sentiment&subjective -> rule to achieve this obligation | rule to achieve this obligation | rule to achieve this obligation
 
 obligation&sentiment&objective -> rule to achieve this obligation | rule to achieve this obligation | rule to achieve this obligation
@@ -16,7 +15,10 @@ Yes-No-Question:Yes Answer,No Answer,Repeat-phrase,Wh-Question,Acknowledgement
 4. Cookie cutter for dependency structure 
 5. Cookie cutter for dealing with profanity
 '''
-
+'''
+Fallback General Response
+'''
+general-response -> Uh huh. | Hmm. | Okay. 
 '''
 Obligations
 '''
@@ -55,7 +57,6 @@ backchannel-in-question-form-negative-subjective ->
 backchannel-in-question-form-negative-objective ->
 backchannel-in-question-form-neutral-subjective ->
 backchannel-in-question-form-neutral-objective ->
-
 '''
 Eliza
 '''
@@ -66,7 +67,6 @@ empathetic-eliza -> I'm <neg-adj-im> to hear that <fact>. | Wow, I did not know 
 neg-adj-im -> sorry | sad | regretful
 neg-adj -> hard | difficult 
 neutral-eliza -> Thank you for telling me that <fact>. | I'm glad to know that <fact>. 
-
 '''
 Refer to Extracted Info
 '''
@@ -85,12 +85,10 @@ adj-sad -> sad | miserable | devastated
 express-gladness-at-fact -> I'm <adj-phrase-glad> that you that <fact>.
 adj-phrase-glad -> <modifier> <adj-glad>
 adj-glad -> glad | happy | grateful
-
 '''
 Dependency Structure
-verb -> verb | verb | verb
 '''
-
+verb -> verb | verb | verb
 '''
 Profanity
 '''
@@ -103,8 +101,9 @@ profanity-innocent -> Your <adj> language is warranted, this is an <adj2> topic.
 adj -> strong | explicit | blunt | frank | unreserved
 adj2 -> intense | agonizing | stressful | tough
 adj3 -> enraged | infuriated | angered | upset
-
-
+'''
+verbs
+'''
 like -> love | enjoy | like
 hate -> dislike | hate
 carry -> bring | take | carry
