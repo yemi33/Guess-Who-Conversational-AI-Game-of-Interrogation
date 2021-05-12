@@ -101,11 +101,71 @@ profanity-innocent -> Your <adj> language is warranted, this is an <adj2> topic.
 adj -> strong | explicit | blunt | frank | unreserved
 adj2 -> intense | agonizing | stressful | tough
 adj3 -> enraged | infuriated | angered | upset
+
+
 '''
 verbs
 '''
 like -> love | enjoy | like
+love -> love | enjoy | like
+enjoy -> love | enjoy | like
 hate -> dislike | hate
+dislike -> dislike | hate
 carry -> bring | take | carry
+bring -> bring | take | carry
+take -> bring | take | carry
+carried -> brought | took | carried
+brought -> brought | took | carried
+took -> brought | took | carried
 use -> make use of | use
+make use of -> make use of | use 
+used -> made use of | used
+made use of -> made use of | used
 kill -> murder | terminate | kill
+terminate -> murder | terminate | kill
+murder -> murder | terminate | kill
+killed -> murdered | terminated | killed
+murdered -> murdered | terminated | killed
+terminated -> murdered | terminated | killed
+hit -> hit | attack | punch | hurt
+attack -> hit | attack | punch | hurt
+punch -> hit | attack | punch | hurt
+hurt -> hit | attack | punch | hurt
+hit -> hit | attacked | punched | hurt
+attacked  -> hit | attacked | punched | hurt
+punched  -> hit | attacked | punched | hurt
+hurt  -> hit | attacked | punched | hurt
+answer -> reply | response | answer
+reply -> reply | response | answer
+response -> reply | response | answer
+answered -> replied | responsed | answered
+replied -> replied | responsed | answered
+responsed -> replied | responsed | answered
+collect -> gather | assemble | collect
+gather -> gather | assemble | collect
+assemble -> gather | assemble | collect
+collected -> gathered | assembled | collected
+gathered -> gathered | assembled | collected
+assembled -> gathered | assembled | collected
+continue -> continue | keep
+keep -> continue | keep
+continued -> continued | kept
+kept -> continued | kept
+expect -> anticipate | expect 
+anticipate -> anticipate | expect 
+expected -> anticipated | expected
+anticipated -> anticipated | expected
+explain -> explain | illustrate | clarify
+illustrate  -> explain | illustrate | clarify
+clarify  -> explain | illustrate | clarify
+explained -> explained | illustrated | clarified
+illustrated -> explained | illustrated | clarified
+clarified -> explained | illustrated | clarified
+reject -> refuse | reject
+refuse -> refuse | reject
+rejected -> refused | rejected
+refused refused | rejected
+remember -> recall | remember
+recall -> recall | remember
+remembered -> recalled | remembered
+recalled -> recalled | remembered

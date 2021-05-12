@@ -52,6 +52,16 @@ def test_marcov_chain():
   response = nlg.test_single_response("marcov_chain")
   print(response)
 
+def test_dependency():
+  suspect = guess_who.Suspect("guilty", None)
+  dialogue_manager = DialogueManager(suspect)
+  message = "I know you did it. If you come clean now, you won't have to die in prison."
+  nlu = NLU(message)
+  strategy = dialogue_manager.strategize(nlu)
+  strategy_related_to_eliza = strategy["dependency"]
+  nlg = NLG(dialogue_manager=dialogue_manager, response_strategy=strategy)
+  response = nlg.test_single_response("dependency")
+  print(response)
 
 if __name__ == "__main__":
   test_nlu_whole()

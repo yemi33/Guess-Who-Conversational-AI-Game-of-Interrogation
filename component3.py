@@ -135,15 +135,9 @@ def change_verb(doc):
       new_sentence = word.text
   return new_sentence
 
-
-
 if __name__ == "__main__":
   nlp = spacy.load("en_core_web_sm")
   doc = nlp("Autonomous fast cars shift insurance liability toward manufacturers")
-  #doc = nlp("Where were you last night?")
-  #doc1 = nlp("Autonomous fast cars shift insurance liability toward manufacturer")
-  # print(doc.similarity(doc1))
-  #doc = nlp("I would like to know more about science.")
 
   # for chunk in doc.noun_chunks:
   #    print("text: ", chunk.text, "| root text: ", chunk.root.text, "| dep: ", chunk.root.dep_, "| root head: ", chunk.root.head.text)

@@ -42,11 +42,13 @@ class NLU:
     # Have to analyze our message
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
     os.environ['TRANSFORMERS_VERBOSITY'] = 'critical'
+
+    model = DialogTag('distilbert-base-uncased')
     output = model.predict_tag(self.message)
 
     obligations = {}
     obligations_list = [] #list for a given dialog act
-    file = open("grammar/obligations.txt", "r")
+    file = open("component6/grammar/obligations.txt", "r")
     for line in file:
       dialogue_acts = line.split(":")
       act = dialogue_acts[0]
@@ -100,11 +102,11 @@ class NLU:
     return parses
 
   def profanity(self):
-    #Whether the user message contains profanity. There’s a simple Python library called profanity that will allow you to detect this.
+    # Whether the user message contains profanity. There’s a simple Python library called profanity that will allow you to detect this.
     return profanity.contains_profanity(self.message)
 
   def detect_lie(self):
-    #You should come up with at least one other feature that your NLU model will look for when processing incoming messages. This could leverage off-the-shelf NLP technology, or some kind of custom code that you write.
+    # You should come up with at least one other feature that your NLU model will look for when processing incoming messages. This could leverage off-the-shelf NLP technology, or some kind of custom code that you write.
 
     #detect lie?
     #hard to find a library doing this, and probs hard complex to code

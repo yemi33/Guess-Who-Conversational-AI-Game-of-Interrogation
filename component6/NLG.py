@@ -18,7 +18,7 @@ class NLG:
       elif strategy == "extracted_info":
         self.grammar_engine.set_variable("fact", self.variables["extracted_info"])
       # if it's a markov chain strategy, don't use grammar engine and just append the markov-generated text to response
-      elif strategy == "markov_chain":
+      elif strategy == "marcov_chain":
         response += "\n" + self.response_strategy[strategy]
         continue
       origin = self.response_strategy[strategy] # retrieve the origin nonterminal 
@@ -36,7 +36,7 @@ class NLG:
     elif strategy == "extracted_info":
       self.grammar_engine.set_variable("fact", self.variables["extracted_info"])
     # if it's a markov chain strategy, don't use grammar engine and just append the markov-generated text to response
-    elif strategy == "markov_chain":
+    elif strategy == "marcov_chain":
       return self.response_strategy[strategy]
       
     origin = self.response_strategy[strategy] # retrieve the origin nonterminal 

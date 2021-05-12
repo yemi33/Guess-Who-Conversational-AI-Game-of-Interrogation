@@ -75,6 +75,9 @@ class GrammarEngine:
       if is_comment:
         continue
 
+      if line == "" or line == " " or line == "\n":
+        continue
+
       split_text = line.split("->")
       head, body = split_text[0].strip(), split_text[1].strip()
       if head not in dictionary_of_nonterminal_symbols:

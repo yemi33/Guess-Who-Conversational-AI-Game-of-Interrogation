@@ -49,6 +49,7 @@ class DialogueManager:
     Reply in a coherent manner. If it's a question, answer the question. If it's a statement, make a comment about the statement.
     '''
     pass
+    
   
   # Nicole
   def address_sentiment(self, nlu):
@@ -148,8 +149,8 @@ class DialogueManager:
     '''
     Rephrasing the sentence the user used so that other functions can use this sentence and make the bot answer in a more natural way.
     '''
-    new_verb = nlu.dependencies(3)
-    return new_verb
+    new_sentence = nlu.dependencies(3)
+    return new_sentence
     
   # Nicole
   def marcov_chain(self, nlu):
