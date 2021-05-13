@@ -101,8 +101,6 @@ profanity-innocent -> Your <adj> language is warranted, this is an <adj2> topic.
 adj -> strong | explicit | blunt | frank | unreserved
 adj2 -> intense | agonizing | stressful | tough
 adj3 -> enraged | infuriated | angered | upset
-
-
 '''
 verbs
 '''
@@ -164,7 +162,7 @@ clarified -> explained | illustrated | clarified
 reject -> refuse | reject
 refuse -> refuse | reject
 rejected -> refused | rejected
-refused refused | rejected
+refused -> refused | rejected
 remember -> recall | remember
 recall -> recall | remember
 remembered -> recalled | remembered

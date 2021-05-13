@@ -1,15 +1,6 @@
-'''
-Maanya 
-'''
-
 General -> What happened? | Explain what happended? | What went down? | Tell me everything | Start from the beginning | What's the story here? | How did it happen? | Is there anything else you want to tell me that I haven’t asked you? | Who do you think could have done it? 
-
 Activity -> What did you do that night? | What were you doing that night? | What were you up to that night? | What were you engaged in that night? | What were you doing yesterday? | What were you doing last night? | What were you doing at the time of the crime? | What were you up to during the time of the crime? | What were you up to at the time of the crime? | What were you up to? | What were you doing? 
-
-Place -> Where were you when the crime was commintted? | What was your location when the crime was committed? | Which place were you in when the crime was committed? | Where were you at the time of the crime? | Where were you? | Where did it happen?
-
+Place -> Where were you when the crime was committed? | What was your location when the crime was committed? | Which place were you in when the crime was committed? | Where were you at the time of the crime? | Where were you? | Where did it happen?
 Introduction -> What is your name? | Who are you? | Tell me a little bit about yourself? | Introduce yourself | What's your name? | Where are you from? | Where do you live? | How old are you? | Age? | What is your age? | What do you do? | Where do you work? | Who do you work for?
-
 Alibi -> Who were you meeting? | Who were you with? | What is the name of the person who were with? | Do you know of anyone that saw you? | Did anyone else see it happen? | Who were you with when the crime happened?
-
 Victim -> Do you know this person? | How were you related to this person? | What was your relationship to this person? | How are you related to this person? | Tell me what you know about this person? 

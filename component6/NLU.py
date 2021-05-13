@@ -16,11 +16,14 @@ pip install -U pip setuptools wheel
 pip install -U spacy
 python -m spacy download en_core_web_sm 
 pip install DialogTag
+
 """
 
 class NLU:
   def __init__(self, message):
     self.message = message
+    
+    '''
     self.sentiment = self.sentiment()#tuple
     self.obligations = self.obligations()#list
     self.dependencies = self.dependencies()#tuple
@@ -28,8 +31,24 @@ class NLU:
     self.named_entities = self.named_entities()#dictionary
     self.keyphrases = self.keyphrases()
     self.profanity = self.profanity()#bool
-    self.lie = self.detect_lie()
+    # self.lie = self.detect_lie()
+    '''
+  
+  def __repr__(self):
+    return f'message: {self.message}'
 
+    
+    # return f'''
+    # message: {self.message}\n
+    # sentiment: {self.sentiment}\n
+    # obligations: {self.obligations}\n 
+    # dependencies: {self.dependencies}\n 
+    # eliza: {self.eliza}\n 
+    # named_entities: {self.named_entities}\n 
+    # keyphrases: {self.keyphrases}\n 
+    # profanity: {self.profanity}\n
+    # '''
+    
   def sentiment(self):
     #returns tuple of polarity and subjectivity of message
     blob = TextBlob(self.message)
@@ -38,7 +57,7 @@ class NLU:
     return tuple((polarity,subjectivity))
   
   def obligations(self):
-    #returns dictionary, where keys are dialogue acts and values are obligations
+    #returns list, where keys are dialogue acts and values are obligations
     # Have to analyze our message
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
     os.environ['TRANSFORMERS_VERBOSITY'] = 'critical'
@@ -57,9 +76,9 @@ class NLU:
       obligations[act] = responses
     
     if output in obligations.keys():
-      obligation_list = obligations[output]
+      obligations_list = obligations[output]
 
-    return obligation_list
+    return obligations_list
   
   def dependencies(self):
     #The actionable structures built extractors for in Component 3 in tuple form.
@@ -76,7 +95,7 @@ class NLU:
     subj = dependency.find_subject(message)
     obj = dependency.find_direct_object(message)
     changed_verb = dependency.change_verb(message)
-    return tuple((subj, verb, obj, changed_verb))
+    return tuple(subj, verb, obj, changed_verb)
 
   
   def eliza(self):
@@ -97,9 +116,29 @@ class NLU:
 
   def keyphrases(self):
     # A collection of keyphrases that may trigger certain kinds of responses. A keyphrase is like a keyword, but it may be a sequence spanning multiple words. I didn’t include this in a section above because it’s as straightforward as it sounds, though I will mention that you might consider using regular expressions or islander parsing to match keyphrases that can vary in their linguistic expression. 
-    grammar = GrammarEngine("component6/grammar/keyphrases.txt").grammar
+    '''
+    grammar = GrammarEngine("grammar/keyphrases.txt").grammar
     parses = IslandParser(grammar).parse(self.message)
-    return parses
+    if len(parses) != 0:
+      return parses
+    return None
+    '''
+    lines = []
+    with open('grammar/keyphrases.txt') as f:
+        lines = f.readlines()
+
+    return_key, return_value = "", ""
+    for line in lines:
+        key_val = line.split("->")
+        key, values = key_val[0], key_val[1]
+        questions = values.split("|")
+        for question in questions:
+            if self.message in question or self.message == question:
+                return_key = key
+                return_value = question
+    return_dict = {}
+    return_dict[return_key] = return_value
+    return return_dict
 
   def profanity(self):
     # Whether the user message contains profanity. There’s a simple Python library called profanity that will allow you to detect this.
@@ -116,6 +155,7 @@ class NLU:
 if __name__ == "__main__":
   # nlu = NLU("Can we go to Starbucks?")
   nlu = NLU("What were you doing last night?")
-  print(nlu.named_entities)
-  print(nlu.keyphrases)
-  print(nlu.obligations)
+  print(nlu)
+  #print(nlu.named_entities)
+  #print(nlu.keyphrases)
+  #print(nlu.obligations)

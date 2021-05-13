@@ -2,3 +2,5 @@ Statement-non-opinion:Acknowledgement,Statement-opinon,Response Acknowledgement,
 Statement-opinion:Agree/Accept,Appreciation,Statement-opinion,Wh-Question,Response Acknowledgement,Non-verbal
 Hedge:Downplayer,Offers-Options Commits,Repeat-phrase,Apology
 Yes-No-Question:Yes Answer,No Answer,Repeat-phrase,Wh-Question,Acknowledgement
+Acknowledge (Backchannel):Statement-non-opinion,Yes-No-Question,Wh-Question,Open-Question
+Agree/Accept:Acknowledge (Backchannel),Yes-No-Question,Wh-Question,Response Acknowledgement

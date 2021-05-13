@@ -1,27 +1,35 @@
-'''
-Example file format:
+$ Innocent
+PERSON | Ginger Jones | Name | | | 
+CARDINAL | 19 | Age | | |
+| lounge | Location | | | 
+LOC | Nourse Hall | Residence | | |
+| girl friend | Relationship | | | 
+| Ginger had an argument with Tyler | Action | Ginger | had an argument with | Tyler
+| Ginger suspected that Tyler had cheated on her | Action | Ginger | suspected | that Tyler had cheated on her 
+| 9pm | Time Last Seen Victim | | |
+| friend | Company | | |
+| We would go to Sayles every Friday night to have snacks. | Memory with Victim | | |
+| James | Person to be Blamed | | |
 
-Innocent:
-ner text type_of_memory subject verb obj
-ner text type_of_memory subject verb obj
-ner text type_of_memory subject verb obj
+$ Guilty
+PERSON | James Potter | Name | | |
+| dorm | Location | | |
+CARDINAL | 21 | Age | | |
+LOC | Nourse Hall | Residence | | |
+| roomate | Relationship | | |
+| James killed Tyler with a knife | Fact | James | killed | Tyler
+| James drank a whole bottle of Vodka | Action | James | drank | a whole bottle of Vodka
+| 10pm | Time Last Seen Victim | | |
+| Ginger | Company | | |
+| We would study everyday together at the library. | Memory with Victim | | |
+| Ginger | Person to be Blamed | | |
 
-Guilty:
-ner text type_of_memory subject verb obj
-ner text type_of_memory subject verb obj
-ner text type_of_memory subject verb obj
+$ Case
+PERSON | Tyler Bowdin | Name | | | 
+| dorm | Location | | |
+CARDINAL | 21 | Age | | |
+LOC | Nourse Hall | Residence | | |
+| Knife | Evidence | | |
+| Ring | Evidence | | |
+| 11pm | Time of Death | | |
 
-Case:
-ner text type_of_memory subject verb obj
-ner text type_of_memory subject verb obj
-ner text type_of_memory subject verb obj
-'''
-
-'''
-Types of Memory (You can add more if necessary)
-- Location
-- Action
-- Residence 
-- Relationship 
-- Age 
-'''
