@@ -15,7 +15,6 @@ class GuessWho:
     self.dialogue_manager = DialogueManager(self.suspect_identity)
     self.dialogue_manager.memory = self.suspect_memory
     self.dialogue_manager.keyphrase_responses = self.generate_trigger_responses()
-    print(self.dialogue_manager.keyphrase_responses)
 
   # Yemi, Sue
   def generate_scenario(self, case_file):

@@ -20,6 +20,7 @@ class DialogueManager:
     response = NLG(strategy).general_respond()
     return response
   
+  # this is a tester method to see if a particular response technique is working.
   def test_single_respond(self, message, technique):
     strategy = self.strategize(message)
     response = NLG(strategy).single_respond(technique)
@@ -85,7 +86,7 @@ class DialogueManager:
     else:
       return "neutral"
   
-  # Yemi
+  # Yemi - needs fix
   def eliza_transformation(self, nlu):
     eliza_grammar_rules = ["congratulating-eliza", "empathetic-eliza", "neutral-eliza"]
     if nlu.eliza == True:
@@ -93,9 +94,9 @@ class DialogueManager:
       message = nlu.message
       # set the value of keyword "fact" for eliza grammar 
       eliza_fact = eliza.swap_pronouns(message)
-      if nlu.sentiment[0] > 0.5:
+      if nlu.sentiment[0] > 0.7:
         return "congratulating-eliza", eliza_fact 
-      elif nlu.sentiment[0] < -0.3:
+      elif nlu.sentiment[0] < 0:
         return "empathetic-eliza", eliza_fact
       else:
         return "neutral-eliza", eliza_fact
@@ -115,7 +116,9 @@ class DialogueManager:
       for item in self.memory:
         if item.ner == ent.label_: 
           extracted_info_fact = item.text
-    extracted_info_fact = random.choice(self.memory).text
+          
+    if extracted_info_fact == "":
+      extracted_info_fact = random.choice(self.memory).text
     
     if nlu.sentiment[0] > 0.5:
         return "express-gladness-at-fact", extracted_info_fact
@@ -124,7 +127,7 @@ class DialogueManager:
     else:
       return random.choice(["question-about-extracted-info", "acknowledge-extracted-info"]), extracted_info_fact
     
-  # Maanya
+  # Maanya - requires interaction with guess_who.py because the slot values for generating keyphrase trigger depends on the scenario
   def keyphrase_trigger(self, nlu):
     grammar = self.keyphrases.grammar.grammar
     message = nlu.message

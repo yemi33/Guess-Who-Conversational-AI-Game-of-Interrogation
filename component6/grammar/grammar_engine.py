@@ -189,8 +189,6 @@ class GrammarEngine:
         intermediate_list.remove(curr_symbol)
         self._rewrite_symbols(intermediate_list, curr_index)
       elif curr_symbol in self.grammar.grammar.keys():
-        print(curr_symbol)
-        print(self.grammar.find(curr_symbol).rules)
         random_rule = random.choice(self.grammar.find(curr_symbol).rules)
         if self.grammar.grammar[curr_symbol].savable:
           self.set_variable(curr_symbol, random_rule.body[0])

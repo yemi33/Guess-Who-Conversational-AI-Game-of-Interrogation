@@ -71,12 +71,22 @@ def test_nlg():
 '''
 Testing NLU -> Dialogue Manager -> NLG -> Guess Who flow
 '''
-
+'''
+List of techniques
+      "resolve_obligation" : (0.0,0.4),
+      "keyphrase_trigger" : (0.4,0.6),
+      "eliza" : (0.6,0.7),
+      "extracted_info" : (0.7,0.8),
+      "utilize_dependency_structure" : (0.8,0.9),
+      "marcov_chain" : (0.9,0.95),
+      "address_profanity" : (0.95,1.0)
+'''
 def test_guess_who():
   guess_who = GuessWho()
   dialogue_manager = guess_who.dialogue_manager
-  message = "What were you doing last night?"
-  response = dialogue_manager.test_single_respond(message, "keyphrase_trigger")
+  message = "Yemi did it"
+  response = dialogue_manager.test_single_respond(message, "extracted_info") # plug in a technique and test to see if the output is reasonable
+  print(dialogue_manager.memory)
   print(response)
 
 if __name__ == "__main__":
