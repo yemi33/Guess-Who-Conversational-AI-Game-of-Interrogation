@@ -1,6 +1,6 @@
 import spacy
-from grammar.grammar_engine import GrammarEngine 
-from parser.island_parser import IslandParser
+from grammar_engine import GrammarEngine 
+from island_parser import IslandParser
 import random
 # pip install -U pip setuptools wheel
 # pip install -U spacy

@@ -6,7 +6,6 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 os.environ['TRANSFORMERS_VERBOSITY'] = 'critical'
 
 def component2():
-  print("hello")
   model = DialogTag('distilbert-base-uncased')
 
   sentence = "I'll probably go to shopping today."
@@ -19,6 +18,16 @@ def component2():
   print(output)
   # output: 'Wh-Question'
 
-if __name__ == "__name__":
+  sentence = "What did you do last night?"
+  output = model.predict_tag(sentence)
+  print(output)
+  # output: 'Wh-Question'
+
+  sentence = "I know you did it."
+  output = model.predict_tag(sentence)
+  print(output)
+  # output: 'Statement-non-opinion'
+
+if __name__ == "__main__":
   component2()
 

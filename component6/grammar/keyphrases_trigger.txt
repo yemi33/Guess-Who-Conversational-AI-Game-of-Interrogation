@@ -1,5 +1,5 @@
 General-Response -> I think it was <Person to be Blamed> who did it. <Scared>.
-Activity-Response -> I was <Alibai>.
+Activity-Response -> I <Alibi>. | I <Action>.
 Place-Reponse -> I was at <Residence>.
 Introduction-Response -> My name is <Name>.
 Alibi-Response -> I was with <Company>. 

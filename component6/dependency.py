@@ -122,7 +122,7 @@ def change_verb(doc):
   Return the new sentence
   '''
   verb = find_verb(doc)
-  grammar = GrammarEngine("grammar/general_conversation.txt").grammar
+  grammar = GrammarEngine("component6/grammar/general_conversation.txt").grammar
   try:
     rule = grammar.find(verb).rules
   except:

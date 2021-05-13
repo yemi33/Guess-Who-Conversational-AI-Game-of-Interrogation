@@ -11,10 +11,10 @@ import os
 """
 pip install better_profanity
 pip install -U textblob
-python -m textblob.download_corpora
+python3 -m textblob.download_corpora
 pip install -U pip setuptools wheel
 pip install -U spacy
-python -m spacy download en_core_web_sm 
+python3 -m spacy download en_core_web_sm 
 pip install DialogTag
 
 """
@@ -22,8 +22,6 @@ pip install DialogTag
 class NLU:
   def __init__(self, message):
     self.message = message
-    
-    '''
     self.sentiment = self.sentiment()#tuple
     self.obligations = self.obligations()#list
     self.dependencies = self.dependencies()#tuple
@@ -32,22 +30,18 @@ class NLU:
     self.keyphrases = self.keyphrases()
     self.profanity = self.profanity()#bool
     # self.lie = self.detect_lie()
-    '''
   
   def __repr__(self):
-    return f'message: {self.message}'
-
-    
-    # return f'''
-    # message: {self.message}\n
-    # sentiment: {self.sentiment}\n
-    # obligations: {self.obligations}\n 
-    # dependencies: {self.dependencies}\n 
-    # eliza: {self.eliza}\n 
-    # named_entities: {self.named_entities}\n 
-    # keyphrases: {self.keyphrases}\n 
-    # profanity: {self.profanity}\n
-    # '''
+    return f'''
+    message: {self.message}\n
+    sentiment: {self.sentiment}\n
+    obligations: {self.obligations}\n 
+    dependencies: {self.dependencies}\n 
+    eliza: {self.eliza}\n 
+    named_entities: {self.named_entities}\n 
+    keyphrases: {self.keyphrases}\n 
+    profanity: {self.profanity}\n
+    '''
     
   def sentiment(self):
     #returns tuple of polarity and subjectivity of message
@@ -57,7 +51,7 @@ class NLU:
     return tuple((polarity,subjectivity))
   
   def obligations(self):
-    #returns list, where keys are dialogue acts and values are obligations
+    # returns list, where keys are dialogue acts and values are obligations
     # Have to analyze our message
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
     os.environ['TRANSFORMERS_VERBOSITY'] = 'critical'
@@ -66,9 +60,11 @@ class NLU:
     output = model.predict_tag(self.message)
 
     obligations = {}
-    obligation_list = [] #list for a given dialog act
-    file = open("component6/grammar/obligations.txt", "r")
+    obligations_list = [] #list for a given dialog act
+    file = open("component6/grammar/obligations.txt", "r").read().split("\n")
     for line in file:
+      if line == "" or line == "\n" or line == " ":
+        continue
       dialogue_acts = line.split(":")
       act = dialogue_acts[0]
       responses = dialogue_acts[1].replace("\n", "")
@@ -84,18 +80,11 @@ class NLU:
     #The actionable structures built extractors for in Component 3 in tuple form.
     nlp = spacy.load("en_core_web_sm")
     message = nlp(self.message)
-    # verbs = component3.find_verb_chunk(message)
-    # subjects = component3.find_subject_chunk(message)
-    # objects = component3.find_object_chunk(message)
-    # question = component3.derive_question(message)
-    # obj = component3.find_direct_object(message)
-    # subj = component3.find_subject(message)
-    # return tuple((verbs,subjects,objects,question,obj,subj))
     verb = dependency.find_verb(message)
     subj = dependency.find_subject(message)
     obj = dependency.find_direct_object(message)
     changed_verb = dependency.change_verb(message)
-    return tuple(subj, verb, obj, changed_verb)
+    return tuple((subj, verb, obj, changed_verb))
 
   
   def eliza(self):
@@ -124,7 +113,7 @@ class NLU:
     return None
     '''
     lines = []
-    with open('grammar/keyphrases.txt') as f:
+    with open('component6/grammar/keyphrases.txt') as f:
         lines = f.readlines()
 
     return_key, return_value = "", ""
@@ -138,7 +127,9 @@ class NLU:
                 return_value = question
     return_dict = {}
     return_dict[return_key] = return_value
-    return return_dict
+    if return_key != "" and return_value != "":
+      return return_dict
+    return None
 
   def profanity(self):
     # Whether the user message contains profanity. There’s a simple Python library called profanity that will allow you to detect this.
@@ -147,15 +138,11 @@ class NLU:
   def detect_lie(self):
     # You should come up with at least one other feature that your NLU model will look for when processing incoming messages. This could leverage off-the-shelf NLP technology, or some kind of custom code that you write.
 
-    #detect lie?
-    #hard to find a library doing this, and probs hard complex to code
+    # detect lie?
+    # hard to find a library doing this, and probs hard complex to code
     # detect accusation? "You did", "I know you" etc in the user input?
     pass
 
 if __name__ == "__main__":
-  # nlu = NLU("Can we go to Starbucks?")
-  nlu = NLU("What were you doing last night?")
+  nlu = NLU("I know you did it.")
   print(nlu)
-  #print(nlu.named_entities)
-  #print(nlu.keyphrases)
-  #print(nlu.obligations)

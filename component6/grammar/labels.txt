@@ -1,44 +1,20 @@
-'''
-Structure:
-obligation&sentiment&subjective -> rule to achieve this obligation | rule to achieve this obligation | rule to achieve this obligation
-
-obligation&sentiment&objective -> rule to achieve this obligation | rule to achieve this obligation | rule to achieve this obligation
-
-Requirements:
-1. All the common obligations (refer to obligations.txt) + sentiment + subjective/objective 
-Statement-non-opinion:Acknowledgement,Statement-opinon,Response Acknowledgement,Wh-Question,Yes-No-Question,Declarative Yes-No-Question,Backchannel-in-question-form,Repeat-phrase
-Statement-opinion:Agree/Accept,Appreciation,Statement-opinion,Wh-Question,Response Acknowledgement,Non-verbal
-Hedge:Downplayer,Offers-Options Commits,Repeat-phrase,Apology
-Yes-No-Question:Yes Answer,No Answer,Repeat-phrase,Wh-Question,Acknowledgement
-2. Eliza cookie cutter grammar (negative vs positive)
-3. Cookie cutter for referring to extracted info
-4. Cookie cutter for dependency structure 
-5. Cookie cutter for dealing with profanity
-'''
-'''
-Fallback General Response
-'''
-general-response -> Uh huh. | Hmm. | Okay. 
-'''
-Obligations
-'''
-Statement-non-opinion-positive-subjective ->
-Statement-non-opinion-positive-objective ->
-Statement-non-opinion-negative-subjective ->
-Statement-non-opinion-negative-objective ->
-Statement-non-opinion-neutral-subjective ->
-Statement-non-opinion-neutral-objective ->
-Acknowledge (Backchannel)-positive-subjective -> Yep. | Go ahead.
-Acknowledge (Backchannel)-positive-objective ->
-Acknowledge (Backchannel)-negative-subjective -> Uh-huh.
-Acknowledge (Backchannel)-negative-objective ->
-Acknowledge (Backchannel)-neutral-subjective ->
+Statement-non-opinion-positive-subjective
+Statement-non-opinion-positive-objective
+Statement-non-opinion-negative-subjective
+Statement-non-opinion-negative-objective
+Statement-non-opinion-neutral-subjective
+Statement-non-opinion-neutral-objective
+Acknowledge (Backchannel)-positive-subjective
+Acknowledge (Backchannel)-positive-objective
+Acknowledge (Backchannel)-negative-subjective
+Acknowledge (Backchannel)-negative-objective
+Acknowledge (Backchannel)-neutral-subjective
 Acknowledge (Backchannel)-neutral-objective
-Statement-opinion-positive-subjective -> It sounds good. | I totally agree.
+Statement-opinion-positive-subjective
 Statement-opinion-positive-objective
-Statement-opinion-negative-subjective -> I disagree. | I don't think so.
+Statement-opinion-negative-subjective
 Statement-opinion-negative-objective
-Statement-opinion-neutral-subjective -> That sounds about right. | Okay then.
+Statement-opinion-neutral-subjective
 Statement-opinion-neutral-objective
 Agree/Accept-positive-subjective
 Agree/Accept-positive-objective
@@ -88,24 +64,24 @@ Uninterpretable-negative-subjective
 Uninterpretable-negative-objective
 Uninterpretable-neutral-subjective
 Uninterpretable-neutral-objective
-Wh-Question-positive-subjective -> Sounds right, where did this happen? | Sounds right, when did this happen? | Sounds right, why did this occur? 
-Wh-Question-positive-objective -> Right, where did this happen? | Right, when did this happen? | Right, why did this occur?
-Wh-Question-negative-subjective -> I'm not sure about that, where did this happen? | I'm not sure about that, when did this happen? | I'm not sure about that, why did this occur?
-Wh-Question-negative-objective -> That's not right, where did this happen? | That's not right, when did this happen? | That's not right, why did this occur?
-Wh-Question-neutral-subjective -> Okay, where did this happen? | Okay, when did this happen? | okay, why did this occur?
-Wh-Question-neutral-objective -> Okay, where did this happen? | Okay, when did this happen? | okay, why did this occur?
+Wh-Question-positive-subjective
+Wh-Question-positive-objective
+Wh-Question-negative-subjective
+Wh-Question-negative-objective
+Wh-Question-neutral-subjective
+Wh-Question-neutral-objective
 No answers-positive-subjective
 No answers-positive-objective
 No answers-negative-subjective
 No answers-negative-objective
 No answers-neutral-subjective
 No answers-neutral-objective
-Response Acknowledgement-positive-subjective -> Right. | Sounds correct. | That's right.
-Response Acknowledgement-positive-objective -> Right. | Sounds correct. | That's right.
-Response Acknowledgement-negative-subjective -> That's incorrect. | I disagree. | And why do you say that? I don't agree.
-Response Acknowledgement-negative-objective -> I'm not sure that's not entirely true. | That doesn't sound right. | I have to disagree.
-Response Acknowledgement-neutral-subjective -> Right. | Sounds correct. | That's right.
-Response Acknowledgement-neutral-objective -> Right. | Sounds correct. | That's right.
+Response Acknowledgement-positive-subjective
+Response Acknowledgement-positive-objective
+Response Acknowledgement-negative-subjective
+Response Acknowledgement-negative-objective
+Response Acknowledgement-neutral-subjective
+Response Acknowledgement-neutral-objective
 Hedge-positive-subjective
 Hedge-positive-objective
 Hedge-negative-subjective
@@ -280,114 +256,3 @@ Thanking-negative-subjective
 Thanking-negative-objective
 Thanking-neutral-subjective
 Thanking-neutral-objective
-
-'''
-Eliza
-'''
-congratulating-eliza -> I'm <pos-adj-im> to hear that <fact>! | That's <pos-adj> that <fact>!
-pos-adj-im -> glad | happy | thrilled | excited
-pos-adj -> awesome | great | exciting
-empathetic-eliza -> I'm <neg-adj-im> to hear that <fact>. | Wow, I did not know that <fact>. | It must have been <neg-adj> to hear that <fact>.
-neg-adj-im -> sorry | sad | regretful
-neg-adj -> hard | difficult 
-neutral-eliza -> Thank you for telling me that <fact>. | I'm glad to know that <fact>. 
-'''
-Refer to Extracted Info
-'''
-question-about-extracted-info -> Is this <related-to> fact that <fact>? | Did <fact> have to do anything with it? | What does <fact> have to do with that? | Is this and <fact> related? | What are you implying with <fact>?
-related-to -> related to | correlated with | something related to | consistent with
-acknowledge-extracted-info -> <acknowledgement> You also mentioned before that <fact>. | You said that <fact>. 
-acknowledgement -> I see. | I just remembered. | You know what's funny? | What's interesting is that, | You know, |
-question-extracted-info -> Why did you say that <fact>? | What is the reason you say <fact? | What are you trying say with the fact that <fact>? | Is <fact> really true? | Why do you say that <fact>?
-express-anger-at-fact -> I'm <adj-phrase-mad> that you say that <fact>. 
-adj-phrase-mad -> <modifier> <adj-mad>
-modifier -> quite | kinda | a little | 
-adj-mad -> upset | angered | furious | mad
-express-sadness-at-fact -> I'm <adj-phrase-sad> that you that <fact>.
-adj-phrase-sad -> <modifier> <adj-sad>
-adj-sad -> sad | miserable | devastated
-express-gladness-at-fact -> I'm <adj-phrase-glad> that you that <fact>.
-adj-phrase-glad -> <modifier> <adj-glad>
-adj-glad -> glad | happy | grateful
-'''
-Dependency Structure
-'''
-verb -> verb | verb | verb
-'''
-Profanity
-'''
-profanity-guilty -> I <goal> to <vb>, but your language isn't helping. | Your language is <effect>. | I am only getting <emotion> when you swear.
-goal -> am trying | want | am attempting | would like
-vb -> calm down | settle down | relax | chill out
-effect -> stressing me out | making it hard to <vb> | unnecessary
-emotion -> angrier | more upset | more anxious | more nervous | less willing to answer
-profanity-innocent -> Your <adj> language is warranted, this is an <adj2> topic. | I get the <adj> language, I am <adj3> by what happend, too.
-adj -> strong | explicit | blunt | frank | unreserved
-adj2 -> intense | agonizing | stressful | tough
-adj3 -> enraged | infuriated | angered | upset
-'''
-verbs
-'''
-like -> love | enjoy | like
-love -> love | enjoy | like
-enjoy -> love | enjoy | like
-hate -> dislike | hate
-dislike -> dislike | hate
-carry -> bring | take | carry
-bring -> bring | take | carry
-take -> bring | take | carry
-carried -> brought | took | carried
-brought -> brought | took | carried
-took -> brought | took | carried
-use -> make use of | use
-make use of -> make use of | use 
-used -> made use of | used
-made use of -> made use of | used
-kill -> murder | terminate | kill
-terminate -> murder | terminate | kill
-murder -> murder | terminate | kill
-killed -> murdered | terminated | killed
-murdered -> murdered | terminated | killed
-terminated -> murdered | terminated | killed
-hit -> hit | attack | punch | hurt
-attack -> hit | attack | punch | hurt
-punch -> hit | attack | punch | hurt
-hurt -> hit | attack | punch | hurt
-hit -> hit | attacked | punched | hurt
-attacked  -> hit | attacked | punched | hurt
-punched  -> hit | attacked | punched | hurt
-hurt  -> hit | attacked | punched | hurt
-answer -> reply | response | answer
-reply -> reply | response | answer
-response -> reply | response | answer
-answered -> replied | responsed | answered
-replied -> replied | responsed | answered
-responsed -> replied | responsed | answered
-collect -> gather | assemble | collect
-gather -> gather | assemble | collect
-assemble -> gather | assemble | collect
-collected -> gathered | assembled | collected
-gathered -> gathered | assembled | collected
-assembled -> gathered | assembled | collected
-continue -> continue | keep
-keep -> continue | keep
-continued -> continued | kept
-kept -> continued | kept
-expect -> anticipate | expect 
-anticipate -> anticipate | expect 
-expected -> anticipated | expected
-anticipated -> anticipated | expected
-explain -> explain | illustrate | clarify
-illustrate  -> explain | illustrate | clarify
-clarify  -> explain | illustrate | clarify
-explained -> explained | illustrated | clarified
-illustrated -> explained | illustrated | clarified
-clarified -> explained | illustrated | clarified
-reject -> refuse | reject
-refuse -> refuse | reject
-rejected -> refused | rejected
-refused -> refused | rejected
-remember -> recall | remember
-recall -> recall | remember
-remembered -> recalled | remembered
-recalled -> recalled | remembered

@@ -1,65 +1,21 @@
 import random
 from grammar.grammar_engine import GrammarEngine
-from dialogue_manager import DialogueManager
+from dialogue_manager import *
 
 # pip install -U spacy
 # python -m spacy download en_core_web_sm
-
-class Memory:
-  '''
-  Struct representing a memory unit
-  '''
-  def __init__(self, ner = "", text = "", type_of_memory = "", subject = None, verb = None, obj = None):
-    self.ner = ner
-    self.text = text
-    self.type_of_memory = type_of_memory
-    self.subject = subject
-    self.verb = verb
-    self.object = obj
-    '''
-    Example file format:
-
-    $ Innocent
-    ner text type_of_memory subject verb obj
-
-    $ Guilty
-    ner text type_of_memory subject verb obj
-
-    $ Case
-    ner text type_of_memory subject verb obj
-
-    Types of Memory (You can add more if necessary)
-    - Location
-    - Action
-    - Residence 
-    - Relationship 
-    - Age 
-    - Name 
-    - Time Last Seen Victim
-    - Company
-    - Memory with Victim 
-    - Person to be Blamed
-    '''
-  def __repr__(self):
-    return f"Memory({self.ner} | {self.text} | {self.type_of_memory} | {self.subject} | {self.verb} | {self.object})"
-  
-  def fill_in_memory(self, list_of_items):
-    self.ner = list_of_items[0]
-    self.text = list_of_items[1]
-    self.type_of_memory = list_of_items[2]
-    self.subject = list_of_items[3]
-    self.verb = list_of_items[4]
-    self.object = list_of_items[5]
 
 class GuessWho:
   '''
   Class that represents the game simulation.
   '''
   def __init__(self):
-    self.case_file, self.suspect_identity, self.suspect_memory = self.generate_scenario("component6/case_file.txt") # a dictionary of facts
+    self.suspect_name = ""
+    self.case_file, self.suspect_name, self.suspect_identity, self.suspect_memory = self.generate_scenario("component6/case_file.txt") # a dictionary of facts
     self.dialogue_manager = DialogueManager(self.suspect_identity)
     self.dialogue_manager.memory = self.suspect_memory
-    #self.nlg = NLG(self.dialogue_manager)
+    self.dialogue_manager.keyphrase_responses = self.generate_trigger_responses()
+    print(self.dialogue_manager.keyphrase_responses)
 
   # Yemi, Sue
   def generate_scenario(self, case_file):
@@ -95,7 +51,14 @@ class GuessWho:
     
     suspect_identity = random.choice(["Guilty", "Innocent"])
     suspect_memory = dictionary[suspect_identity]
-    return dictionary["Case"], suspect_identity, suspect_memory
+
+    # Retrieve suspect's name
+    suspect_name = ""
+    for memory in suspect_memory:
+      if memory.type_of_memory == "Name":
+        suspect_name = memory.text
+  
+    return dictionary["Case"], suspect_name, suspect_identity, suspect_memory
   
   # Sue, Yemi
   def generate_trigger_responses(self):
@@ -106,37 +69,54 @@ class GuessWho:
     General-Response -> I think it was <Person to be Blamed> who did it. <Scared>.
     Person to be Blames -> ...
     '''
-    memory_type_list = ["Alibai", "Residence", "Relationship", "Name",  "Company", "Memory with Victim", "Person to be Blamed", "Location"]
-    grammar_engine = self.dialogue_manager.keyphrase_responses
+    memory_type_list = ["Alibi", "Action", "Residence", "Relationship", "Name",  "Company", "Memory with Victim", "Person to be Blamed", "Location"]
+    grammar_engine = GrammarEngine("component6/grammar/keyphrases_trigger.txt")
     for item in self.suspect_memory:
       if item.type_of_memory in memory_type_list:
-        grammar_engine.set_variables(item.type_of_memory, item.text)
+        text = item.text
+        if item.type_of_memory == "Alibi" or item.type_of_memory == "Action":
+          text = item.verb + " " + item.object
+        grammar_engine.set_variable(item.type_of_memory, text)
     
     populated_keyphrase_triggers = dict()
     for nonterminal in grammar_engine.grammar.grammar.keys():
-      populated_keyphrase_triggers[nonterminal] = grammar.generate(nonterminal)
+      populated_keyphrase_triggers[nonterminal] = grammar_engine.generate(nonterminal)
   
-    self.dialogue_manager.keyphrase_responses = populated_keyphrase_triggers
+    return populated_keyphrase_triggers
     
   def start_game(self):
     '''
     Code to generate the game
-    - utilize NLU, Dialogue Manager, NLG to have a conversation (aka chatbot)
     '''
-    # print("Would you like to play Guilty as Charged???")
-    # yes/no
-    # print("You are an interrogator. You must determine if the person you are interviewing is GUILTY or NOT GUILTY.")
-    # Here is your case file:
-    # print case file
-    # Would like to begin questioning?
-    # yes/no
-    # print("*NAME enters the room*")
-    # for i in range 25 (? how many rounds do we want)
-    #   nlu(input())
-    #   dialogemanager.strategize(response)
-    #   nlg(dialogemanager)
-    #   print(nlg.general_respond)
+    
+    print("You are an interrogator. You must determine if the person you are interviewing is GUILTY or NOT GUILTY.")
+    print("Here is your case file.")
+    print (self.case_file)
+    answer = input("Would like to begin questioning? (Yes/No): ")
+    if answer.lower() == "yes" or answer.lower() == "y":
+      print(f"*{self.suspect_name} enters the room*")
+      for i in range(2):
+        user_input = input("You: ")
+        print(f"{self.suspect_name}: {self.dialogue_manager.respond(user_input)}")
+      
+      final_verdict = input(f"Now, make a guess. Is {self.suspect_name} guilty or not? (Guilty/Not Guilty): ")
+      if final_verdict == "Guilty":
+        if self.suspect_identity == "Guilty":
+          print(f"You have correctly guessed. {self.suspect_name} was indeed guilty.")
+        else:
+          print(f"Nope. {self.suspect_name} was actually innocent.")
+      else:
+        if self.suspect_identity == "Guilty":
+          print(f"No. {self.suspect_name} fooled you. She was guilty.")
+        else:
+          print(f"Yes! {self.suspect_name} was innocent as you have correctly guessed.")
 
 if __name__ == "__main__":
   guess_who = GuessWho()
-  
+
+  print("Would you like to play GuessWho??? (Yes/No)")
+  user_answer = input()
+  if user_answer.lower() == "yes" or user_answer.lower() == "y":
+    guess_who.start_game()
+  else:
+    print("Well thanks for coming by anyway. :D")
