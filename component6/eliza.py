@@ -8,9 +8,6 @@ class Eliza:
     self.memory = []
 
   def swap_pronouns(self, string):
-    '''
-    Identify the usages of pronouns (I, me, my, myself, you, your, yourself) and if they're (I, me, myself), swap it for (you, your, yourself) and vice versa
-    '''
     special_pronouns = ["i", "me", "my", "myself", "you", "your", "yourself"]
     special_verbs = ["am", "'m", "are"]
     doc = self.nlp(string)

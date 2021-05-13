@@ -11,24 +11,28 @@ pip install -U pip setuptools wheel
 pip install -U spacy
 python -m spacy download en_core_web_sm 
 pip install DialogTag
+"""
 
 """
-"""
-Testing NLU functions
+Testing NLU
 """
 def test_nlu_whole():
-  suspect = guess_who.Suspect("guilty", None)
-  message = "I know you did it. If you come clean now, you won't have to die in prison."
-  nlu = NLU(message)
-  print(nlu)
-
-'''
-Testing Dialogue Manager functions
-'''
+  messages = ["I know you did it. If you come clean now, you won't have to die in prison.", "What were you doing last night?"]
+  for message in messages:
+    nlu = NLU(message)
+    print(nlu)
 
 
 '''
-Testing NLU -> Dialogue Manager -> NLG flow
+'''
+#Testing Dialogue Manager functions
+'''
+def test_dialogue_manager_whole():
+  dialogue_manager = DialogueManager()
+
+
+'''
+#Testing NLU -> Dialogue Manager -> NLG flow
 '''
 def test_eliza_effect():
   suspect = guess_who.Suspect("guilty", None)
@@ -63,7 +67,14 @@ def test_dependency():
   response = nlg.test_single_response("dependency")
   print(response)
 
+#sentiment subjectivity extracted information key-phrase trigger profanity
+'''
+
+
+
 if __name__ == "__main__":
   test_nlu_whole()
+  # check_island_parsing()
   # test_eliza_effect()
   # test_marcov_chain()
+  # test_dependency()
