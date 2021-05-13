@@ -1,5 +1,4 @@
 #Maanya (working on local terminal but not here)
-
 from dialog_tag import DialogTag
 import os
 
@@ -7,6 +6,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 os.environ['TRANSFORMERS_VERBOSITY'] = 'critical'
 
 def component2():
+  print("hello")
   model = DialogTag('distilbert-base-uncased')
 
   sentence = "I'll probably go to shopping today."

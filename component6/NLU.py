@@ -47,7 +47,7 @@ class NLU:
     output = model.predict_tag(self.message)
 
     obligations = {}
-    obligations_list = [] #list for a given dialog act
+    obligation_list = [] #list for a given dialog act
     file = open("component6/grammar/obligations.txt", "r")
     for line in file:
       dialogue_acts = line.split(":")
