@@ -23,6 +23,7 @@ class NLG:
       return self.grammar_engine.generate(origin) # concatenate the generated text to the overall response
 
   def general_respond(self):
+    ''' remove utilize_dependency_structure
     probabilities = {
       "resolve_obligation" : (0.0,0.4),
       "keyphrase_trigger" : (0.4,0.6),
@@ -32,7 +33,15 @@ class NLG:
       "marcov_chain" : (0.9,0.95),
       "address_profanity" : (0.95,1.0)
     }
-
+    '''
+    probabilities = {
+      "resolve_obligation" : (0.0,0.4),
+      "keyphrase_trigger" : (0.4,0.6),
+      "eliza" : (0.6,0.7),
+      "extracted_info" : (0.7,0.8),
+      "marcov_chain" : (0.8,0.9),
+      "address_profanity" : (0.9,1.0)
+    }
     responses = {}
     # go through each of the response strategy, save variables when applicable
     for strategy in self.response_strategy.keys():

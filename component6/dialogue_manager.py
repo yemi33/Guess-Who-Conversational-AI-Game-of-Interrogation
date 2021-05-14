@@ -33,7 +33,6 @@ class DialogueManager:
     subject = nlu.dependencies[0]
     verb = nlu.dependencies[1]
     direct_object = nlu.dependencies[2]
-    switched_verb = nlu.dependencies[3]
     new_memory = Memory(ner=ner,text=message,subj=subject,verb=verb,obj=direct_object)
     self.memory.append(new_memory)
 
@@ -60,6 +59,9 @@ class DialogueManager:
     option = random.randint(0, len(obligations_list)-1)
     obligation_choice = obligations_list[option]
     resolved_obligation = obligation_choice + "-" + self.address_sentiment(nlu) + "-" + self.address_subjectivity(nlu)
+    general_grammar = GrammarEngine("grammar/general_conversation.txt")
+    if resolved_obligation not in general_grammar.grammar.keys():
+      resolved_obligation = "general-response"
     return resolved_obligation
   
   # Nicole
@@ -140,10 +142,12 @@ class DialogueManager:
             return self.keyphrase_responses[response]
     return None
   
-  #Sue
+  #Sue - we can remove it; it's more like a helper function
+  '''
   def utilize_dependency_structure(self, nlu):
     new_sentence = nlu.dependencies[3]
     return new_sentence
+  '''
     
   # Nicole
   def marcov_chain(self, nlu):

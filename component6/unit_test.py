@@ -1,3 +1,4 @@
+
 from NLU import NLU
 from dialogue_manager import DialogueManager
 from NLG import NLG
@@ -11,6 +12,7 @@ pip install -U pip setuptools wheel
 pip install -U spacy
 python -m spacy download en_core_web_sm 
 pip install DialogTag
+
 """
 
 """
@@ -38,7 +40,7 @@ def test_dialogue_manager():
     'keyphrase_trigger': 'Activity-Response', 
     'eliza': 'neutral-eliza', 
     'extracted_info': 'question-about-extracted-info', 
-    'utilize_dependency_structure': None, 
+    # removed 'utilize_dependency_structure': None, 
     'marcov_chain': 'I mean ’? been doing?\n about, What ’s happenin ’?\n one down yeah.,. doing?\n', 
     'address_profanity': None, 
     'address_other_feature': None
@@ -77,9 +79,11 @@ List of techniques
       "keyphrase_trigger" : (0.4,0.6),
       "eliza" : (0.6,0.7),
       "extracted_info" : (0.7,0.8),
-      "utilize_dependency_structure" : (0.8,0.9),
-      "marcov_chain" : (0.9,0.95),
-      "address_profanity" : (0.95,1.0)
+      "marcov_chain" : (0.8,0.9),
+      "address_profanity" : (0.9,1.0)
+      # removed "utilize_dependency_structure" : (0.8,0.9),
+      # changed "marcov_chain" : (0.9,0.95),
+      # changed "address_profanity" : (0.95,1.0)
 '''
 def test_guess_who():
   guess_who = GuessWho()

@@ -68,7 +68,7 @@ class Eliza:
   
   def deposit_memory(self, string):
     doc = self.nlp(string)
-    verb_chunk = component3.find_verb_chunk(doc)
+    verb_chunk = dependency.find_verb_chunk(doc)
     
     memory = ""
     if verb_chunk != None:

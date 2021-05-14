@@ -22,265 +22,269 @@ general-response -> Uh huh. | Hmm. | Okay.
 '''
 Obligations
 '''
-Statement-non-opinion-positive-subjective ->
-Statement-non-opinion-positive-objective ->
-Statement-non-opinion-negative-subjective ->
-Statement-non-opinion-negative-objective ->
-Statement-non-opinion-neutral-subjective ->
-Statement-non-opinion-neutral-objective ->
+Statement-non-opinion-positive-subjective -> I'm doing good. | I'm feeling great.
+Statement-non-opinion-positive-objective -> This is good. | This goes well.
+Statement-non-opinion-negative-subjective -> I'm feeling sick. | I'm tired.
+Statement-non-opinion-negative-objective -> This goes the wrong way. | This is not right.
+Statement-non-opinion-neutral-subjective -> I know it's true. | I know it's false.
+Statement-non-opinion-neutral-objective -> It is ture. | It is false.
 Acknowledge (Backchannel)-positive-subjective -> Yep. | Go ahead.
-Acknowledge (Backchannel)-positive-objective ->
-Acknowledge (Backchannel)-negative-subjective -> Uh-huh.
-Acknowledge (Backchannel)-negative-objective ->
-Acknowledge (Backchannel)-neutral-subjective ->
-Acknowledge (Backchannel)-neutral-objective
+Acknowledge (Backchannel)-positive-objective -> Please continue.
+Acknowledge (Backchannel)-negative-subjective -> Huh.
+Acknowledge (Backchannel)-negative-objective -> Hum.
+Acknowledge (Backchannel)-neutral-subjective -> Well.
+Acknowledge (Backchannel)-neutral-objective -> Keep going.
 Statement-opinion-positive-subjective -> It sounds good. | I totally agree.
-Statement-opinion-positive-objective
+Statement-opinion-positive-objective -> You are doing good. | You are doing the right thing.
 Statement-opinion-negative-subjective -> I disagree. | I don't think so.
-Statement-opinion-negative-objective
+Statement-opinion-negative-objective -> You did it wrong. 
 Statement-opinion-neutral-subjective -> That sounds about right. | Okay then.
-Statement-opinion-neutral-objective
-Agree/Accept-positive-subjective
-Agree/Accept-positive-objective
-Agree/Accept-negative-subjective
-Agree/Accept-negative-objective
-Agree/Accept-neutral-subjective
-Agree/Accept-neutral-objective
-Abandoned or Turn-Exit-positive-subjective
-Abandoned or Turn-Exit-positive-objective
-Abandoned or Turn-Exit-negative-subjective
-Abandoned or Turn-Exit-negative-objective
-Abandoned or Turn-Exit-neutral-subjective
-Abandoned or Turn-Exit-neutral-objective
-Appreciation-positive-subjective
-Appreciation-positive-objective
-Appreciation-negative-subjective
-Appreciation-negative-objective
-Appreciation-neutral-subjective
-Appreciation-neutral-objective
-Yes-No-Question-positive-subjective
-Yes-No-Question-positive-objective
-Yes-No-Question-negative-subjective
-Yes-No-Question-negative-objective
-Yes-No-Question-neutral-subjective
-Yes-No-Question-neutral-objective
-Non-verbal-positive-subjective
-Non-verbal-positive-objective
-Non-verbal-negative-subjective
-Non-verbal-negative-objective
-Non-verbal-neutral-subjective
-Non-verbal-neutral-objective
-Yes answers-positive-subjective
-Yes answers-positive-objective
-Yes answers-negative-subjective
-Yes answers-negative-objective
-Yes answers-neutral-subjective
-Yes answers-neutral-objective
-Conventional-closing-positive-subjective
-Conventional-closing-positive-objective
-Conventional-closing-negative-subjective
-Conventional-closing-negative-objective
-Conventional-closing-neutral-subjective
-Conventional-closing-neutral-objective
-Uninterpretable-positive-subjective
-Uninterpretable-positive-objective
-Uninterpretable-negative-subjective
-Uninterpretable-negative-objective
-Uninterpretable-neutral-subjective
-Uninterpretable-neutral-objective
+Statement-opinion-neutral-objective -> This shoud work.
+Agree/Accept-positive-subjective -> I totally agree. | I would love to.
+Agree/Accept-positive-objective -> That's exactly it. | That's acceptable.
+Agree/Accept-negative-subjective -> I am not disagreeing, but I am not supporting it either. 
+Agree/Accept-negative-objective -> It's not unacceptable.
+Agree/Accept-neutral-subjective -> I think it's okay.
+Agree/Accept-neutral-objective -> That is okay.
+Abandoned or Turn-Exit-positive-subjective -> Indeed, | For sure,
+Abandoned or Turn-Exit-positive-objective -> Indeed, | For sure,
+Abandoned or Turn-Exit-negative-subjective -> However, | Nevertheless, 
+Abandoned or Turn-Exit-negative-objective -> However, | Nevertheless, 
+Abandoned or Turn-Exit-neutral-subjective -> So, | Then,
+Abandoned or Turn-Exit-neutral-objective -> So, | Then,
+Appreciation-positive-subjective -> I can imagine.
+Appreciation-positive-objective -> That's true.
+Appreciation-negative-subjective -> It's hard to imagine.
+Appreciation-negative-objective -> It might be true.
+Appreciation-neutral-subjective -> Yes.
+Appreciation-neutral-objective -> Yes.
+Yes-No-Question-positive-subjective -> Do you like me?
+Yes-No-Question-positive-objective -> Are you tired?
+Yes-No-Question-negative-subjective -> Are you kidding me? | Are you serious?
+Yes-No-Question-negative-objective ->  Do you hate me?
+Yes-No-Question-neutral-subjective -> Are you doing all right?
+Yes-No-Question-neutral-objective -> Are you telling the truth?
+Non-verbal-positive-subjective -> [Laughing].
+Non-verbal-positive-objective -> [Nodding].
+Non-verbal-negative-subjective -> [Crying].
+Non-verbal-negative-objective -> [Shaking head].
+Non-verbal-neutral-subjective -> [Gazing].
+Non-verbal-neutral-objective -> [Throat clearing].
+Yes answers-positive-subjective -> Yep! | Sounds good!
+Yes answers-positive-objective -> Alright.
+Yes answers-negative-subjective -> Oh well.
+Yes answers-negative-objective -> Well.
+Yes answers-neutral-subjective -> Okay.
+Yes answers-neutral-objective -> Yes.
+Conventional-closing-positive-subjective -> It's been such a nice time to talk with you!
+Conventional-closing-positive-objective -> Thanks for talking with me.
+Conventional-closing-negative-subjective -> I don't wanna talk with you agian.
+Conventional-closing-negative-objective -> This talk will never happen again.
+Conventional-closing-neutral-subjective -> See you next time.
+Conventional-closing-neutral-objective -> See you.
+Uninterpretable-positive-subjective -> Yeah. | Well.
+Uninterpretable-positive-objective -> Well.
+Uninterpretable-negative-subjective -> But.
+Uninterpretable-negative-objective -> But.
+Uninterpretable-neutral-subjective -> Uh. | Well.
+Uninterpretable-neutral-objective -> Well.
 Wh-Question-positive-subjective -> Sounds right, where did this happen? | Sounds right, when did this happen? | Sounds right, why did this occur? 
 Wh-Question-positive-objective -> Right, where did this happen? | Right, when did this happen? | Right, why did this occur?
 Wh-Question-negative-subjective -> I'm not sure about that, where did this happen? | I'm not sure about that, when did this happen? | I'm not sure about that, why did this occur?
 Wh-Question-negative-objective -> That's not right, where did this happen? | That's not right, when did this happen? | That's not right, why did this occur?
 Wh-Question-neutral-subjective -> Okay, where did this happen? | Okay, when did this happen? | okay, why did this occur?
 Wh-Question-neutral-objective -> Okay, where did this happen? | Okay, when did this happen? | okay, why did this occur?
-No answers-positive-subjective
-No answers-positive-objective
-No answers-negative-subjective
-No answers-negative-objective
-No answers-neutral-subjective
-No answers-neutral-objective
+No answers-positive-subjective -> Nope. | Not at all.
+No answers-positive-objective -> No.
+No answers-negative-subjective -> No, never. | Not at all.
+No answers-negative-objective -> No.
+No answers-neutral-subjective -> No. | Not at all.
+No answers-neutral-objective -> No.
 Response Acknowledgement-positive-subjective -> Right. | Sounds correct. | That's right.
 Response Acknowledgement-positive-objective -> Right. | Sounds correct. | That's right.
 Response Acknowledgement-negative-subjective -> That's incorrect. | I disagree. | And why do you say that? I don't agree.
 Response Acknowledgement-negative-objective -> I'm not sure that's not entirely true. | That doesn't sound right. | I have to disagree.
 Response Acknowledgement-neutral-subjective -> Right. | Sounds correct. | That's right.
 Response Acknowledgement-neutral-objective -> Right. | Sounds correct. | That's right.
-Hedge-positive-subjective
-Hedge-positive-objective
-Hedge-negative-subjective
-Hedge-negative-objective
-Hedge-neutral-subjective
-Hedge-neutral-objective
-Declarative Yes-No-Question-positive-subjective
-Declarative Yes-No-Question-positive-objective
-Declarative Yes-No-Question-negative-subjective
-Declarative Yes-No-Question-negative-objective
-Declarative Yes-No-Question-neutral-subjective
-Declarative Yes-No-Question-neutral-objective
-Other-positive-subjective
-Other-positive-objective
-Other-negative-subjective
-Other-negative-objective
-Other-neutral-subjective
-Other-neutral-objective
-Backchannel in question form-positive-subjective
-Backchannel in question form-positive-objective
-Backchannel in question form-negative-subjective
-Backchannel in question form-negative-objective
-Backchannel in question form-neutral-subjective
-Backchannel in question form-neutral-objective
-Quotation-positive-subjective
-Quotation-positive-objective
-Quotation-negative-subjective
-Quotation-negative-objective
-Quotation-neutral-subjective
-Quotation-neutral-objective
-Summarize/reformulate-positive-subjective
-Summarize/reformulate-positive-objective
-Summarize/reformulate-negative-subjective
+Hedge-positive-subjective -> 	I assume I'm making it clear.
+Hedge-positive-objective -> It should be correct.
+Hedge-negative-subjective -> 	I don't know if I'm right.
+Hedge-negative-objective -> It might not be true.
+Hedge-neutral-subjective -> I don't know if I'm making any sense or not.
+Hedge-neutral-objective -> It might be right.
+Declarative Yes-No-Question-positive-subjective -> So you are a good person?
+Declarative Yes-No-Question-positive-objective -> So you are a detective?
+Declarative Yes-No-Question-negative-subjective -> So you are a bad person?
+Declarative Yes-No-Question-negative-objective -> So you are a lier?
+Declarative Yes-No-Question-neutral-subjective -> So you are good at investigating?
+Declarative Yes-No-Question-neutral-objective -> So you are a detective?
+Other-positive-subjective -> Please let me take a break. | Let's pause for a second, please.
+Other-positive-objective -> Let's take a break.
+Other-negative-subjective -> I'm done with this. I need a break! 
+Other-negative-objective -> I need a break!
+Other-neutral-subjective -> Let me take a break.
+Other-neutral-objective -> Let's pause for a second.
+Backchannel in question form-positive-subjective -> Is that good enough?
+Backchannel in question form-positive-objective -> Is that good?
+Backchannel in question form-negative-subjective -> Is that so bad?
+Backchannel in question form-negative-objective -> Is that a lie?
+Backchannel in question form-neutral-subjective -> Is that correct? | Is that true?
+Backchannel in question form-neutral-objective -> Is that correct? | Is that true?
+Quotation-positive-subjective -> It is during our darkest moments that we must focus to see the light.
+Quotation-positive-objective -> Life is either a daring adventure or nothing at all.
+Quotation-negative-subjective -> Sick of crying, tired of trying.
+Quotation-negative-objective -> If life were predictable it would cease to be life and be without flavor.
+Quotation-neutral-subjective -> To be, or not to be.
+Quotation-neutral-objective -> Life is a succession of lessons which must be lived to be understood. 
+Apology-positive-subjective -> I'm so sorry. 
+Apology-positive-objective -> I'm sorry. | It's my fault.
+Apology-negative-subjective -> It's totally my fault.
+Apology-negative-objective -> It's my fault.
+Apology-neutral-subjective -> My apology.
+Apology-neutral-objective -> My apology.
+Thanking-positive-subjective -> Thank you so much! | I really appreciate that!
+Thanking-positive-objective -> Thank you. | Thanks for you're help.
+Thanking-negative-subjective -> Thanks.
+Thanking-negative-objective -> Thanks.
+Thanking-neutral-subjective -> Thank you.
+Thanking-neutral-objective -> Thank you.
+Affirmative non-yes answers-positive-subjective -> You are correct!
+Affirmative non-yes answers-positive-objective -> You are correct.
+Affirmative non-yes answers-negative-subjective -> It is.
+Affirmative non-yes answers-negative-objective -> It is.
+Affirmative non-yes answers-neutral-subjective -> It should be it then.
+Affirmative non-yes answers-neutral-objective -> It is.
+Open-Question-positive-subjective -> How are you doing?
+Open-Question-positive-objective -> How about you?
+Open-Question-negative-subjective -> How about you?
+Open-Question-negative-objective -> How about you?
+Open-Question-neutral-subjective -> How are you?
+Open-Question-neutral-objective -> How are you?
+Hold before answer/agreement-positive-subjective -> Please give me a second. | Let me think about it. 
+Hold before answer/agreement-positive-objective -> Give me a second. | Let me think about it. 
+Hold before answer/agreement-negative-subjective -> Let me think. I cannot recall it now.
+Hold before answer/agreement-negative-objective -> Let me think.
+Hold before answer/agreement-neutral-subjective -> Give me a second to think about it.
+Hold before answer/agreement-neutral-objective -> Give me a second to think about it.
+Reject-positive-subjective -> Well, no. | Sorry, no.
+Reject-positive-objective -> No.
+Reject-negative-subjective -> No way.
+Reject-negative-objective -> No.
+Reject-neutral-subjective -> No, I refuse.
+Reject-neutral-objective -> No.
+Downplayer-positive-subjective -> That's fine. | That's totally okay.
+Downplayer-positive-objective -> That's fine.
+Downplayer-negative-subjective -> Well. 
+Downplayer-negative-objective -> Well.
+Downplayer-neutral-subjective -> That's fair.
+Downplayer-neutral-objective -> That's okay.
+Maybe/Accept-part-positive-subjective -> Something like that.
+Maybe/Accept-part-positive-objective -> Something similar.
+Maybe/Accept-part-negative-subjective -> Something like that.
+Maybe/Accept-part-negative-objective -> Something similar.
+Maybe/Accept-part-neutral-subjective -> Something like that.
+Maybe/Accept-part-neutral-objective -> Something similar.
+Action-directive-positive-subjective -> Why don't you tell me what you want to know?
+Action-directive-positive-objective -> Why don't you tell me what is the truth?
+Action-directive-negative-subjective -> Why don't you tell me what is false?
+Action-directive-negative-objective -> Why don't you tell me what is the story?
+Action-directive-neutral-subjective -> Why don't you tell me what happened?
+Action-directive-neutral-objective -> Why don't you tell me what happened?
+Collaborative Completition-positive-subjective -> We were working together.
+Collaborative Completition-positive-objective -> We worked it out together.
+Collaborative Completition-negative-subjective -> We worked together but didn't work it out.
+Collaborative Completition-negative-objective -> We worked together but is didn't work.
+Collaborative Completition-neutral-subjective -> We worked together. | We worked as a group.
+Collaborative Completition-neutral-objective -> We worked together. | We worked as a group.
+Rhetorical-Questions-positive-subjective -> Who would 
+Rhetorical-Questions-positive-objective -> Who would do it in such a neat way?
+Rhetorical-Questions-negative-subjective -> Who would do this terrible thing? 
+Rhetorical-Questions-negative-objective -> Who would murder their friend?
+Rhetorical-Questions-neutral-subjective -> Who would conduct it?
+Rhetorical-Questions-neutral-objective -> Who would conduct it?
+Negative non-no answers-positive-subjective -> Oh, fair.
+Negative non-no answers-positive-objective -> Fair.
+Negative non-no answers-negative-subjective -> Oh, not too much. | On, not at all.
+Negative non-no answers-negative-objective -> Not at all.
+Negative non-no answers-neutral-subjective -> Oh, fair.
+Negative non-no answers-neutral-objective -> Fair.
+Signal-non-understanding-positive-subjective -> Excuse me? | Pardon? | Could you say that again?
+Signal-non-understanding-positive-objective -> Excuse me? | Pardon?
+Signal-non-understanding-negative-subjective -> Excuse me? | Pardon? | Could you say that again?
+Signal-non-understanding-negative-objective -> Excuse me? | Pardon?
+Signal-non-understanding-neutral-subjective -> Excuse me? | Pardon? | Could you say that again?
+Signal-non-understanding-neutral-objective -> Excuse me? | Pardon? 
+Other answers-positive-subjective -> I don't know
+Other answers-positive-objective -> I don't know
+Other answers-negative-subjective -> I don't know
+Other answers-negative-objective -> I don't know
+Other answers-neutral-subjective -> I don't know
+Other answers-neutral-objective -> I don't know
+Conventional-opening-positive-subjective -> Hey! How are you? | How do you do?
+Conventional-opening-positive-objective -> How is everything?
+Conventional-opening-negative-subjective -> Oh.
+Conventional-opening-negative-objective -> Oh.
+Conventional-opening-neutral-subjective -> How is everything?
+Conventional-opening-neutral-objective -> How is everything?
+Dispreferred answers-positive-subjective -> Well, not really. | Well.
+Dispreferred answers-positive-objective -> Not really.
+Dispreferred answers-negative-subjective -> Not like that. | That's not what I said.
+Dispreferred answers-negative-objective -> Not like that.
+Dispreferred answers-neutral-subjective -> Well, not really. | Well.
+Dispreferred answers-neutral-objective -> Not really.
+3rd-party-talk-positive-subjective -> Oh Yemi you're doing fabulous!
+3rd-party-talk-positive-objective -> Nicole and Maanya, you are good at coding.
+3rd-party-talk-negative-subjective -> Yemi, stop staying up late.
+3rd-party-talk-negative-objective -> Sue, don't believe in him!
+3rd-party-talk-neutral-subjective -> Maanya, please pass me the napkin.
+3rd-party-talk-neutral-objective -> Sue, tell me the truth.
+Offers,Options Commits-positive-subjective -> I'm happe to check that out for you.
+Offers,Options Commits-positive-objective -> Let me check that out.
+Offers,Options Commits-negative-subjective -> I'm not sure. Let me try to find it out.
+Offers,Options Commits-negative-objective -> Let me try to find it out.
+Offers,Options Commits-neutral-subjective -> Let me check it out.
+Offers,Options Commits-neutral-objective -> Let me check it out.
+Self-talk-positive-subjective -> What's the word I'm looking for.
+Self-talk-positive-objective ->	What's the word.
+Self-talk-negative-subjective -> I forget what I'm gonna say.
+Self-talk-negative-objective -> I forget the word.
+Self-talk-neutral-subjective -> What's the word I'm looking for.
+Self-talk-neutral-objective ->	What's the word.
+Tag-Question-positive-subjective -> Is that right? | Right?
+Tag-Question-positive-objective -> Right?
+Tag-Question-negative-subjective -> Maybe not that?
+Tag-Question-negative-objective -> Not that?
+Tag-Question-neutral-subjective -> Is that real? | Correct?
+Tag-Question-neutral-objective -> Is that true?
+Declarative Wh-Question-positive-subjective -> You are which kind of detective?
+Declarative Wh-Question-positive-objective -> You are from where?
+Declarative Wh-Question-negative-subjective -> You are what kind of buff?
+Declarative Wh-Question-negative-objective -> You are what kind of buff?
+Declarative Wh-Question-neutral-subjective -> You are asking what?
+Declarative Wh-Question-neutral-objective -> You are from where?
+
+'''
+I'm running out of idea... HELP... orz
+I think for these we might need some functions? like eliza transformation (as these need to use the response)
+Summarize/reformulate-positive-subjective -> Ah, that's what you are saying. | Okay, I get what you are saying.
+Summarize/reformulate-positive-objective -> Ah, that's what you are saying. | Okay, I get what you are saying.
+Summarize/reformulate-negative-subjective -> Hm, that's what you think? | Okay, so you are saying that?
 Summarize/reformulate-negative-objective
 Summarize/reformulate-neutral-subjective
 Summarize/reformulate-neutral-objective
-Affirmative non-yes answers-positive-subjective
-Affirmative non-yes answers-positive-objective
-Affirmative non-yes answers-negative-subjective
-Affirmative non-yes answers-negative-objective
-Affirmative non-yes answers-neutral-subjective
-Affirmative non-yes answers-neutral-objective
-Action-directive-positive-subjective
-Action-directive-positive-objective
-Action-directive-negative-subjective
-Action-directive-negative-objective
-Action-directive-neutral-subjective
-Action-directive-neutral-objective
-Collaborative Completition-positive-subjective
-Collaborative Completition-positive-objective
-Collaborative Completition-negative-subjective
-Collaborative Completition-negative-objective
-Collaborative Completition-neutral-subjective
-Collaborative Completition-neutral-objective
 Repeat-phrase-positive-subjective
 Repeat-phrase-positive-objective
 Repeat-phrase-negative-subjective
 Repeat-phrase-negative-objective
 Repeat-phrase-neutral-subjective
 Repeat-phrase-neutral-objective
-Open-Question-positive-subjective
-Open-Question-positive-objective
-Open-Question-negative-subjective
-Open-Question-negative-objective
-Open-Question-neutral-subjective
-Open-Question-neutral-objective
-Rhetorical-Questions-positive-subjective
-Rhetorical-Questions-positive-objective
-Rhetorical-Questions-negative-subjective
-Rhetorical-Questions-negative-objective
-Rhetorical-Questions-neutral-subjective
-Rhetorical-Questions-neutral-objective
-Hold before answer/agreement-positive-subjective
-Hold before answer/agreement-positive-objective
-Hold before answer/agreement-negative-subjective
-Hold before answer/agreement-negative-objective
-Hold before answer/agreement-neutral-subjective
-Hold before answer/agreement-neutral-objective
-Reject-positive-subjective
-Reject-positive-objective
-Reject-negative-subjective
-Reject-negative-objective
-Reject-neutral-subjective
-Reject-neutral-objective
-Negative non-no answers-positive-subjective
-Negative non-no answers-positive-objective
-Negative non-no answers-negative-subjective
-Negative non-no answers-negative-objective
-Negative non-no answers-neutral-subjective
-Negative non-no answers-neutral-objective
-Signal-non-understanding-positive-subjective
-Signal-non-understanding-positive-objective
-Signal-non-understanding-negative-subjective
-Signal-non-understanding-negative-objective
-Signal-non-understanding-neutral-subjective
-Signal-non-understanding-neutral-objective
-Other answers-positive-subjective
-Other answers-positive-objective
-Other answers-negative-subjective
-Other answers-negative-objective
-Other answers-neutral-subjective
-Other answers-neutral-objective
-Conventional-opening-positive-subjective
-Conventional-opening-positive-objective
-Conventional-opening-negative-subjective
-Conventional-opening-negative-objective
-Conventional-opening-neutral-subjective
-Conventional-opening-neutral-objective
 Or-Clause-positive-subjective
 Or-Clause-positive-objective
 Or-Clause-negative-subjective
 Or-Clause-negative-objective
 Or-Clause-neutral-subjective
 Or-Clause-neutral-objective
-Dispreferred answers-positive-subjective
-Dispreferred answers-positive-objective
-Dispreferred answers-negative-subjective
-Dispreferred answers-negative-objective
-Dispreferred answers-neutral-subjective
-Dispreferred answers-neutral-objective
-3rd-party-talk-positive-subjective
-3rd-party-talk-positive-objective
-3rd-party-talk-negative-subjective
-3rd-party-talk-negative-objective
-3rd-party-talk-neutral-subjective
-3rd-party-talk-neutral-objective
-Offers,Options Commits-positive-subjective
-Offers,Options Commits-positive-objective
-Offers,Options Commits-negative-subjective
-Offers,Options Commits-negative-objective
-Offers,Options Commits-neutral-subjective
-Offers,Options Commits-neutral-objective
-Self-talk-positive-subjective
-Self-talk-positive-objective
-Self-talk-negative-subjective
-Self-talk-negative-objective
-Self-talk-neutral-subjective
-Self-talk-neutral-objective
-Downplayer-positive-subjective
-Downplayer-positive-objective
-Downplayer-negative-subjective
-Downplayer-negative-objective
-Downplayer-neutral-subjective
-Downplayer-neutral-objective
-Maybe/Accept-part-positive-subjective
-Maybe/Accept-part-positive-objective
-Maybe/Accept-part-negative-subjective
-Maybe/Accept-part-negative-objective
-Maybe/Accept-part-neutral-subjective
-Maybe/Accept-part-neutral-objective
-Tag-Question-positive-subjective
-Tag-Question-positive-objective
-Tag-Question-negative-subjective
-Tag-Question-negative-objective
-Tag-Question-neutral-subjective
-Tag-Question-neutral-objective
-Declarative Wh-Question-positive-subjective
-Declarative Wh-Question-positive-objective
-Declarative Wh-Question-negative-subjective
-Declarative Wh-Question-negative-objective
-Declarative Wh-Question-neutral-subjective
-Declarative Wh-Question-neutral-objective
-Apology-positive-subjective
-Apology-positive-objective
-Apology-negative-subjective
-Apology-negative-objective
-Apology-neutral-subjective
-Apology-neutral-objective
-Thanking-positive-subjective
-Thanking-positive-objective
-Thanking-negative-subjective
-Thanking-negative-objective
-Thanking-neutral-subjective
-Thanking-neutral-objective
-
+'''
 '''
 Eliza
 '''
@@ -297,7 +301,7 @@ Refer to Extracted Info
 question-about-extracted-info -> Is this <related-to> fact that <fact>? | Did <fact> have to do anything with it? | What does <fact> have to do with that? | Is this and <fact> related? | What are you implying with <fact>?
 related-to -> related to | correlated with | something related to | consistent with
 acknowledge-extracted-info -> <acknowledgement> You also mentioned before that <fact>. | You said that <fact>. 
-acknowledgement -> I see. | I just remembered. | You know what's funny? | What's interesting is that, | You know, |
+acknowledgement -> I see. | I just remembered. | That makes sense | You know what's funny? | What's interesting is that, | You know, |
 question-extracted-info -> Why did you say that <fact>? | What is the reason you say <fact? | What are you trying say with the fact that <fact>? | Is <fact> really true? | Why do you say that <fact>?
 express-anger-at-fact -> I'm <adj-phrase-mad> that you say that <fact>. 
 adj-phrase-mad -> <modifier> <adj-mad>
