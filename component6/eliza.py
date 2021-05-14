@@ -9,7 +9,7 @@ class Eliza:
 
   def swap_pronouns(self, string):
     special_pronouns = ["i", "me", "my", "myself", "you", "your", "yourself"]
-    special_verbs = ["am", "'m", "are"]
+    special_verbs = ["am", "'m", "are", "was", "were"]
     doc = self.nlp(string)
     token_list = [token.text for token in doc]
     for i, token in enumerate(doc):
@@ -42,7 +42,9 @@ class Eliza:
       "'m" : "are",
       "am" : "are",
       "are" : "am",
-      "'re" : "am"
+      "'re" : "am",
+      "was" : "were",
+      "were" : "was"
     }
 
     token_str = token.text.lower()

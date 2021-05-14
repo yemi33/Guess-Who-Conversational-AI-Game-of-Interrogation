@@ -136,7 +136,7 @@ class DialogueManager:
       nonterminal_object = grammar[nonterminal]
       for rule in nonterminal_object.rules:
         keyphrase = rule.body[0]
-        if keyphrase in message:
+        if keyphrase in message or keyphrase.capitalize() in message or message in keyphrase or message.capitalize() in keyphrase:
           response = nonterminal + "-Response"
           if response in self.keyphrase_responses.keys():
             return self.keyphrase_responses[response]
