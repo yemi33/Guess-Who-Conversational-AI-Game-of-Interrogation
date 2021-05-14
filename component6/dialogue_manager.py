@@ -11,20 +11,18 @@ class DialogueManager:
   def __init__(self, suspect_identity, suspect_memory=[]):
     self.memory = suspect_memory
     self.suspect_identity = suspect_identity
-    self.keyphrases = GrammarEngine("component6/grammar/keyphrases.txt")
+    self.keyphrases = {} # will be filled in by guess_who "generate keyphrases" function
     self.keyphrase_responses = {} # will be filled in by guess_who "generate trigger responses" function
   
   # this is the method that will be invoked.
   def respond(self, message):
     strategy = self.strategize(message)
-    response = NLG(strategy).general_respond()
-    return response
+    return NLG(strategy).general_respond()
   
   # this is a tester method to see if a particular response technique is working.
   def test_single_respond(self, message, technique):
     strategy = self.strategize(message)
-    response = NLG(strategy).single_respond(technique)
-    return response
+    return NLG(strategy).single_respond(technique)
 
   def strategize(self, message):
     nlu = NLU(message)
@@ -55,8 +53,7 @@ class DialogueManager:
   # Maanya
   def resolve_obligation(self, nlu):
     obligations_list = nlu.obligations
-    option = random.randint(0, len(obligations_list)-1)
-    obligation_choice = obligations_list[option]
+    obligation_choice = random.choice(obligations_list)
     resolved_obligation = obligation_choice + "-" + self.address_sentiment(nlu) + "-" + self.address_subjectivity(nlu)
     general_grammar = GrammarEngine("component6/grammar/general_conversation.txt")
     if resolved_obligation not in general_grammar.grammar.grammar.keys():
@@ -130,14 +127,12 @@ class DialogueManager:
     
   # Maanya - requires interaction with guess_who.py because the slot values for generating keyphrase trigger depends on the scenario
   def keyphrase_trigger(self, nlu):
-    grammar = self.keyphrases.grammar.grammar
     message = nlu.message
-    for nonterminal in grammar.keys():
-      nonterminal_object = grammar[nonterminal]
-      for rule in nonterminal_object.rules:
-        keyphrase = rule.body[0]
+    for keyphrase_type in self.keyphrases.keys():
+      keyphrases = self.keyphrases[keyphrase_type]
+      for keyphrase in keyphrases:
         if keyphrase in message or keyphrase.capitalize() in message or message in keyphrase or message.capitalize() in keyphrase:
-          response = nonterminal + "-Response"
+          response = keyphrase_type + "-Response"
           if response in self.keyphrase_responses.keys():
             return self.keyphrase_responses[response]
     return None

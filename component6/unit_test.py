@@ -87,8 +87,8 @@ List of techniques
 def test_guess_who():
   guess_who = GuessWho()
   dialogue_manager = guess_who.dialogue_manager
-  message = "What were you doing last night?"
-  response = dialogue_manager.test_single_respond(message, "eliza") # plug in a technique and test to see if the output is reasonable
+  message = "What was your relationship with Tyler?"
+  response = dialogue_manager.test_single_respond(message, "keyphrase_trigger") # plug in a technique and test to see if the output is reasonable
   print(response)
 
 if __name__ == "__main__":

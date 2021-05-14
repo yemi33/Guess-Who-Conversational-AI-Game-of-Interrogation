@@ -8,7 +8,7 @@ class Eliza:
     self.memory = []
 
   def swap_pronouns(self, string):
-    special_pronouns = ["i", "me", "my", "myself", "you", "your", "yourself"]
+    special_pronouns = ["I", "me", "my", "myself", "you", "your", "yourself"]
     special_verbs = ["am", "'m", "are", "was", "were"]
     doc = self.nlp(string)
     token_list = [token.text for token in doc]
@@ -31,11 +31,11 @@ class Eliza:
   
   def swap(self, index, token, token_list):
     dictionary = {
-      "i" : "you",
+      "I" : "you",
       "me": "you",
       "my" : "your",
       "myself" : "yourself",
-      "you-subj" : "i",
+      "you-subj" : "I",
       "you-obj" : "me",
       "your" : "my",
       "yourself" : "myself",

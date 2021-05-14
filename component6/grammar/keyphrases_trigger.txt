@@ -3,5 +3,5 @@ Activity-Response -> I <Alibi>. | I <Action>.
 Place-Reponse -> I was at <Residence>.
 Introduction-Response -> My name is <Name>.
 Alibi-Response -> I was with <Company>. 
-Victim-Response -> I was Tyler's <Relationship>. <Memory with Victim>.
+Victim-Response -> I was <Name Of Victim>'s <Relationship>. <Memory with Victim>.
 Scared -> I just don't see how it would have happened, but I'm very scared and sad. | I'm very sad. | I'm scared.

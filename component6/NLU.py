@@ -29,7 +29,6 @@ class NLU:
     self.dependencies = self.dependencies()#tuple
     self.eliza = self.eliza()#bool
     self.named_entities = self.named_entities()#dictionary
-    self.keyphrases = self.keyphrases()
     self.profanity = self.profanity()#bool
     # self.lie = self.detect_lie()
   
@@ -41,7 +40,6 @@ class NLU:
     dependencies: {self.dependencies}\n 
     eliza: {self.eliza}\n 
     named_entities: {self.named_entities}\n 
-    keyphrases: {self.keyphrases}\n 
     profanity: {self.profanity}\n
     '''
     
@@ -104,34 +102,6 @@ class NLU:
     for ent in parsed_msg.ents:
       named_entities[ent.label_] = ent
     return named_entities
-
-  def keyphrases(self):
-    # A collection of keyphrases that may trigger certain kinds of responses. A keyphrase is like a keyword, but it may be a sequence spanning multiple words. I didn’t include this in a section above because it’s as straightforward as it sounds, though I will mention that you might consider using regular expressions or islander parsing to match keyphrases that can vary in their linguistic expression. 
-    '''
-    grammar = GrammarEngine("grammar/keyphrases.txt").grammar
-    parses = IslandParser(grammar).parse(self.message)
-    if len(parses) != 0:
-      return parses
-    return None
-    '''
-    lines = []
-    with open('component6/grammar/keyphrases.txt') as f:
-        lines = f.readlines()
-
-    return_key, return_value = "", ""
-    for line in lines:
-        key_val = line.split("->")
-        key, values = key_val[0], key_val[1]
-        questions = values.split("|")
-        for question in questions:
-            if self.message in question or self.message == question:
-                return_key = key
-                return_value = question
-    return_dict = {}
-    return_dict[return_key] = return_value
-    if return_key != "" and return_value != "":
-      return return_dict
-    return None
 
   def profanity(self):
     # Whether the user message contains profanity. There’s a simple Python library called profanity that will allow you to detect this.

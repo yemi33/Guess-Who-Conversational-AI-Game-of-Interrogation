@@ -14,6 +14,8 @@ class GuessWho:
     self.case_file, self.suspect_name, self.suspect_identity, self.suspect_memory = self.generate_scenario("component6/case_file.txt") # a dictionary of facts
     self.dialogue_manager = DialogueManager(self.suspect_identity)
     self.dialogue_manager.memory = self.suspect_memory
+    self.dialogue_manager.keyphrases = self.generate_keyphrases()
+    print(self.dialogue_manager.keyphrases)
     self.dialogue_manager.keyphrase_responses = self.generate_trigger_responses()
 
   # Yemi, Sue
@@ -59,6 +61,30 @@ class GuessWho:
   
     return dictionary["Case"], suspect_name, suspect_identity, suspect_memory
   
+  def generate_keyphrases(self):
+    lines = []
+    memory_type_list = ["Alibi", "Action", "Residence", "Relationship", "Name", "Name Of Victim", "Company", "Memory with Victim", "Person to be Blamed", "Location"]
+    with open('component6/grammar/keyphrases.txt') as f:
+      file_string = f.read()
+      for nonterminal in memory_type_list:
+        if nonterminal in file_string:
+          for memory in self.suspect_memory:
+            if memory.type_of_memory == nonterminal:
+              print("hello")
+              file_string = file_string.replace(nonterminal,memory.text)
+      
+      lines = file_string.split("\n")
+      print(lines)
+
+    populated_keyphrases = dict()
+    for line in lines:
+      key_val = line.split("->")
+      key, values = key_val[0].strip(), key_val[1].strip()
+      questions = values.split("|") # list
+      populated_keyphrases[key] = questions
+
+    return populated_keyphrases 
+
   # Sue, Yemi
   def generate_trigger_responses(self):
     '''
@@ -94,7 +120,7 @@ class GuessWho:
     answer = input("Would like to begin questioning? (Yes/No): ")
     if answer.lower() == "yes" or answer.lower() == "y":
       print(f"*{self.suspect_name} enters the room*")
-      for i in range(2):
+      for i in range(5):
         user_input = input("You: ")
         print(f"{self.suspect_name}: {self.dialogue_manager.respond(user_input)}")
       
