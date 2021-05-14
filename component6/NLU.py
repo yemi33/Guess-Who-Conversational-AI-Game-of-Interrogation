@@ -61,7 +61,7 @@ class NLU:
 
     obligations = {}
     obligations_list = [] #list for a given dialog act
-    file = open("component6/grammar/obligations.txt", "r").read().split("\n")
+    file = open("grammar/obligations.txt", "r").read().split("\n")
     for line in file:
       if line == "" or line == "\n" or line == " ":
         continue

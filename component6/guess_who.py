@@ -118,7 +118,7 @@ class GuessWho:
     '''
     print("You are an interrogator. You must determine if the person you are interviewing is GUILTY or NOT GUILTY.")
     print("Here is your case file.")
-    print (self.case_file)
+    print_case_file(self.case_file)
     answer = input("Would like to begin questioning? (Yes/No): ")
     if answer.lower() == "yes" or answer.lower() == "y":
       print(f"*{self.suspect_name} enters the room*")
@@ -134,9 +134,20 @@ class GuessWho:
           print(f"Nope. {self.suspect_name} was actually innocent.")
       else:
         if self.suspect_identity == "Guilty":
-          print(f"No. {self.suspect_name} fooled you. She was guilty.")
+          print(f"No. {self.suspect_name} fooled you. They were guilty.")
         else:
           print(f"Yes! {self.suspect_name} was innocent as you have correctly guessed.")
+
+def print_case_file(case_file):
+  print("----------------------------------")
+  print("-------------- CASE --------------")
+  for item in case_file:
+    string = item.type_of_memory + ": " + item.text
+    num = 25 - len(string)
+    num1 = int((25 - len(string))/2)
+    num2 = num - num1
+    print("| ", " "*num1, item.type_of_memory, ": ", item.text, " "*num2, "|")
+  print("---------------------------------")
 
 if __name__ == "__main__":
   guess_who = GuessWho()
