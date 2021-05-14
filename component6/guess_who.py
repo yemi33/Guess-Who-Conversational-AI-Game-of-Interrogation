@@ -15,7 +15,6 @@ class GuessWho:
     self.dialogue_manager = DialogueManager(self.suspect_identity)
     self.dialogue_manager.memory = self.suspect_memory
     self.dialogue_manager.keyphrases = self.generate_keyphrases() # dictionary
-    print(self.dialogue_manager.keyphrases)
     self.dialogue_manager.keyphrase_responses = self.generate_trigger_responses() # dictionary
 
   # Yemi, Sue
@@ -72,11 +71,9 @@ class GuessWho:
           string = f"<{nonterminal}>"
           for memory in self.suspect_memory:
             if memory.type_of_memory == nonterminal:
-              print("hello")
               file_string = file_string.replace(string,memory.text)
       
       lines = file_string.split("\n")
-      print(lines)
 
     populated_keyphrases = dict()
     for line in lines:
@@ -130,7 +127,7 @@ class GuessWho:
     answer = input("Would like to begin questioning? (Yes/No): ")
     if answer.lower() == "yes" or answer.lower() == "y":
       print(f"*{self.suspect_name} enters the room*")
-      for i in range(5):
+      for i in range(20):
         user_input = input("You: ")
         print(f"{self.suspect_name}: {self.dialogue_manager.respond(user_input)}")
       

@@ -148,6 +148,10 @@ class DialogueManager:
   # Maanya - requires interaction with guess_who.py because the slot values for generating keyphrase trigger depends on the scenario
   def keyphrase_trigger(self, nlu):
     message = nlu.message
+    print(message.strip()[-1])
+    if message.strip()[-1] == "?":
+      message = message[:-1]
+    
     for keyphrase_type in self.keyphrases.keys():
       keyphrases = self.keyphrases[keyphrase_type]
       for keyphrase in keyphrases:

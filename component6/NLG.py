@@ -33,13 +33,16 @@ class NLG:
       "markov_chain" : (0.8,0.9),
       "address_profanity" : (0.9,1.0)
     }
+    
+    if self.response_strategy["keyphrase_trigger"] != None:
+      return self.response_strategy["keyphrase_trigger"]
+    
     responses = {}
     # go through each of the response strategy, save variables when applicable
     for strategy in self.response_strategy.keys():
       # If there's a keyword trigger, prioritize that.
-      if strategy == "keyphrase_trigger" and self.response_strategy[strategy] != None:
-        return self.response_strategy[strategy]
-
+      # if strategy == "keyphrase_trigger" and self.response_strategy[strategy] != None:
+      #   return self.response_strategy[strategy]
       # All other cases
       if strategy == "eliza" and self.response_strategy[strategy] != None:
         self.grammar_engine.set_variable("fact", self.response_strategy["eliza_variable"])
