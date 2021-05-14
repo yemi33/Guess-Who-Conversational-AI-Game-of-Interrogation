@@ -82,12 +82,12 @@ class GuessWho:
       populated_keyphrase_triggers[nonterminal] = grammar_engine.generate(nonterminal)
   
     return populated_keyphrase_triggers
-    
+  
+  # Nicole, Yemi
   def start_game(self):
     '''
     Code to generate the game
     '''
-    
     print("You are an interrogator. You must determine if the person you are interviewing is GUILTY or NOT GUILTY.")
     print("Here is your case file.")
     print (self.case_file)

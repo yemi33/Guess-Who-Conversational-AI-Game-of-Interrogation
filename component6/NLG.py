@@ -12,7 +12,7 @@ class NLG:
     elif strategy == "extracted_info" and self.response_strategy[strategy] != None:
       self.grammar_engine.set_variable("fact", self.response_strategy["extracted_info_variable"])
     # if it's a markov chain strategy, don't use grammar engine and just append the markov-generated text to response
-    elif strategy == "marcov_chain" and self.response_strategy[strategy] != None:
+    elif strategy == "markov_chain" and self.response_strategy[strategy] != None:
       return self.response_strategy[strategy]
     elif strategy == "keyphrase_trigger" and self.response_strategy[strategy] != None:
       return self.response_strategy[strategy]
@@ -23,23 +23,15 @@ class NLG:
       return self.grammar_engine.generate(origin) # concatenate the generated text to the overall response
 
   def general_respond(self):
-    ''' remove utilize_dependency_structure
-    probabilities = {
-      "resolve_obligation" : (0.0,0.4),
-      "keyphrase_trigger" : (0.4,0.6),
-      "eliza" : (0.6,0.7),
-      "extracted_info" : (0.7,0.8),
-      "utilize_dependency_structure" : (0.8,0.9),
-      "marcov_chain" : (0.9,0.95),
-      "address_profanity" : (0.95,1.0)
-    }
+    ''' 
+    remove utilize_dependency_structure
     '''
     probabilities = {
       "resolve_obligation" : (0.0,0.4),
       "keyphrase_trigger" : (0.4,0.6),
       "eliza" : (0.6,0.7),
       "extracted_info" : (0.7,0.8),
-      "marcov_chain" : (0.8,0.9),
+      "markov_chain" : (0.8,0.9),
       "address_profanity" : (0.9,1.0)
     }
     responses = {}
@@ -50,7 +42,7 @@ class NLG:
       elif strategy == "extracted_info" and self.response_strategy[strategy] != None:
         self.grammar_engine.set_variable("fact", self.response_strategy["extracted_info_variable"])
       # if it's a markov chain strategy, don't use grammar engine and just append the markov-generated text to response
-      elif strategy == "marcov_chain" and self.response_strategy[strategy] != None:
+      elif strategy == "markov_chain" and self.response_strategy[strategy] != None:
         responses[strategy] = self.response_strategy[strategy]
         continue
       elif strategy == "keyphrase_trigger" and self.response_strategy[strategy] != None:

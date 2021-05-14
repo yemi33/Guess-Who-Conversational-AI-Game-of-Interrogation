@@ -5,6 +5,8 @@ import dependency
 from better_profanity import profanity
 from grammar.grammar_engine import GrammarEngine 
 from parser.island_parser import IslandParser
+import logging
+logging.disable(logging.CRITICAL)
 from dialog_tag import DialogTag
 import os
 
@@ -77,7 +79,7 @@ class NLU:
     return obligations_list
   
   def dependencies(self):
-    #The actionable structures built extractors for in Component 3 in tuple form.
+    # The actionable structures built extractors for in Component 3 in tuple form.
     nlp = spacy.load("en_core_web_sm")
     message = nlp(self.message)
     verb = dependency.find_verb(message)

@@ -264,28 +264,6 @@ Declarative Wh-Question-neutral-subjective -> You are asking what?
 Declarative Wh-Question-neutral-objective -> You are from where?
 
 '''
-I'm running out of idea... HELP... orz
-I think for these we might need some functions? like eliza transformation (as these need to use the response)
-Summarize/reformulate-positive-subjective -> Ah, that's what you are saying. | Okay, I get what you are saying.
-Summarize/reformulate-positive-objective -> Ah, that's what you are saying. | Okay, I get what you are saying.
-Summarize/reformulate-negative-subjective -> Hm, that's what you think? | Okay, so you are saying that?
-Summarize/reformulate-negative-objective
-Summarize/reformulate-neutral-subjective
-Summarize/reformulate-neutral-objective
-Repeat-phrase-positive-subjective
-Repeat-phrase-positive-objective
-Repeat-phrase-negative-subjective
-Repeat-phrase-negative-objective
-Repeat-phrase-neutral-subjective
-Repeat-phrase-neutral-objective
-Or-Clause-positive-subjective
-Or-Clause-positive-objective
-Or-Clause-negative-subjective
-Or-Clause-negative-objective
-Or-Clause-neutral-subjective
-Or-Clause-neutral-objective
-'''
-'''
 Eliza
 '''
 congratulating-eliza -> I'm <pos-adj-im> to hear that <fact>! | That's <pos-adj> that <fact>!
@@ -295,6 +273,7 @@ empathetic-eliza -> I'm <neg-adj-im> to hear that <fact>. | Wow, I did not know 
 neg-adj-im -> sorry | sad | regretful
 neg-adj -> hard | difficult 
 neutral-eliza -> <fact>
+
 '''
 Refer to Extracted Info
 '''
@@ -313,10 +292,12 @@ adj-sad -> sad | miserable | devastated
 express-gladness-at-fact -> I'm <adj-phrase-glad> that you that <fact>.
 adj-phrase-glad -> <modifier> <adj-glad>
 adj-glad -> glad | happy | grateful
+
 '''
 Dependency Structure
 '''
 verb -> verb | verb | verb
+
 '''
 Profanity
 '''
@@ -329,8 +310,9 @@ profanity-innocent -> Your <adj> language is warranted, this is an <adj2> topic.
 adj -> strong | explicit | blunt | frank | unreserved
 adj2 -> intense | agonizing | stressful | tough
 adj3 -> enraged | infuriated | angered | upset
+
 '''
-verbs
+Verbs
 '''
 like -> love | enjoy | like
 love -> love | enjoy | like

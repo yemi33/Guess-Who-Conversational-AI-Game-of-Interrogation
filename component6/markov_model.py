@@ -5,7 +5,7 @@ import statistics
 import spacy
 import sys
 
-class MarcovModel:
+class MarkovModel:
   def __init__(self, corpus_filename, level, order, pos=bool(False), hybrid=bool(False)):
     '''
     Creates a MarcovModel object.
@@ -545,7 +545,7 @@ class MarcovModel:
           final_tags.append(add_tag)
       #get last n token of generated text
       n_gram = tuple(final_tags[len(final_tags) - self.order:])
-      
+    
     return self._generate_text_from_tags(tagged_prompt, prompt, final_tags)
   
   # Nicole, Maanya
@@ -584,6 +584,8 @@ class MarcovModel:
   def _generate_text_from_tags(self, tagged_prompt, prompt, final_tags):
     gen_text_list = []
     for tag in final_tags[len(tagged_prompt):]:
+      if not tag in self.pos_to_token_transitions.keys():
+        continue
       values = self.pos_to_token_transitions[tag]
       random_num = random.random()
       for v in values:
@@ -810,5 +812,5 @@ class MarcovModel:
     return likelihood
 
 if __name__ == "__main__":
-    model = MarcovModel(corpus_filename = "alexander_dumas_collected_works.txt", level = "word", order = 2, pos = False, hybrid = False)
+    model = MarkovModel(corpus_filename = "alexander_dumas_collected_works.txt", level = "word", order = 2, pos = False, hybrid = False)
     print(model.generate(20, "I wonder if there"))

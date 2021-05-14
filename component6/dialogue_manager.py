@@ -1,6 +1,6 @@
 import random
 from eliza import Eliza
-from markov_model import MarcovModel
+from markov_model import MarkovModel
 from grammar.grammar_engine import GrammarEngine
 from NLU import NLU
 from NLG import NLG
@@ -46,8 +46,7 @@ class DialogueManager:
       "eliza_variable" : eliza_variable,
       "extracted_info" : extracted_info_grammar,
       "extracted_info_variable" : extracted_info_variable,
-      "utilize_dependency_structure" : self.utilize_dependency_structure(nlu),
-      "marcov_chain" : self.marcov_chain(nlu),
+      "markov_chain" : self.markov_chain(nlu),
       "address_profanity" : self.address_profanity(nlu),
       "address_other_feature" : self.address_other_feature(nlu)
     }
@@ -59,8 +58,8 @@ class DialogueManager:
     option = random.randint(0, len(obligations_list)-1)
     obligation_choice = obligations_list[option]
     resolved_obligation = obligation_choice + "-" + self.address_sentiment(nlu) + "-" + self.address_subjectivity(nlu)
-    general_grammar = GrammarEngine("grammar/general_conversation.txt")
-    if resolved_obligation not in general_grammar.grammar.keys():
+    general_grammar = GrammarEngine("component6/grammar/general_conversation.txt")
+    if resolved_obligation not in general_grammar.grammar.grammar.keys():
       resolved_obligation = "general-response"
     return resolved_obligation
   
@@ -136,7 +135,8 @@ class DialogueManager:
     for nonterminal in grammar.keys():
       nonterminal_object = grammar[nonterminal]
       for rule in nonterminal_object.rules:
-        if rule.body[0] in message:
+        keyphrase = rule.body[0]
+        if keyphrase in message:
           response = nonterminal + "-Response"
           if response in self.keyphrase_responses.keys():
             return self.keyphrase_responses[response]
@@ -150,17 +150,16 @@ class DialogueManager:
   '''
     
   # Nicole
-  def marcov_chain(self, nlu):
+  def markov_chain(self, nlu):
     if self.suspect_identity.lower() == "guilty":
-      model = MarcovModel(corpus_filename = "component6/grammar/interrogation_guilty.txt", level = "word", order = 2, pos = False, hybrid = False)
+      model = MarkovModel(corpus_filename = "component6/grammar/interrogation_guilty.txt", level = "word", order = 2, pos = True)
       return model.generate(20, "I")
-    
     return None
   
   # Nicole
   def address_profanity(self, nlu):
     if nlu.profanity == True:
-      if self.suspect.identity.lower() == "guilty":
+      if self.suspect_identity.lower() == "guilty":
         return "profanity-guilty"
       else:
         return "profanity-innocent"

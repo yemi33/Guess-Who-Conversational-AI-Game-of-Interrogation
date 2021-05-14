@@ -1,4 +1,3 @@
-
 from NLU import NLU
 from dialogue_manager import DialogueManager
 from NLG import NLG
@@ -79,7 +78,7 @@ List of techniques
       "keyphrase_trigger" : (0.4,0.6),
       "eliza" : (0.6,0.7),
       "extracted_info" : (0.7,0.8),
-      "marcov_chain" : (0.8,0.9),
+      "markov_chain" : (0.8,0.9),
       "address_profanity" : (0.9,1.0)
       # removed "utilize_dependency_structure" : (0.8,0.9),
       # changed "marcov_chain" : (0.9,0.95),
@@ -88,9 +87,8 @@ List of techniques
 def test_guess_who():
   guess_who = GuessWho()
   dialogue_manager = guess_who.dialogue_manager
-  message = "Yemi did it"
-  response = dialogue_manager.test_single_respond(message, "extracted_info") # plug in a technique and test to see if the output is reasonable
-  print(dialogue_manager.memory)
+  message = "What were you doing last night?"
+  response = dialogue_manager.test_single_respond(message, "keyphrase_trigger") # plug in a technique and test to see if the output is reasonable
   print(response)
 
 if __name__ == "__main__":

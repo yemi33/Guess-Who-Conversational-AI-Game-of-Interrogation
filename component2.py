@@ -1,4 +1,6 @@
 #Maanya (working on local terminal but not here)
+import logging 
+logging.disable(logging.CRITICAL)
 from dialog_tag import DialogTag
 import os
 

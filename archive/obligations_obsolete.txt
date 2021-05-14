@@ -1,0 +1,22 @@
+'''
+I'm running out of idea... HELP... orz
+I think for these we might need some functions? like eliza transformation (as these need to use the response)
+Summarize/reformulate-positive-subjective -> Ah, that's what you are saying. | Okay, I get what you are saying.
+Summarize/reformulate-positive-objective -> Ah, that's what you are saying. | Okay, I get what you are saying.
+Summarize/reformulate-negative-subjective -> Hm, that's what you think? | Okay, so you are saying that?
+Summarize/reformulate-negative-objective
+Summarize/reformulate-neutral-subjective
+Summarize/reformulate-neutral-objective
+Repeat-phrase-positive-subjective
+Repeat-phrase-positive-objective
+Repeat-phrase-negative-subjective
+Repeat-phrase-negative-objective
+Repeat-phrase-neutral-subjective
+Repeat-phrase-neutral-objective
+Or-Clause-positive-subjective
+Or-Clause-positive-objective
+Or-Clause-negative-subjective
+Or-Clause-negative-objective
+Or-Clause-neutral-subjective
+Or-Clause-neutral-objective
+'''
