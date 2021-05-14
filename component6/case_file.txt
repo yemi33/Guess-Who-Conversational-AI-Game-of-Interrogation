@@ -26,7 +26,7 @@ LOC | Biology Lab | Location | | |
 | James drank a whole bottle of Vodka | Action | James | drank | a whole bottle of Vodka
 | 10pm | Time_Last_Seen_Victim | | |
 | Ginger | Company | | |
-| James was at the biology lab at 10pm | Alibi | Ginger | was with a | friend
+| James was at the biology lab at 10pm | Alibi | James | was at the | biology lab
 | We would study everyday together at the library. | Memory_with_Victim | | |
 | Ginger | Person_to_be_Blamed | | |
 

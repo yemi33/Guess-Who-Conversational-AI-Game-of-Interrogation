@@ -22,15 +22,16 @@ pip install DialogTag
 """
 
 class NLU:
-  def __init__(self, message):
+  def __init__(self, message, obligations = None):
     self.message = message
     self.sentiment = self.sentiment()#tuple
-    self.obligations = self.obligations()#list
+    self.list_of_obligations = obligations
+    if obligations != None:
+      self.obligations = self.obligations() #list
     self.dependencies = self.dependencies()#tuple
     self.eliza = self.eliza()#bool
     self.named_entities = self.named_entities()#dictionary
     self.profanity = self.profanity()#bool
-    # self.lie = self.detect_lie()
   
   def __repr__(self):
     return f'''
@@ -58,21 +59,10 @@ class NLU:
 
     model = DialogTag('distilbert-base-uncased')
     output = model.predict_tag(self.message)
-
-    obligations = {}
-    obligations_list = [] #list for a given dialog act
-    file = open("component6/grammar/obligations.txt", "r").read().split("\n")
-    for line in file:
-      if line == "" or line == "\n" or line == " ":
-        continue
-      dialogue_acts = line.split(":")
-      act = dialogue_acts[0]
-      responses = dialogue_acts[1].replace("\n", "")
-      responses = responses.split(",")
-      obligations[act] = responses
     
-    if output in obligations.keys():
-      obligations_list = obligations[output]
+    obligations_list = []
+    if output in self.list_of_obligations.keys():
+      obligations_list = self.list_of_obligations[output]
 
     return obligations_list
   
@@ -85,7 +75,6 @@ class NLU:
     obj = dependency.find_direct_object(message)
     changed_verb = dependency.change_verb(message)
     return tuple((subj, verb, obj, changed_verb))
-
   
   def eliza(self):
     #returns boolean value that represents whether an ELIZA-style transformation (of the form you coded up for Component 4) is possible. 

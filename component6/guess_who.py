@@ -87,6 +87,14 @@ class GuessWho:
 
     return populated_keyphrases 
 
+    '''
+    |-----------------------------|
+    |          case file          |
+    |     victim = Tyler          |
+    |   location = living room    |
+         ...
+    '''
+
   # Sue, Yemi
   def generate_trigger_responses(self):
     '''
@@ -96,7 +104,7 @@ class GuessWho:
     General-Response -> I think it was <Person to be Blamed> who did it. <Scared>.
     Person to be Blames -> ...
     '''
-    memory_type_list = ["Alibi", "Action", "Residence", "Relationship", "Name", "Victim", "Company", "Memory_with_Victim", "Person_to_be_Blamed", "Location"]
+    memory_type_list = ["Alibi", "Action", "Residence", "Relationship", "Name", "Gender", "Victim", "Company", "Memory_with_Victim", "Person_to_be_Blamed", "Location"]
     grammar_engine = GrammarEngine("component6/grammar/keyphrases_trigger.txt")
     for item in self.suspect_memory:
       if item.type_of_memory in memory_type_list:

@@ -1,3 +1,5 @@
+Greeting-Response -> Hi | Hello. | Nice to meet you. | Hi. I hope you are having a nice day. | Thank you for talking with me today.
+Feeling-Response -> I'm feeling okay, thanks. | I'm feeling pretty good. | I'm good. | Pretty good. | I'm a little nervous, but I'm fine. | A little tired, I guess. | Tired, I've been coding all night.
 General-Response -> I think it was <Person_to_be_Blamed> who did it. <Scared>.
 Activity-Response -> I <Alibi>. | I <Action>.
 Place-Reponse -> I was at <Residence>. | At the time, I was at <Location>.

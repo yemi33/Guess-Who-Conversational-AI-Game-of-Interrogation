@@ -29,7 +29,7 @@ Reject:Apology,Appreciation,Acknowledge (Backchannel)
 Negative non-no answers:Apology,Abandoned or Turn-Exit,Acknowledge (Backchannel),Agree/Accept,Appreciation
 Signal-non-understanding:Other answers,Summarize/reformulate,Statement-non-opinion
 Other answers:Acknowledgement (Backchannel),Abandoned or Turn-Exit
-Conventional-opening:Statment-opinion,Open-Question
+Conventional-opening:Statment-opinion,Open-Question,Convetional-opening
 Or-Clause:Acknowledgement (Backchannel),Agree/Accept
 Dispreferred answers:Apology,Acknowledge (Backchannel)
 3rd-party-talk:Abandoned or Turn-Exit

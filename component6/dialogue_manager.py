@@ -13,6 +13,7 @@ class DialogueManager:
     self.suspect_identity = suspect_identity
     self.keyphrases = {} # will be filled in by guess_who "generate keyphrases" function
     self.keyphrase_responses = {} # will be filled in by guess_who "generate trigger responses" function
+    self.obligations = self.parse_obligation()
   
   # this is the method that will be invoked.
   def respond(self, message):
@@ -25,7 +26,7 @@ class DialogueManager:
     return NLG(strategy).single_respond(technique)
 
   def strategize(self, message):
-    nlu = NLU(message)
+    nlu = NLU(message, self.obligations)
 
     ner = nlu.named_entities
     subject = nlu.dependencies[0]
@@ -54,7 +55,7 @@ class DialogueManager:
   def resolve_obligation(self, nlu):
     obligations_list = nlu.obligations
     resolved_obligation = None
-    
+
     if len(obligations_list) > 0:
       obligation_choice = random.choice(obligations_list)
       resolved_obligation = obligation_choice + "-" + self.address_sentiment(nlu) + "-" + self.address_subjectivity(nlu)
@@ -64,6 +65,21 @@ class DialogueManager:
     
     return resolved_obligation
   
+  def parse_obligation(self):
+    obligations = {}
+    obligations_list = [] # list for a given dialog act
+    file = open("component6/grammar/obligations.txt", "r").read().split("\n")
+    for line in file:
+      if line == "" or line == "\n" or line == " ":
+        continue
+      dialogue_acts = line.split(":")
+      act = dialogue_acts[0]
+      responses = dialogue_acts[1].replace("\n", "")
+      responses = responses.split(",")
+      obligations[act] = responses
+
+    return obligations 
+
   # Nicole
   def address_sentiment(self, nlu):
     #negative
