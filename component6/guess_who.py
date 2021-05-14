@@ -63,15 +63,16 @@ class GuessWho:
   
   def generate_keyphrases(self):
     lines = []
-    memory_type_list = ["Alibi", "Action", "Residence", "Relationship", "Name", "Name Of Victim", "Company", "Memory with Victim", "Person to be Blamed", "Location"]
+    memory_type_list = ["Alibi", "Action", "Residence", "Relationship", "Name", "Victim", "Company", "Memory_with_Victim", "Person_to_be_Blamed", "Location"]
+    
     with open('component6/grammar/keyphrases.txt') as f:
       file_string = f.read()
       for nonterminal in memory_type_list:
-        if nonterminal in file_string:
+        if f"<{nonterminal}>" in file_string:
           for memory in self.suspect_memory:
             if memory.type_of_memory == nonterminal:
               print("hello")
-              file_string = file_string.replace(nonterminal,memory.text)
+              file_string = file_string.replace(f"<{nonterminal}>",memory.text)
       
       lines = file_string.split("\n")
       print(lines)
@@ -94,7 +95,7 @@ class GuessWho:
     General-Response -> I think it was <Person to be Blamed> who did it. <Scared>.
     Person to be Blames -> ...
     '''
-    memory_type_list = ["Alibi", "Action", "Residence", "Relationship", "Name", "Victim", "Company", "Memory with Victim", "Person to be Blamed", "Location"]
+    memory_type_list = ["Alibi", "Action", "Residence", "Relationship", "Name", "Victim", "Company", "Memory_with_Victim", "Person_to_be_Blamed", "Location"]
     grammar_engine = GrammarEngine("component6/grammar/keyphrases_trigger.txt")
     for item in self.suspect_memory:
       if item.type_of_memory in memory_type_list:
