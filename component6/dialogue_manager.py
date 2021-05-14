@@ -53,11 +53,15 @@ class DialogueManager:
   # Maanya
   def resolve_obligation(self, nlu):
     obligations_list = nlu.obligations
-    obligation_choice = random.choice(obligations_list)
-    resolved_obligation = obligation_choice + "-" + self.address_sentiment(nlu) + "-" + self.address_subjectivity(nlu)
-    general_grammar = GrammarEngine("component6/grammar/general_conversation.txt")
-    if resolved_obligation not in general_grammar.grammar.grammar.keys():
-      resolved_obligation = "general-response"
+    resolved_obligation = None
+    
+    if len(obligations_list) > 0:
+      obligation_choice = random.choice(obligations_list)
+      resolved_obligation = obligation_choice + "-" + self.address_sentiment(nlu) + "-" + self.address_subjectivity(nlu)
+      general_grammar = GrammarEngine("component6/grammar/general_conversation.txt")
+      if resolved_obligation not in general_grammar.grammar.grammar.keys():
+        resolved_obligation = "general-response"
+    
     return resolved_obligation
   
   # Nicole

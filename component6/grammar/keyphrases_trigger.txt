@@ -1,7 +1,7 @@
 General-Response -> I think it was <Person_to_be_Blamed> who did it. <Scared>.
 Activity-Response -> I <Alibi>. | I <Action>.
-Place-Reponse -> I was at <Residence>.
+Place-Reponse -> I was at <Residence>. | At the time, I was at <Location>.
 Introduction-Response -> My name is <Name>.
 Alibi-Response -> I was with <Company>. 
-Victim-Response -> I was <Name_Of_Victim>'s <Relationship>. <Memory_with_Victim>.
+Victim-Response -> I was <Victim>'s <Relationship>. <Memory_with_Victim>.
 Scared -> I just don't see how it would have happened, but I'm very scared and sad. | I'm very sad. | I'm scared.

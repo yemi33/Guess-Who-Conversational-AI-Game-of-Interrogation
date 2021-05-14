@@ -2,8 +2,9 @@ $ Innocent
 PERSON | Ginger Jones | Name | | | 
 CARDINAL | 19 | Age | | |
 | lounge | Location | | | 
-PERSON | Tyler Bowdin | Name_Of_Victim | | |
+PERSON | Tyler Bowdin | Victim | | |
 LOC | Nourse Hall | Residence | | |
+LOC | Baker Street | Location | | |
 | girlfriend | Relationship | | | 
 | Ginger had an argument with Tyler | Action | Ginger | had an argument with | Tyler
 | Ginger suspected that Tyler had cheated on her | Action | Ginger | suspected | that Tyler had cheated on her 
@@ -16,9 +17,10 @@ LOC | Nourse Hall | Residence | | |
 $ Guilty
 PERSON | James Potter | Name | | |
 | dorm | Location | | |
-PERSON | Tyler Bowdin | Name_Of_Victim | | |
+PERSON | Tyler Bowdin | Victim | | |
 CARDINAL | 21 | Age | | |
 LOC | Nourse Hall | Residence | | |
+LOC | Biology Lab | Location | | |
 | roomate | Relationship | | |
 | James killed Tyler with a knife | Fact | James | killed | Tyler
 | James drank a whole bottle of Vodka | Action | James | drank | a whole bottle of Vodka

@@ -39,7 +39,7 @@ class NLG:
       # If there's a keyword trigger, prioritize that.
       if strategy == "keyphrase_trigger" and self.response_strategy[strategy] != None:
         return self.response_strategy[strategy]
-      
+
       # All other cases
       if strategy == "eliza" and self.response_strategy[strategy] != None:
         self.grammar_engine.set_variable("fact", self.response_strategy["eliza_variable"])

@@ -14,9 +14,9 @@ class GuessWho:
     self.case_file, self.suspect_name, self.suspect_identity, self.suspect_memory = self.generate_scenario("component6/case_file.txt") # a dictionary of facts
     self.dialogue_manager = DialogueManager(self.suspect_identity)
     self.dialogue_manager.memory = self.suspect_memory
-    self.dialogue_manager.keyphrases = self.generate_keyphrases()
+    self.dialogue_manager.keyphrases = self.generate_keyphrases() # dictionary
     print(self.dialogue_manager.keyphrases)
-    self.dialogue_manager.keyphrase_responses = self.generate_trigger_responses()
+    self.dialogue_manager.keyphrase_responses = self.generate_trigger_responses() # dictionary
 
   # Yemi, Sue
   def generate_scenario(self, case_file):
@@ -69,10 +69,11 @@ class GuessWho:
       file_string = f.read()
       for nonterminal in memory_type_list:
         if f"<{nonterminal}>" in file_string:
+          string = f"<{nonterminal}>"
           for memory in self.suspect_memory:
             if memory.type_of_memory == nonterminal:
               print("hello")
-              file_string = file_string.replace(f"<{nonterminal}>",memory.text)
+              file_string = file_string.replace(string,memory.text)
       
       lines = file_string.split("\n")
       print(lines)
