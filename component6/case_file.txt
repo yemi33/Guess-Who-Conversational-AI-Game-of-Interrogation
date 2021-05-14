@@ -2,7 +2,7 @@ $ Innocent
 PERSON | Ginger Jones | Name | | | 
 CARDINAL | 19 | Age | | |
 | lounge | Location | | | 
-PERSON | Tyler Bowdin | Name_Of_Victim | | |
+PERSON | Tyler Bowdin | Name Of Victim | | |
 LOC | Nourse Hall | Residence | | |
 | girlfriend | Relationship | | | 
 | Ginger had an argument with Tyler | Action | Ginger | had an argument with | Tyler
@@ -16,7 +16,7 @@ LOC | Nourse Hall | Residence | | |
 $ Guilty
 PERSON | James Potter | Name | | |
 | dorm | Location | | |
-PERSON | Tyler Bowdin | Name_Of_Victim | | |
+PERSON | Tyler Bowdin | Name Of Victim | | |
 CARDINAL | 21 | Age | | |
 LOC | Nourse Hall | Residence | | |
 | roomate | Relationship | | |
@@ -29,7 +29,7 @@ LOC | Nourse Hall | Residence | | |
 | Ginger | Person to be Blamed | | |
 
 $ Case
-PERSON | Tyler Bowdin | Name | | | 
+PERSON | Tyler Bowdin | Name Of Victim | | | 
 | dorm | Location | | |
 CARDINAL | 21 | Age | | |
 LOC | Nourse Hall | Residence | | |
