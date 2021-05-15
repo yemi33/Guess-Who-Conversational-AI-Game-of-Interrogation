@@ -14,15 +14,6 @@ pip install DialogTag
 
 """
 
-"""
-Testing NLU
-"""
-def test_nlu():
-  messages = ["I know you did it. If you come clean now, you won't have to die in prison.", "What were you doing last night?"]
-  for message in messages:
-    nlu = NLU(message)
-    print(nlu)
-
 '''
 Testing Dialogue Manager
 '''
@@ -53,7 +44,7 @@ Testing NLU -> Dialogue Manager -> NLG flow
 def test_nlg():
   dialogue_manager = DialogueManager(suspect_identity="guilty")
   message = "What were you doing last night?"
-  response = dialogue_manager.respond(message)
+  response = dialogue_manager.test_single_respond(message, "extracted_info")
   print(response)
   '''
   Sample Output:
@@ -94,5 +85,4 @@ def test_guess_who():
 if __name__ == "__main__":
   # test_nlu()
   # test_dialogue_manager()
-  # test_nlg()
-  test_guess_who()
+  test_nlg()

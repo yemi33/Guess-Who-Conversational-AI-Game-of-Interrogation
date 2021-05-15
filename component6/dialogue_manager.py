@@ -1,19 +1,22 @@
+import sys
 import random
+import spacy
+from NLU import NLU
+from NLG import NLG
 from eliza import Eliza
 from markov_model import MarkovModel
 from grammar.grammar_engine import GrammarEngine
-from NLU import NLU
-from NLG import NLG
-import spacy
-import sys
+import logging
+logging.disable(logging.CRITICAL)
+from dialog_tag import DialogTag
 
 class DialogueManager:
   def __init__(self, suspect_identity, suspect_memory=[]):
-    self.memory = suspect_memory
     self.suspect_identity = suspect_identity
-    self.keyphrases = {} # will be filled in by guess_who "generate keyphrases" function
-    self.keyphrase_responses = {} # will be filled in by guess_who "generate trigger responses" function
-    self.obligations = self.parse_obligation()
+    self.memory = suspect_memory
+    self.dialogue_tag_model = DialogTag('distilbert-base-uncased') # one time loading model
+    self.nlp = spacy.load("en_core_web_sm") # one time loading spacy
+    self.nlp.max_length = sys.maxsize
   
   # this is the method that will be invoked.
   def respond(self, message):
@@ -26,13 +29,13 @@ class DialogueManager:
     return NLG(strategy).single_respond(technique)
 
   def strategize(self, message):
-    nlu = NLU(message, self.obligations)
-
+    nlu = NLU(message, self.dialogue_tag_model)
     ner = nlu.named_entities
-    subject = nlu.dependencies[0]
-    verb = nlu.dependencies[1]
-    direct_object = nlu.dependencies[2]
-    new_memory = Memory(ner=ner,text=message,subj=subject,verb=verb,obj=direct_object)
+    subject = nlu.dependencies["subject"]
+    verb = nlu.dependencies["verb"]
+    direct_object = nlu.dependencies["object"]
+    memory_type = "What_the_user_said"
+    new_memory = Memory(ner=ner,text=message,type_of_memory = memory_type,subj=subject,verb=verb,obj=direct_object)
     self.memory.append(new_memory)
 
     eliza_grammar,eliza_variable = self.eliza_transformation(nlu)
@@ -55,7 +58,6 @@ class DialogueManager:
   def resolve_obligation(self, nlu):
     obligations_list = nlu.obligations
     resolved_obligation = None
-
     if len(obligations_list) > 0:
       obligation_choice = random.choice(obligations_list)
       resolved_obligation = obligation_choice + "-" + self.address_sentiment(nlu) + "-" + self.address_subjectivity(nlu)
@@ -64,21 +66,6 @@ class DialogueManager:
         resolved_obligation = "general-response"
     
     return resolved_obligation
-  
-  def parse_obligation(self):
-    obligations = {}
-    obligations_list = [] # list for a given dialog act
-    file = open("component6/grammar/obligations.txt", "r").read().split("\n")
-    for line in file:
-      if line == "" or line == "\n" or line == " ":
-        continue
-      dialogue_acts = line.split(":")
-      act = dialogue_acts[0]
-      responses = dialogue_acts[1].replace("\n", "")
-      responses = responses.split(",")
-      obligations[act] = responses
-
-    return obligations 
 
   # Nicole
   def address_sentiment(self, nlu):
@@ -104,7 +91,7 @@ class DialogueManager:
     else:
       return "neutral"
   
-  # Yemi - needs fix
+  # Yemi 
   def eliza_transformation(self, nlu):
     eliza_grammar_rules = ["congratulating-eliza", "empathetic-eliza", "neutral-eliza"]
     if nlu.eliza == True:
@@ -124,55 +111,38 @@ class DialogueManager:
   # Yemi
   def refer_to_extracted_information(self, nlu):
     extracted_info_grammar_rules = ["question-about-extracted-info", "acknowledge-extracted-info", "question-extracted-info", "express-anger-at-fact", "express-sadness-at-fact", "express-gladness-at-fact"]
-
-    nlp = spacy.load("en_core_web_sm")
-    nlp.max_length = sys.maxsize
     message = nlu.message
-    parsed_message = nlp(message)
+    parsed_message = self.nlp(message)
     extracted_info_fact = ""
     for ent in parsed_message.ents:
       for item in self.memory:
-        if item.ner == ent.label_: 
+        if item.ner == ent.label_ and item.type_of_memory == "What_the_user_said": 
           extracted_info_fact = item.text
           
     if extracted_info_fact == "":
       extracted_info_fact = random.choice(self.memory).text
     
     if nlu.sentiment[0] > 0.5:
-        return "express-gladness-at-fact", extracted_info_fact
+      return "express-gladness-at-fact", extracted_info_fact
     elif nlu.sentiment[0] < -0.3:
       return random.choice(["express-anger-at-fact", "express-sadness-at-fact", "question-extracted-info"]), extracted_info_fact
     else:
       return random.choice(["question-about-extracted-info", "acknowledge-extracted-info"]), extracted_info_fact
     
-  # Maanya - requires interaction with guess_who.py because the slot values for generating keyphrase trigger depends on the scenario
+  # Yemi
   def keyphrase_trigger(self, nlu):
-    message = nlu.message
-    print(message.strip()[-1])
-    if message.strip()[-1] == "?":
-      message = message[:-1]
-    
-    for keyphrase_type in self.keyphrases.keys():
-      keyphrases = self.keyphrases[keyphrase_type]
-      for keyphrase in keyphrases:
-        if keyphrase in message or keyphrase.capitalize() in message or message in keyphrase or message.capitalize() in keyphrase:
-          response = keyphrase_type + "-Response"
-          if response in self.keyphrase_responses.keys():
-            return self.keyphrase_responses[response]
+    if nlu.detected_keyphrase != None:
+      response = nlu.detected_keyphrase + "-Response"
+      if response in nlu.keyphrases.keyphrase_responses:
+        return nlu.keyphrases.keyphrase_responses[response]
     return None
   
-  #Sue - we can remove it; it's more like a helper function
-  '''
-  def utilize_dependency_structure(self, nlu):
-    new_sentence = nlu.dependencies[3]
-    return new_sentence
-  '''
-    
   # Nicole
   def markov_chain(self, nlu):
     if self.suspect_identity.lower() == "guilty":
-      model = MarkovModel(corpus_filename = "component6/grammar/interrogation_guilty.txt", level = "word", order = 2, pos = True)
-      return model.generate(20, "I")
+      model = MarkovModel(corpus_filename = "component6/grammar/interrogation_guilty.txt", level = "word", order = 3, pos = True)
+      no_new_line = model.generate(20, "I").replace("\n"," ")
+      return no_new_line
     return None
   
   # Nicole

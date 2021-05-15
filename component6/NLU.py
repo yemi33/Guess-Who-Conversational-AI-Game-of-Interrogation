@@ -1,16 +1,17 @@
-from textblob import TextBlob
-import spacy
-from eliza import Eliza
-import dependency
-from better_profanity import profanity
-from grammar.grammar_engine import GrammarEngine 
-from parser.island_parser import IslandParser
 import logging
 logging.disable(logging.CRITICAL)
-from dialog_tag import DialogTag
+from textblob import TextBlob
+from eliza import Eliza
+from keyphrases import Keyphrases
+from obligations import Obligations
+from dependency import Dependency
+from ner import Ner
+from better_profanity import profanity
 import os
 
 """
+Required Installation:
+
 pip install better_profanity
 pip install -U textblob
 python3 -m textblob.download_corpora
@@ -22,88 +23,59 @@ pip install DialogTag
 """
 
 class NLU:
-  def __init__(self, message, obligations = None):
+  def __init__(self, message, dialogue_tag_model):
+    self.dialogue_tag_model = dialogue_tag_model
     self.message = message
-    self.sentiment = self.sentiment()#tuple
-    self.list_of_obligations = obligations
-    if obligations != None:
-      self.obligations = self.obligations() #list
-    self.dependencies = self.dependencies()#tuple
-    self.eliza = self.eliza()#bool
-    self.named_entities = self.named_entities()#dictionary
-    self.profanity = self.profanity()#bool
+    self.sentiment = self.sentiment() #tuple
+    self.detected_keyphrase,self.keyphrases = self.keyphrases() #string representing the type of keyphrase
+    self.obligations = self.obligations() #list
+    self.dependencies = self.dependencies() #dictionary containing subj, verb, obj
+    self.eliza = self.eliza() #bool
+    self.named_entities = self.named_entities() #dictionary
+    self.profanity = self.profanity() #bool
   
   def __repr__(self):
     return f'''
-    message: {self.message}\n
-    sentiment: {self.sentiment}\n
-    obligations: {self.obligations}\n 
-    dependencies: {self.dependencies}\n 
-    eliza: {self.eliza}\n 
-    named_entities: {self.named_entities}\n 
-    profanity: {self.profanity}\n
+    message: {self.message}
+    sentiment: {self.sentiment}
+    keyphrases: {self.keyphrases}
+    obligations: {self.obligations}
+    dependencies: {self.dependencies}
+    eliza: {self.eliza}
+    named_entities: {self.named_entities}
+    profanity: {self.profanity}
     '''
     
   def sentiment(self):
-    #returns tuple of polarity and subjectivity of message
     blob = TextBlob(self.message)
     subjectivity = blob.sentiment.subjectivity
     polarity = blob.sentiment.polarity
     return tuple((polarity,subjectivity))
   
+  def profanity(self):
+    return profanity.contains_profanity(self.message)
+
+  def keyphrases(self):
+    model = Keyphrases()
+    return model.detect_keyphrase(self.message), model
+
   def obligations(self):
-    # returns list, where keys are dialogue acts and values are obligations
-    # Have to analyze our message
-    os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-    os.environ['TRANSFORMERS_VERBOSITY'] = 'critical'
-
-    model = DialogTag('distilbert-base-uncased')
-    output = model.predict_tag(self.message)
-    
-    obligations_list = []
-    if output in self.list_of_obligations.keys():
-      obligations_list = self.list_of_obligations[output]
-
-    return obligations_list
+    model = Obligations()
+    return model.get_appropriate_response_obligations(self.message, self.dialogue_tag_model)
   
   def dependencies(self):
-    # The actionable structures built extractors for in Component 3 in tuple form.
-    nlp = spacy.load("en_core_web_sm")
-    message = nlp(self.message)
-    verb = dependency.find_verb(message)
-    subj = dependency.find_subject(message)
-    obj = dependency.find_direct_object(message)
-    changed_verb = dependency.change_verb(message)
-    return tuple((subj, verb, obj, changed_verb))
+    model = Dependency()
+    return model.find_actionable_chunk(self.message)
   
   def eliza(self):
-    #returns boolean value that represents whether an ELIZA-style transformation (of the form you coded up for Component 4) is possible. 
-    eliza = Eliza()
-    if self.message == eliza.swap_pronouns(self.message):
+    model = Eliza()
+    if self.message == model.swap_pronouns(self.message):
       return False
     return True
 
   def named_entities(self):
-    #A collection of named entities, structured so as to support the kind of associated chatbot functionality that you implemented in Homework 2.
-    named_entities = {}
-    nlp = spacy.load("en_core_web_sm")
-    parsed_msg = nlp(self.message)
-    for ent in parsed_msg.ents:
-      named_entities[ent.label_] = ent
-    return named_entities
-
-  def profanity(self):
-    # Whether the user message contains profanity. There’s a simple Python library called profanity that will allow you to detect this.
-    return profanity.contains_profanity(self.message)
-
-  def detect_lie(self):
-    # You should come up with at least one other feature that your NLU model will look for when processing incoming messages. This could leverage off-the-shelf NLP technology, or some kind of custom code that you write.
-
-    # detect lie?
-    # hard to find a library doing this, and probs hard complex to code
-    # detect accusation? "You did", "I know you" etc in the user input?
-    pass
+    model = Ner()
+    return model.find_named_entities(self.message)
 
 if __name__ == "__main__":
-  nlu = NLU("I know you did it.")
-  print(nlu)
+  print(NLU("How do you know blah?"))

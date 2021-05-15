@@ -1,0 +1,14 @@
+Name:James Potter
+Location:dorm
+Victim:Tyler Bowdin
+Age:21
+Residence:Nourse Hall
+Location:Biology Lab
+Relationship:roomate
+Fact:James killed Tyler with a knife
+Action:James drank a whole bottle of Vodka
+Time_Last_Seen_Victim:10pm
+Company:Ginger
+Alibi:James was at the biology lab at 10pm
+Memory_with_Victim:We would study everyday together at the library.
+Person_to_be_Blamed:Ginger

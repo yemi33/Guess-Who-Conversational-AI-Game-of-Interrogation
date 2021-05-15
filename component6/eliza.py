@@ -1,5 +1,4 @@
 import spacy
-import dependency
 import random
 
 class Eliza: 
@@ -8,7 +7,7 @@ class Eliza:
     self.memory = []
 
   def swap_pronouns(self, string):
-    special_pronouns = ["I", "me", "my", "myself", "you", "your", "yourself"]
+    special_pronouns = ["i", "me", "my", "myself", "you", "your", "yourself"]
     special_verbs = ["am", "'m", "are", "was", "were"]
     doc = self.nlp(string)
     token_list = [token.text for token in doc]
@@ -31,7 +30,7 @@ class Eliza:
   
   def swap(self, index, token, token_list):
     dictionary = {
-      "I" : "you",
+      "i" : "you",
       "me": "you",
       "my" : "your",
       "myself" : "yourself",
@@ -51,6 +50,8 @@ class Eliza:
     if token_str == "you":
       if token.dep_ == "nsubj":
         token_list[index] = dictionary[token_str + "-subj"]
+      # elif token.dep_ == "nsubj":
+      #   token_list[index] = dictionary[token_str + "-subj"]
       else:
         token_list[index] = dictionary[token_str + "-obj"]
     else:
@@ -71,7 +72,6 @@ class Eliza:
   def deposit_memory(self, string):
     doc = self.nlp(string)
     verb_chunk = dependency.find_verb_chunk(doc)
-    
     memory = ""
     if verb_chunk != None:
       memory = " ".join([verb_chunk["subject"].text,verb_chunk["verb"].text,verb_chunk["object"].text])
