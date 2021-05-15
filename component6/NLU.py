@@ -60,8 +60,8 @@ class NLU:
     return model.detect_keyphrase(self.message), model
 
   def obligations(self):
-    model = Obligations()
-    return model.get_appropriate_response_obligations(self.message, self.dialogue_tag_model)
+    model = Obligations(self.dialogue_tag_model)
+    return model.get_appropriate_response_obligations(self.message)
   
   def dependencies(self):
     model = Dependency()
