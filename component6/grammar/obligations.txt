@@ -1,5 +1,5 @@
-Statement-non-opinion:Acknowledgement,Statement-non-opinion,Statement-opinon,Response Acknowledgement,Backchannel-in-question-form
-Acknowledge (Backchannel):Statement-non-opinion,Wh-Question,Open-Question
+Statement-non-opinion:Acknowledgement,Response Acknowledgement,Backchannel-in-question-form,Maybe/Accept-part
+Acknowledge (Backchannel):Statement-non-opinion,Wh-Question,Open-Question,Maybe/Accept-part
 Statement-opinion:Agree/Accept,Appreciation,Statement-opinion,Response Acknowledgement,Non-verbal
 Agree/Accept:Acknowledge (Backchannel),Wh-Question,Response Acknowledgement,Open-Question,Tag-Question
 Abandoned or Turn-Exit:Hedge,Abandoned or Turn-Exit,Conventional-closing
@@ -19,7 +19,7 @@ Backchannel in question form:Statement-opinion,Wh-Question,Hedge,Affirmative non
 Quotation:Acknowledge (Backchannel),Agree/Accept
 Summarize/reformulate:Acknowledge (Backchannel),Agree/Accept,Yes answers,No answers,Hedge,Open-Question,Hold before answer/agreement,Dispreferred answers,Maybe/Accept-part
 Affirmative non-yes answers:Acknowledge (Backchannel),Statement-opinion,Wh-Question,Response Acknowledgement,Open-Question,Signal-non-understanding,Offers Options Commits,Downplayer
-Action-directive:Statement-non-opinion,Acknowledge (Backchannel),Response Acknowledgement,Signal-non-understanding
+Action-directive:Yes answers,Reject,Acknowledge (Backchannel)Signal-non-understanding
 Collaborative Completition:Repeat-phrase,Offers,Options Commits,Self-talk,Acknowledge (Backchannel),Agree/Accept,Signal-non-understanding,Dispreferred answers,Maybe/Accept-part
 Repeat-phrase:Signal-non-understanding,Acknowledge (Backchannel)
 Open-Question:Statement-non-opinion,Statement-opinion

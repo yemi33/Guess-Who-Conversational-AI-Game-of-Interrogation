@@ -1,5 +1,7 @@
 from grammar.grammar_engine import GrammarEngine
 import random
+from helper.keyphrases import Keyphrases
+from helper.dependency import Dependency
 
 class NLG:
   def __init__(self,response_strategy):
@@ -34,8 +36,17 @@ class NLG:
     # prioritize keyphrase trigger
     if self.response_strategy["keyphrase_trigger"] != None:
       return self.response_strategy["keyphrase_trigger"]
+    # then prioritize obligations that are responses to Wh-Question because these grammar actually need content.
+    elif self.response_strategy["resolve_obligation"][0] == "Wh-Question":
+      keywords = Keyphrases().keywords
+      for word in keywords.keys():
+        if word == "Alibi" or word == "Action":
+          chunk = Dependency().find_actionable_chunk(keywords[word])
+          value = chunk["verb"] + " " + chunk["object"]
+        self.grammar_engine.set_variable(word, keywords[word])
     
     responses = {}
+    origin = ""
     # go through each of the response strategy, save variables when applicable
     for strategy in self.response_strategy.keys():
       if strategy == "eliza" and self.response_strategy[strategy] != None:
@@ -46,8 +57,11 @@ class NLG:
       elif strategy == "markov_chain" and self.response_strategy[strategy] != None:
         responses[strategy] = self.response_strategy[strategy]
         continue
+      elif strategy == "resolve_obligation" and self.response_strategy[strategy][0] == "Wh-Question":
+        origin = self.response_strategy[1]
+      
       response_strategies_that_are_not_grammar_rules = ["keyphrase_trigger", "eliza_variable", "extracted_info_variable", "marcov_chain", "address_other_feature"]
-      if self.response_strategy[strategy] != None and not self.response_strategy[strategy] in response_strategies_that_are_not_grammar_rules:
+      if origin == "" and self.response_strategy[strategy] != None and not self.response_strategy[strategy] in response_strategies_that_are_not_grammar_rules:
         origin = self.response_strategy[strategy] # retrieve the origin nonterminal 
         responses[strategy] = self.grammar_engine.generate(origin) # concatenate the generated text to the overall response
 

@@ -43,6 +43,7 @@ class DialogueManager:
     extracted_info_grammar,extracted_info_variable = self.refer_to_extracted_information(nlu)
 
     response_strategy = {
+      "memory" : self.memory,
       "resolve_obligation" : self.resolve_obligation(nlu),
       "keyphrase_trigger" : self.keyphrase_trigger(nlu),
       "eliza" : eliza_grammar,
@@ -57,16 +58,30 @@ class DialogueManager:
 
   # Maanya
   def resolve_obligation(self, nlu):
+    obligation_choice = ""
+    if nlu.obligations == "Wh-Question":
+      if "what" in nlu.message.lower():
+        obligation_choice = "What-Answer"
+      elif "who" in nlu.message.lower():
+        obligation_choice = "Who-Answer"
+      elif "where" in nlu.message.lower():
+        obligation_choice = "Where-Answer"
+      elif "how" in nlu.message.lower():
+        obligation_choice = "How-Answer"
+      elif "why" in nlu.message.lower():
+        obligation_choice = "Why-Answer"
+      
     obligations_list = Obligations(self.dialogue_tag_model).get_appropriate_response_obligations(nlu.obligations)
     resolved_obligation = None
     if len(obligations_list) > 0:
-      obligation_choice = random.choice(obligations_list)
+      if obligation_choice == "":
+        obligation_choice = random.choice(obligations_list)
       resolved_obligation = obligation_choice + "-" + self.address_sentiment(nlu) + "-" + self.address_subjectivity(nlu)
       general_grammar = GrammarEngine("component6/grammar/general_conversation.txt")
       if resolved_obligation not in general_grammar.grammar.grammar.keys():
         resolved_obligation = "general-response"
     
-    return resolved_obligation
+    return (nlu.obligations, resolved_obligation)
 
   # Nicole
   def address_sentiment(self, nlu):
