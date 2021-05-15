@@ -15,23 +15,25 @@ Yes-No-Question:Yes Answer,No Answer,Repeat-phrase,Wh-Question,Acknowledgement
 4. Cookie cutter for dependency structure 
 5. Cookie cutter for dealing with profanity
 '''
+
 '''
 Fallback General Response
 '''
-general-response -> Uh huh. | Hmm. | Okay. 
+general-response -> Uh huh. | Hmm. | Okay. | Yeah. | Right.
+
 '''
 Obligations
 '''
-Statement-non-opinion-positive-subjective -> I'm doing good. | I'm feeling great.
+Statement-non-opinion-positive-subjective -> I'm doing good. | I'm feeling great. | I'm doing pretty well.
 Statement-non-opinion-positive-objective -> This is good. | This goes well.
 Statement-non-opinion-negative-subjective -> I'm feeling sick. | I'm tired.
-Statement-non-opinion-negative-objective -> This goes the wrong way. | This is not right.
+Statement-non-opinion-negative-objective -> This is not right.
 Statement-non-opinion-neutral-subjective -> I know it's true. | I know it's false.
-Statement-non-opinion-neutral-objective -> It is ture. | It is false.
+Statement-non-opinion-neutral-objective -> It is true. | It is false.
 Acknowledge (Backchannel)-positive-subjective -> Yep. | Go ahead.
 Acknowledge (Backchannel)-positive-objective -> Please continue.
 Acknowledge (Backchannel)-negative-subjective -> Huh.
-Acknowledge (Backchannel)-negative-objective -> Hum.
+Acknowledge (Backchannel)-negative-objective -> Hmm.
 Acknowledge (Backchannel)-neutral-subjective -> Well.
 Acknowledge (Backchannel)-neutral-objective -> Keep going.
 Statement-opinion-positive-subjective -> It sounds good. | I totally agree.
@@ -45,38 +47,38 @@ Agree/Accept-positive-objective -> That's exactly it. | That's acceptable.
 Agree/Accept-negative-subjective -> I am not disagreeing, but I am not supporting it either. 
 Agree/Accept-negative-objective -> It's not unacceptable.
 Agree/Accept-neutral-subjective -> I think it's okay.
-Agree/Accept-neutral-objective -> That is okay.
-Abandoned or Turn-Exit-positive-subjective -> Indeed, | For sure,
-Abandoned or Turn-Exit-positive-objective -> Indeed, | For sure,
-Abandoned or Turn-Exit-negative-subjective -> However, | Nevertheless, 
-Abandoned or Turn-Exit-negative-objective -> However, | Nevertheless, 
-Abandoned or Turn-Exit-neutral-subjective -> So, | Then,
-Abandoned or Turn-Exit-neutral-objective -> So, | Then,
+Agree/Accept-neutral-objective -> That's okay.
+Abandoned or Turn-Exit-positive-subjective -> Indeed. | For sure.
+Abandoned or Turn-Exit-positive-objective -> Indeed. | For sure.
+Abandoned or Turn-Exit-negative-subjective -> However, | Nevertheless, | But, | Umm,
+Abandoned or Turn-Exit-negative-objective -> However, | Nevertheless, | But, | Umm,
+Abandoned or Turn-Exit-neutral-subjective -> So.. | Then..
+Abandoned or Turn-Exit-neutral-objective -> So.. | Then..
 Appreciation-positive-subjective -> I can imagine.
 Appreciation-positive-objective -> That's true.
 Appreciation-negative-subjective -> It's hard to imagine.
 Appreciation-negative-objective -> It might be true.
 Appreciation-neutral-subjective -> Yes.
 Appreciation-neutral-objective -> Yes.
-Yes-No-Question-positive-subjective -> Do you like me?
+Yes-No-Question-positive-subjective -> Do you really think I did it?
 Yes-No-Question-positive-objective -> Are you tired?
 Yes-No-Question-negative-subjective -> Are you kidding me? | Are you serious?
-Yes-No-Question-negative-objective ->  Do you hate me?
+Yes-No-Question-negative-objective ->  Do you really think I did it?
 Yes-No-Question-neutral-subjective -> Are you doing all right?
 Yes-No-Question-neutral-objective -> Are you telling the truth?
-Non-verbal-positive-subjective -> [Laughing].
-Non-verbal-positive-objective -> [Nodding].
-Non-verbal-negative-subjective -> [Crying].
-Non-verbal-negative-objective -> [Shaking head].
-Non-verbal-neutral-subjective -> [Gazing].
-Non-verbal-neutral-objective -> [Throat clearing].
+Non-verbal-positive-subjective -> [Laughing]
+Non-verbal-positive-objective -> [Nodding]
+Non-verbal-negative-subjective -> [Crying]
+Non-verbal-negative-objective -> [Shaking head]
+Non-verbal-neutral-subjective -> [Gazing]
+Non-verbal-neutral-objective -> [Throat clearing]
 Yes answers-positive-subjective -> Yep! | Sounds good!
 Yes answers-positive-objective -> Alright.
 Yes answers-negative-subjective -> Oh well.
 Yes answers-negative-objective -> Well.
 Yes answers-neutral-subjective -> Okay.
 Yes answers-neutral-objective -> Yes.
-Conventional-closing-positive-subjective -> It's been such a nice time to talk with you!
+Conventional-closing-positive-subjective -> It's been such a nice time talking with you!
 Conventional-closing-positive-objective -> Thanks for talking with me.
 Conventional-closing-negative-subjective -> I don't wanna talk with you agian.
 Conventional-closing-negative-objective -> This talk will never happen again.

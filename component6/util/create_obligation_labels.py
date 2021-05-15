@@ -1,4 +1,4 @@
-def create_labels():
+def create_obligation_labels():
     file = open("component6/grammar/obligations.txt").read().split("\n")
     sentiments = ["positive", "negative", "neutral"]
     subjectivities = ["subjective", "objective"]
@@ -12,4 +12,4 @@ def create_labels():
 
 
 if __name__ == "__main__":
-    create_labels()
+    create_obligation_labels()

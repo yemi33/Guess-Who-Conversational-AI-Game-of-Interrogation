@@ -10,7 +10,7 @@ class GuessWho:
     self.suspect_name = ""
     self.case_file, self.suspect_name, self.suspect_identity, self.suspect_memory = self.generate_scenario("component6/case_file.txt") # a dictionary of facts
     self.dialogue_manager = DialogueManager(self.suspect_identity, self.suspect_memory)
-    self.generate_keyphrases()
+    self.generate_keywords()
 
   # Yemi, Sue
   def generate_scenario(self, case_file):
@@ -49,7 +49,7 @@ class GuessWho:
   
     return dictionary["Case"], suspect_name, suspect_identity, suspect_memory
   
-  def generate_keyphrases(self):
+  def generate_keywords(self):
     outfile = open("component6/grammar/keywords.txt", "w")
     for memory in self.suspect_memory:
       outfile.write(f"{memory.type_of_memory}:{memory.text}\n")

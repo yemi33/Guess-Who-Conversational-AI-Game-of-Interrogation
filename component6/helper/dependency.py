@@ -1,7 +1,7 @@
 import spacy
 from grammar.grammar_engine import GrammarEngine 
 from parser.island_parser import IslandParser
-from eliza import Eliza
+from helper.eliza import Eliza
 import random
 
 class Dependency:

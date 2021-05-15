@@ -1,0 +1,32 @@
+I'm trying to interrogate you:Offers, Options Commits 
+I know you did it:Statement-non-opinion 
+You seem to be lying:Statement-opinion 
+I know for a fact that you're lying:Statement-opinion 
+Tell me the truth:Action-directive 
+Tell me exactly what happened :Action-directive 
+Why don't you just come clean:Quotation 
+What exactly was going on:Wh-Question 
+I'm talking about you, not me:Statement-non-opinion 
+Are you sure you're telling me exactly how it happened:Yes-No-Question 
+What are you thinking right now?:Open-Question 
+Why don't you just tell me the truth:Action-directive 
+I'm curious what's going on in your mind:Wh-Question 
+Could you tell me what happened?:Yes-No-Question 
+Why did you have to make that decision?:Wh-Question 
+I'm sorry to hear that you felt that way:Statement-non-opinion 
+This is not excusable:Quotation 
+What you did cannot be accepted :Statement-opinion 
+No one has the right to take another's life:Statement-opinion 
+What were you doing that night?:Wh-Question 
+Who is that :Rhetorical-Question 
+What is that :Wh-Question 
+What does that have to do with anything we've been talking about :Rhetorical-Question 
+Please stay on topic please :Action-directive 
+Please go back to when you were explaining about that :Action-directive 
+Why did you do that :Wh-Question 
+What was the reason for you doing that :Wh-Question 
+Where were you that night :Wh-Question 
+Where is that :Wh-Question 
+How is that :Wh-Question 
+Why did you that :Wh-Question 
+

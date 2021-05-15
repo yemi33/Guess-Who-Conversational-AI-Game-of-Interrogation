@@ -1,10 +1,10 @@
-Statement-non-opinion:Acknowledgement,Statement-opinon,Response Acknowledgement,Wh-Question,Yes-No-Question,Declarative Yes-No-Question,Backchannel-in-question-form,Repeat-phrase
-Acknowledge (Backchannel):Statement-non-opinion,Yes-No-Question,Wh-Question,Open-Question
-Statement-opinion:Agree/Accept,Appreciation,Statement-opinion,Wh-Question,Response Acknowledgement,Non-verbal
-Agree/Accept:Acknowledge (Backchannel),Yes-No-Question,Wh-Question,Response Acknowledgement,Open-Question,Tag-Question
+Statement-non-opinion:Acknowledgement,Statement-non-opinion,Statement-opinon,Response Acknowledgement,Backchannel-in-question-form
+Acknowledge (Backchannel):Statement-non-opinion,Wh-Question,Open-Question
+Statement-opinion:Agree/Accept,Appreciation,Statement-opinion,Response Acknowledgement,Non-verbal
+Agree/Accept:Acknowledge (Backchannel),Wh-Question,Response Acknowledgement,Open-Question,Tag-Question
 Abandoned or Turn-Exit:Hedge,Abandoned or Turn-Exit,Conventional-closing
 Appreciation:Acknowledge (Backchannel),Statement-opinion
-Yes-No-Question:Yes Answer,No Answer,Repeat-phrase,Wh-Question,Acknowledge (Backchannel)
+Yes-No-Question:Yes Answer,No Answer,Repeat-phrase,Acknowledge (Backchannel)
 Non-verbal:Conventional-closing, Acknowledge (Backchannel), Repeat-phrase
 Yes answers:Abandoned or Turn-Exit,Acknowledge (Backchannel),Wh-Question,Appreciation,Agree/Accept
 Conventional-closing:Conventional-closing
@@ -15,15 +15,15 @@ Response Acknowledgement:Hedge,Open-Question,Other answers
 Hedge:Downplayer,Offers,Options Commits,Repeat-phrase,Apology
 Declarative Yes-No-Question:Yes answers,No answers,Other answers
 Other:Downplayer,Signal-non-understanding
-Backchannel in question form:Statement-opinion,Yes-No-Question,Wh-Question,Hedge,Affirmative non-yes answers,Action-directive,Open-Question,Or-Clause,Self-talk,Maybe/Accept-part
-Quotation:Acknowledge (Backchannel),Agree/Accept,Yes-No-Question,Dispreferred answers,Declarative Wh-Question
+Backchannel in question form:Statement-opinion,Wh-Question,Hedge,Affirmative non-yes answers,Action-directive,Open-Question,Or-Clause,Self-talk,Maybe/Accept-part
+Quotation:Acknowledge (Backchannel),Agree/Accept
 Summarize/reformulate:Acknowledge (Backchannel),Agree/Accept,Yes answers,No answers,Hedge,Open-Question,Hold before answer/agreement,Dispreferred answers,Maybe/Accept-part
-Affirmative non-yes answers:Acknowledge (Backchannel),Statement-opinion,Yes-No-Question,Wh-Question,Response Acknowledgement,Declarative Yes-No-Question,Open-Question,Signal-non-understanding,Offers Options Commits,Downplayer
-Action-directive:Acknowledge (Backchannel),Yes answers,No answers,Response Acknowledgement,Repeat-phrase,Negative non-no answers,Signal-non-understanding,Dispreferred answers,Downplayer,Maybe/Accept-part
+Affirmative non-yes answers:Acknowledge (Backchannel),Statement-opinion,Wh-Question,Response Acknowledgement,Open-Question,Signal-non-understanding,Offers Options Commits,Downplayer
+Action-directive:Statement-non-opinion,Acknowledge (Backchannel),Response Acknowledgement,Signal-non-understanding
 Collaborative Completition:Repeat-phrase,Offers,Options Commits,Self-talk,Acknowledge (Backchannel),Agree/Accept,Signal-non-understanding,Dispreferred answers,Maybe/Accept-part
 Repeat-phrase:Signal-non-understanding,Acknowledge (Backchannel)
 Open-Question:Statement-non-opinion,Statement-opinion
-Rhetorical-Questions:Wh-Question,Statement-non-opinion,Declarative Yes-No-Question,Summarize/reformulate
+Rhetorical-Questions:Statement-non-opinion,Acknowledge (Backchannel)
 Hold before answer/agreement:Response Acknowledgement,Agree/Accept,Abandoned or Turn-Exit
 Reject:Apology,Appreciation,Acknowledge (Backchannel)
 Negative non-no answers:Apology,Abandoned or Turn-Exit,Acknowledge (Backchannel),Agree/Accept,Appreciation

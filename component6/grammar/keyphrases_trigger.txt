@@ -7,3 +7,4 @@ Introduction-Response -> My name is <Name>.
 Alibi-Response -> I was with <Company>. 
 Victim-Response -> I was <Victim>'s <Relationship>. <Memory_with_Victim>.
 Scared -> I just don't see how it would have happened, but I'm very scared and sad. | I'm very sad. | I'm scared.
+Solicit-Response -> Well, yes. Of course.. | Yes, and I'm deeply sad that we must have this conversation. | <Victim> was just really precious to me.

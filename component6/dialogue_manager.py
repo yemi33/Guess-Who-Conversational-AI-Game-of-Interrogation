@@ -3,15 +3,16 @@ import random
 import spacy
 from NLU import NLU
 from NLG import NLG
-from eliza import Eliza
-from markov_model import MarkovModel
+from helper.obligations import Obligations
+from helper.eliza import Eliza
+from helper.markov_model import MarkovModel
 from grammar.grammar_engine import GrammarEngine
 import logging
 logging.disable(logging.CRITICAL)
 from dialog_tag import DialogTag
 
 class DialogueManager:
-  def __init__(self, suspect_identity, suspect_memory=[]):
+  def __init__(self, suspect_identity="", suspect_memory=[]):
     self.suspect_identity = suspect_identity
     self.memory = suspect_memory
     self.dialogue_tag_model = DialogTag('distilbert-base-uncased') # one time loading model
@@ -56,7 +57,7 @@ class DialogueManager:
 
   # Maanya
   def resolve_obligation(self, nlu):
-    obligations_list = nlu.obligations
+    obligations_list = Obligations(self.dialogue_tag_model).get_appropriate_response_obligations(nlu.obligations)
     resolved_obligation = None
     if len(obligations_list) > 0:
       obligation_choice = random.choice(obligations_list)
@@ -119,16 +120,16 @@ class DialogueManager:
         if item.ner == ent.label_ and item.type_of_memory == "What_the_user_said": 
           extracted_info_fact = item.text
           
-    if extracted_info_fact == "":
-      extracted_info_fact = random.choice(self.memory).text
+    if extracted_info_fact != "":
+      if nlu.sentiment[0] > 0.5:
+        return "express-gladness-at-fact", extracted_info_fact
+      elif nlu.sentiment[0] < -0.3:
+        return random.choice(["express-anger-at-fact", "express-sadness-at-fact", "question-extracted-info"]), extracted_info_fact
+      else:
+        return random.choice(["question-about-extracted-info", "acknowledge-extracted-info"]), extracted_info_fact
     
-    if nlu.sentiment[0] > 0.5:
-      return "express-gladness-at-fact", extracted_info_fact
-    elif nlu.sentiment[0] < -0.3:
-      return random.choice(["express-anger-at-fact", "express-sadness-at-fact", "question-extracted-info"]), extracted_info_fact
-    else:
-      return random.choice(["question-about-extracted-info", "acknowledge-extracted-info"]), extracted_info_fact
-    
+    return None, None
+
   # Yemi
   def keyphrase_trigger(self, nlu):
     if nlu.detected_keyphrase != None:

@@ -1,13 +1,13 @@
 import logging
 logging.disable(logging.CRITICAL)
 from textblob import TextBlob
-from eliza import Eliza
-from keyphrases import Keyphrases
-from obligations import Obligations
-from dependency import Dependency
-from ner import Ner
 from better_profanity import profanity
 import os
+from helper.eliza import Eliza
+from helper.keyphrases import Keyphrases
+from helper.obligations import Obligations
+from helper.dependency import Dependency
+from helper.ner import Ner
 
 """
 Required Installation:
@@ -61,7 +61,7 @@ class NLU:
 
   def obligations(self):
     model = Obligations(self.dialogue_tag_model)
-    return model.get_appropriate_response_obligations(self.message)
+    return model.get_dialogue_tag(self.message)
   
   def dependencies(self):
     model = Dependency()

@@ -1,5 +1,5 @@
 from grammar.grammar_engine import GrammarEngine
-from dependency import Dependency
+from helper.dependency import Dependency
 
 class Keyphrases:
   def __init__(self):
@@ -8,7 +8,7 @@ class Keyphrases:
     self.keyphrase_responses = self.generate_keyphrase_responses()
   
   def detect_keyphrase(self, message):
-    if message.strip()[-1] == "?":
+    if len(message) > 0 and message.strip()[-1] == "?":
       message = message[:-1]
     
     for keyphrase_type in self.keyphrases.keys():
