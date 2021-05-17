@@ -175,7 +175,7 @@ class GrammarEngine:
     symbols_list = self._rewrite_symbols(intermediate_list, 0)
     concatenated_string = ""
     for item in symbols_list:
-      if item not in punctuations and len(concatenated_string) != 0 and item[0] not in punctuations:
+      if len(concatenated_string) != 0 and item[0] not in punctuations:
         concatenated_string = concatenated_string + " " + item
       else:
         concatenated_string = concatenated_string + item

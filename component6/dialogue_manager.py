@@ -12,25 +12,63 @@ logging.disable(logging.CRITICAL)
 from dialog_tag import DialogTag
 
 class DialogueManager:
-  def __init__(self, suspect_identity="", suspect_memory=[]):
+  '''
+  Class representing a dialogue manager that brings NLU module and NLG module together.
+  '''
+  def __init__(self, suspect_identity="", suspect_memory=[], verbose=False):
+    self.verbose = verbose # whether or not you want helpful output
     self.suspect_identity = suspect_identity
     self.memory = suspect_memory
-    self.dialogue_tag_model = DialogTag('distilbert-base-uncased') # one time loading model
+    self.dialogue_tag_model = DialogTag('distilbert-base-uncased') # one time loading DialogTag
     self.nlp = spacy.load("en_core_web_sm") # one time loading spacy
     self.nlp.max_length = sys.maxsize
   
-  # this is the method that will be invoked.
   def respond(self, message):
+    '''
+    Method that will be invoked by guess_who.py
+
+    Args:
+      message: user input that needs to be responded to
+    Returns:
+      a single string containing the appropriate response
+    '''
     strategy = self.strategize(message)
+    if self.verbose:
+      print("Strategy:")
+      print(strategy)
     return NLG(strategy).general_respond()
   
-  # this is a tester method to see if a particular response technique is working.
   def test_single_respond(self, message, technique):
+    '''
+    Method to test a particular response technique (i.e. resolve_obligation)
+
+    Args:
+      message: user input that needs to be responded to
+      technique: technique to test (i.e. resolve_obligation)
+    Returns:
+      a single string containing the appropriate response
+    '''
     strategy = self.strategize(message)
     return NLG(strategy).single_respond(technique)
 
   def strategize(self, message):
+    '''
+    Method that saves the user message to self.memory, and invokes several helper methods 
+    to come up with a response strategy
+
+    Args:
+      message: user input that needs to be responded to 
+    Returns:
+      a dictionary containing various response strategies
+
+    '''
+    # analyze the message
     nlu = NLU(message, self.dialogue_tag_model)
+    if self.verbose:
+      print("Analysis of Message:")
+      print(nlu)
+    
+    # break down the message and save to memory
     ner = nlu.named_entities
     subject = nlu.dependencies["subject"]
     verb = nlu.dependencies["verb"]
@@ -39,9 +77,9 @@ class DialogueManager:
     new_memory = Memory(ner=ner,text=message,type_of_memory = memory_type,subj=subject,verb=verb,obj=direct_object)
     self.memory.append(new_memory)
 
+    # invoke helper methods and come up with a response strategy
     eliza_grammar,eliza_variable = self.eliza_transformation(nlu)
     extracted_info_grammar,extracted_info_variable = self.refer_to_extracted_information(nlu)
-
     response_strategy = {
       "memory" : self.memory,
       "resolve_obligation" : self.resolve_obligation(nlu),
@@ -51,15 +89,28 @@ class DialogueManager:
       "extracted_info" : extracted_info_grammar,
       "extracted_info_variable" : extracted_info_variable,
       "markov_chain" : self.markov_chain(nlu),
-      "address_profanity" : self.address_profanity(nlu),
-      "address_other_feature" : self.address_other_feature(nlu)
+      "address_profanity" : self.address_profanity(nlu)
     }
     return response_strategy
 
   # Maanya
   def resolve_obligation(self, nlu):
+    '''
+    Helper method to resolve a given obligation
+
+    Args:
+      nlu: a NLU object containing different analyses of a message
+    Returns:
+      tuple containing 
+        1) a string representing dialogue tag detected from the message, 
+        2) a string representing the head of the appropriate response rule from general_conversation.txt 
+           = dialogue tag + sentiment + subjectivity
+    '''
     obligation_choice = ""
-    if nlu.obligations == "Wh-Question":
+
+    # If the detected dialogue tag is a Wh-Question, different possible answers need to be given
+    # depending on the keyword present in the message
+    if nlu.dialogue_tag == "Wh-Question":
       if "what" in nlu.message.lower():
         obligation_choice = "What-Answer"
       elif "who" in nlu.message.lower():
@@ -70,50 +121,71 @@ class DialogueManager:
         obligation_choice = "How-Answer"
       elif "why" in nlu.message.lower():
         obligation_choice = "Why-Answer"
-      
-    obligations_list = Obligations(self.dialogue_tag_model).get_appropriate_response_obligations(nlu.obligations)
+      elif "when" in nlu.message.lower():
+        obligation_choice = "When-Answer"
+    
+    # given the detected dialogue tag, choose the appropriate response obligation
+    obligations_list = Obligations(self.dialogue_tag_model).get_appropriate_response_obligations(nlu.dialogue_tag)
     resolved_obligation = None
     if len(obligations_list) > 0:
-      if obligation_choice == "":
+      if obligation_choice == "": # if obligation choice has not been decided yet
         obligation_choice = random.choice(obligations_list)
+      # consider the sentiment and subjectivity of the user message as well
       resolved_obligation = obligation_choice + "-" + self.address_sentiment(nlu) + "-" + self.address_subjectivity(nlu)
       general_grammar = GrammarEngine("component6/grammar/general_conversation.txt")
       if resolved_obligation not in general_grammar.grammar.grammar.keys():
         resolved_obligation = "general-response"
-    
-    return (nlu.obligations, resolved_obligation)
+    return (nlu.dialogue_tag, resolved_obligation)
 
   # Nicole
   def address_sentiment(self, nlu):
-    #negative
+    '''
+    Helper method to address the sentiment of the user message 
+    
+    Args:
+      nlu: a NLU object containing different analyses of a message
+    Returns:
+      a string representing the sentiment of the message
+    '''
     if nlu.sentiment[0] < 0:
       return "negative"
-    #positive
     elif nlu.sentiment[0] > 0:
       return "positive"
-    #neutral
     else:
       return "neutral"
   
   # Sue
   def address_subjectivity(self, nlu):
-    #objective
+    '''
+    Helper method to address the subjectivity of the user message
+
+    Args:
+      nlu: a NLU object containing different analyses of a message
+    Returns:
+      a string representing the subjectivity of the message
+    '''
     if nlu.sentiment[1] < 0:
       return "objective"
-    #subjective
     elif nlu.sentiment[1] > 0:
       return "subjective"
-    #neutral
     else:
       return "neutral"
   
   # Yemi 
   def eliza_transformation(self, nlu):
-    eliza_grammar_rules = ["congratulating-eliza", "empathetic-eliza", "neutral-eliza"]
+    '''
+    Helper method to perform eliza transformation and choose the appropriate grammar rule
+    depending on the user sentiment.
+
+    Args:
+      nlu: a NLU object containing different analyses of a message
+    Returns:
+      1) a string representing the head of the appropriate grammar rule to use from general_conversation.txt
+      2) a string containing eliza-transformed user message (which will fill the <fact> slot in the grammar)
+    '''
     if nlu.eliza == True:
       eliza = Eliza()
       message = nlu.message
-      # set the value of keyword "fact" for eliza grammar 
       eliza_fact = eliza.swap_pronouns(message)
       if nlu.sentiment[0] > 0.7:
         return "congratulating-eliza", eliza_fact 
@@ -126,7 +198,15 @@ class DialogueManager:
   
   # Yemi
   def refer_to_extracted_information(self, nlu):
-    extracted_info_grammar_rules = ["question-about-extracted-info", "acknowledge-extracted-info", "question-extracted-info", "express-anger-at-fact", "express-sadness-at-fact", "express-gladness-at-fact"]
+    '''
+    Helper method to refer to extracted information from the user input
+
+    Args:
+      nlu: a NLU object containing different analyses of a message
+    Returns:
+      1) a string representing the head of the appropriate grammar rule to use from general_conversation.txt
+      2) a string containing the extracted information from previous user input (which will fill the <fact> slot in the grammar)
+    '''
     message = nlu.message
     parsed_message = self.nlp(message)
     extracted_info_fact = ""
@@ -134,7 +214,8 @@ class DialogueManager:
       for item in self.memory:
         if item.ner == ent.label_ and item.type_of_memory == "What_the_user_said": 
           extracted_info_fact = item.text
-          
+
+    # choose the appropriate grammar rule from general_conversation.txt
     if extracted_info_fact != "":
       if nlu.sentiment[0] > 0.5:
         return "express-gladness-at-fact", extracted_info_fact
@@ -147,22 +228,52 @@ class DialogueManager:
 
   # Yemi
   def keyphrase_trigger(self, nlu):
+    '''
+    Helper method to choose the appropriate response to a triggered keyphrase
+
+    Args:
+      nlu: a NLU object containing different analyses of a message
+    Returns:
+      a string containing the appropriate keyphrase response
+    '''
     if nlu.detected_keyphrase != None:
       response = nlu.detected_keyphrase + "-Response"
       if response in nlu.keyphrases.keyphrase_responses:
+        '''
+        nlu.keyphrases is a Keyphrases object
+        keyphrase_responses is an instance variable of Keyphrases object 
+        that refers to a dictionary mapping keyphrase type to a list of appropriate responses
+        '''
         return nlu.keyphrases.keyphrase_responses[response]
     return None
   
   # Nicole
   def markov_chain(self, nlu):
+    '''
+    Helper method to perform markov chain string generation
+
+    Args:
+      nlu: a NLU object containing different analyses of a message
+    Returns:
+      Markov-generated string (Markov Model is trained on an actual guilty interrogation transcript excerpt)
+    '''
     if self.suspect_identity.lower() == "guilty":
-      model = MarkovModel(corpus_filename = "component6/grammar/interrogation_guilty.txt", level = "word", order = 3, pos = True)
-      no_new_line = model.generate(20, "I").replace("\n"," ")
+      model = MarkovModel(corpus_filename = "component6/grammar/interrogation_guilty.txt", level = "word", order = 3, pos = False)
+      string = model.generate(20, "I")
+      no_new_line = string.replace("\n"," ") # remove newline
       return no_new_line
     return None
   
   # Nicole
   def address_profanity(self, nlu):
+    '''
+    Helper method to address profanity in the user message 
+
+    Args:
+      nlu: a NLU object containing different analyses of a message
+    Returns:
+      a string representing the head of the appropriate grammar rule from general_conversation.txt
+    '''
     if nlu.profanity == True:
       if self.suspect_identity.lower() == "guilty":
         return "profanity-guilty"
@@ -170,9 +281,6 @@ class DialogueManager:
         return "profanity-innocent"
     else:
       return None
-  
-  def address_other_feature(self, nlu):
-    pass
 
 class Memory:
   '''
@@ -186,20 +294,25 @@ class Memory:
     self.verb = verb
     self.object = obj
     '''
-    Example file format:
+    Example case_file format:
 
     $ Innocent
     ner text type_of_memory subject verb obj
+    ...
 
     $ Guilty
     ner text type_of_memory subject verb obj
+    ...
 
     $ Case
     ner text type_of_memory subject verb obj
+    ...
 
     Types of Memory (You can add more if necessary)
     - Location
     - Action
+    - Alibi
+    - Reason
     - Residence 
     - Relationship 
     - Age 
@@ -212,12 +325,12 @@ class Memory:
   def __repr__(self):
     return f'''
     Memory(
-      ner: {self.ner} \n 
-      text: {self.text} \n 
-      type of memory: {self.type_of_memory} \n 
-      subject: {self.subject} \n 
-      verb: {self.verb} \n 
-      object: {self.object} \n 
+      ner: {self.ner} 
+      text: {self.text}
+      type of memory: {self.type_of_memory}
+      subject: {self.subject}
+      verb: {self.verb}
+      object: {self.object}
     )
     '''
   

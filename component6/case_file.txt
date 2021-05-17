@@ -6,11 +6,11 @@ PERSON | Tyler Bowdin | Victim | | |
 LOC | Nourse Hall | Residence | | |
 LOC | Baker Street | Location | | |
 | girlfriend | Relationship | | | 
-| Ginger had an argument with Tyler | Action | Ginger | had an argument with | Tyler
-| Ginger suspected that Tyler had cheated on her | Action | Ginger | suspected | that Tyler had cheated on her 
+| I had an argument with Tyler | Action | Ginger | had an argument with | Tyler
+| I suspected that Tyler had cheated on her | Reason | Ginger | suspected | that Tyler had cheated on her 
 | 9pm | Time_Last_Seen_Victim | | |
 | friend | Company | | |
-| Ginger was with a friend at 10pm | Alibi | Ginger | was with a | friend
+| I was with a friend at 10pm | Alibi | Ginger | was with a | friend
 | We would go to Sayles every Friday night to have snacks. | Memory_with_Victim | | |
 | James | Person_to_be_Blamed | | |
 
@@ -22,11 +22,12 @@ CARDINAL | 21 | Age | | |
 LOC | Nourse Hall | Residence | | |
 LOC | Biology Lab | Location | | |
 | roomate | Relationship | | |
-| James killed Tyler with a knife | Fact | James | killed | Tyler
-| James drank a whole bottle of Vodka | Action | James | drank | a whole bottle of Vodka
+| I killed Tyler with a knife | Fact | James | killed | Tyler
+| I drank a whole bottle of Vodka | Action | James | drank | a whole bottle of Vodka
+| I felt like I was falling behind on school work. | Reason | I | felt | like I was falling behind on school work.
 | 10pm | Time_Last_Seen_Victim | | |
 | Ginger | Company | | |
-| James was at the biology lab at 10pm | Alibi | James | was at the | biology lab
+| I was at the biology lab at 10pm | Alibi | James | was at the | biology lab
 | We would study everyday together at the library. | Memory_with_Victim | | |
 | Ginger | Person_to_be_Blamed | | |
 
@@ -37,5 +38,5 @@ CARDINAL | 21 | Age | | |
 LOC | Nourse Hall | Residence | | |
 | Knife | Evidence | | |
 | Ring | Evidence | | |
-| 11pm | Time_of_Death | | |
+| 11pm | Estimated_Time_of_Death | | |
 

@@ -1,12 +1,24 @@
 import spacy
 import random
+from helper.dependency import Dependency
 
-class Eliza: 
+class Eliza:
+  '''
+  Sub module that is responsible for Eliza transformation
+  ''' 
   def __init__(self):
     self.nlp = spacy.load("en_core_web_sm")
     self.memory = []
 
   def swap_pronouns(self, string):
+    '''
+    Method to swap the pronouns and other special verbs 
+
+    Args:
+      string: string to be swapped 
+    Returns:
+      the new string where the pronouns are swapped
+    '''
     special_pronouns = ["i", "me", "my", "myself", "you", "your", "yourself"]
     special_verbs = ["am", "'m", "are", "was", "were"]
     doc = self.nlp(string)
@@ -29,6 +41,17 @@ class Eliza:
     return return_string.capitalize()
   
   def swap(self, index, token, token_list):
+    '''
+    Helper method that helps with swapping of token at a specific index in the string
+    
+    Args:
+      index: index to swap the pronoun 
+      token: token to be swapped 
+      token_list: list containing the tokens in the string
+
+    Returns:
+      modifies token_list in-place
+    '''
     dictionary = {
       "i" : "you",
       "me": "you",
@@ -58,6 +81,9 @@ class Eliza:
       token_list[index] = dictionary[token_str]
   
   def do_you_say_for_a_special_reason(self, string):
+    '''
+    Method to simulate do you say (blank) for a special reason behavior displayed by Eliza.
+    '''
     content = self.swap_pronouns(string).lower()
     return "Do you say " + content + " for a special reason?"
   
@@ -70,8 +96,11 @@ class Eliza:
       return "I see."
   
   def deposit_memory(self, string):
+    '''
+    Method to deposit memory extracted from the string
+    '''
     doc = self.nlp(string)
-    verb_chunk = dependency.find_verb_chunk(doc)
+    verb_chunk = Dependency().find_verb_chunk(doc)
     memory = ""
     if verb_chunk != None:
       memory = " ".join([verb_chunk["subject"].text,verb_chunk["verb"].text,verb_chunk["object"].text])
@@ -86,6 +115,9 @@ class Eliza:
       self.memory.append(memory.lower())
 
   def ask_about_memory(self, string):
+    '''
+    Method to simulate Eliza's behavior of asking follow up questions about previous user inputs
+    '''
     if len(self.memory) > 0:
       return "Does that have anything to do with the fact that " + random.choice(self.memory) + "?"
     else:

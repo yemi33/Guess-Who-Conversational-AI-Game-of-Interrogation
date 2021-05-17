@@ -1,11 +1,21 @@
 import spacy
 from grammar.grammar_engine import GrammarEngine 
 from parser.island_parser import IslandParser
-from helper.eliza import Eliza
 import random
 
 class Dependency:
+  '''
+  Sub module that is responsible for dependency parsing
+  '''
   def find_actionable_chunk(self,message):
+    '''
+    Finds actionable chunk from the user message. 
+
+    Args:
+      message: message to be analyzed
+    Returns:
+      a dictionary containing components of the chunk
+    '''
     nlp = spacy.load("en_core_web_sm")
     message = nlp(message)
     verb_chunk = self.modified_find_verb_chunk(message)
@@ -21,8 +31,13 @@ class Dependency:
   # needs fix
   def modified_find_verb_chunk(self,doc):
     """
-    Returns a dictionary representing a simple verb chunk
+    Updated method that returns a dictionary representing a simple verb chunk
     with a subject, verb, object.
+
+    Args:
+      doc: spacy doc
+    Returns:
+      a dictionary representing the verb chunk
     """
     verb_chunk = {
       "subject": "",
@@ -45,8 +60,13 @@ class Dependency:
   
   def find_verb_chunk(doc):
     """
-    Returns a dictionary representing a simple verb chunk
+    Method that returns a dictionary representing a simple verb chunk
     with a subject, verb, object.
+
+    Args:
+      doc: spacy doc
+    Returns:
+      a dictionary representing the verb chunk
     """
     for noun_chunk in doc.noun_chunks:
       if noun_chunk.root.dep_ != 'nsubj':
@@ -64,9 +84,15 @@ class Dependency:
     return verb_chunk 
 
   def find_subject_chunk(self,doc):
-    '''
-    Returns a dictionary representing the subject noun phrase with adverb, adjective, and noun
-    '''
+    """
+    Method that returns a dictionary representing a simple subject chunk
+    with a adjective, adverb, and subject.
+
+    Args:
+      doc: spacy doc
+    Returns:
+      a dictionary representing the subject chunk
+    """
     for noun_chunk in doc.noun_chunks:
       if noun_chunk.root.dep_ != "nsubj":
         continue
@@ -84,9 +110,15 @@ class Dependency:
     return None
 
   def find_object_chunk(self,doc):
-    '''
-    Returns a dictionary representing the object noun phrase with adverb, adjective, and noun
-    '''
+    """
+    Method that returns a dictionary representing a simple object chunk
+    with a adjective, adverb, object.
+
+    Args:
+      doc: spacy doc 
+    Returns:
+      a dictionary representing the object chunk
+    """
     for noun_chunk in doc.noun_chunks:
       if noun_chunk.root.dep_ != "dobj":
         continue
@@ -104,6 +136,14 @@ class Dependency:
     return None
 
   def find_subject(self,doc):
+    """
+    Method that returns the subject of the string
+
+    Args:
+      doc: spacy doc
+    Returns:
+      a string containing the subject of the string
+    """
     subj_chunk = dict()
     for noun_chunk in doc.noun_chunks:
       if noun_chunk.root.dep_ != "nsubj":
@@ -114,7 +154,12 @@ class Dependency:
 
   def find_verb(self,doc):
     """
-    Returns a dictionary representing the verb.
+    Method that returns the verb of the string
+
+    Args:
+      doc: spacy doc
+    Returns:
+      a string containing the verb of the string
     """
     for noun_chunk in doc.noun_chunks:
       if noun_chunk.root.dep_ != 'nsubj':
@@ -124,6 +169,14 @@ class Dependency:
     return None
 
   def find_direct_object(self,doc):
+    """
+    Method that returns the direct object of the string
+
+    Args:
+      doc: spacy doc
+    Returns:
+      a string containing direct object of the string
+    """
     for noun_chunk in doc.noun_chunks:
       if noun_chunk.root.dep_ != "dobj":
         continue
@@ -133,10 +186,13 @@ class Dependency:
   
   def derive_question(self,doc):
     """
-    Return a string that rephrases an action in the
+    Method that returns a string that rephrases an action in the
     doc in the form of a question.
-    'doc' is expected to be a spaCy doc.
-    try except blocks are for cases where there wasn't a successful parsing and the values are default strings ("")
+
+    Args: 
+      doc: spacy doc 
+    Returns:
+      a string containing the rephrased question derived from the string
     """
     verb_chunk = self.find_verb_chunk(doc)
     if not verb_chunk:
@@ -152,13 +208,16 @@ class Dependency:
       verb = verb_chunk['verb'].text
 
     question = f"Why did {subj} {verb} {obj}?"
-    swapped_pronoun_question = Eliza().swap_pronouns(question)
-    return swapped_pronoun_question
+    return question
 
   def change_verb(self,doc):
     '''
-    Find the synonym of the verb
-    Return the new sentence
+    Method that find the synonym of the verb and return the new sentence with the new verb
+
+    Args:
+      doc: spacy doc
+    Returns:
+      string containing the newly phrased sentence
     '''
     verb = self.find_verb(doc)
     grammar = GrammarEngine("component6/grammar/general_conversation.txt").grammar

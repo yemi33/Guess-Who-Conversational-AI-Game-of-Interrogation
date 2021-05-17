@@ -6,6 +6,9 @@ import spacy
 import sys
 
 class MarkovModel:
+  '''
+  Sub module responsible for generating Marcov Model texts.
+  '''
   def __init__(self, corpus_filename, level, order, pos=bool(False), hybrid=bool(False)):
     '''
     Creates a MarcovModel object.
@@ -79,14 +82,14 @@ class MarkovModel:
     aka. populates token_to_token_transitions.
     '''
     self.tokens = self._tokenize(self.corpus)
-
     # puntuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~\t'''
     puntuations = '''\t'''
     # count how many times each token appears when a given n-gram in a nested list
     num = 0 # position of the first word in the n-gram in the corpus
     for token in self.tokens:
       # puntuation does not go into the n-gram
-      if token not in puntuations:
+
+      if not token in puntuations:
         gram = [token] # a list of tokens) that go into the ngram
         cur_order = 1
         word_num = 1 # the length of the n-gram
@@ -94,7 +97,6 @@ class MarkovModel:
         while cur_order < self.order:
           # make sure it is not out of index and the n-gram doesn't have puntuations
           if num+cur_order < len(self.tokens) and self.tokens[num+cur_order] not in puntuations:
-            # gram = gram + " " + self.tokens)[num+cur_order]
             gram.append(self.tokens[num+cur_order])
             word_num += 1
           cur_order += 1
@@ -120,7 +122,6 @@ class MarkovModel:
       num += 1
 
     # calculate probablity and convert list to tuple
-    
     all_keys = self.token_to_token_transitions.keys()
     for key in all_keys:
       total_appearance = 0
@@ -139,7 +140,7 @@ class MarkovModel:
       while token_num < len(specific_values):
         specific_values[token_num] = tuple(specific_values[token_num])
         token_num += 1
-  
+    
   # Maanya, Nicole
   def _pos_train(self):
     '''
@@ -349,7 +350,7 @@ class MarkovModel:
         There is no corpus file with the given name in the 'corpora' folder.
     '''
     corpus_text = open(corpus_filename).read()
-    return corpus_text[:(len(corpus_text) * 8) // 100], corpus_text[:((len(corpus_text) * 8) // 10) + 1]
+    return corpus_text[:(len(corpus_text) * 8) // 10], corpus_text[:((len(corpus_text) * 8) // 10) + 1]
 
   def generate(self, length, prompt="\n"):
     '''
@@ -572,6 +573,7 @@ class MarkovModel:
       prompt = tuple(tagged_prompt[x:])
       length_of_prompt = len(prompt)
       #if no words in the prompt in any dictionary key, choose a random key to start text generation
+      print(self.pos_to_pos_transitions)
       if x == len(tagged_prompt):
         #note: random key not appended to gen_text
         entry_list = list(self.pos_to_pos_transitions.keys())

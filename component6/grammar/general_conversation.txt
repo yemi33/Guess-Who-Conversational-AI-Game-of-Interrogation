@@ -105,42 +105,44 @@ What
 Where 
 when
 How
+Why
 '''
 What-Answer-positive-subjective -> I think what happened was, I <Action>. | I don't remember exactly, but I <Action>. | I <Action> | I <Alibi>. | I don't remember exactly, but I <Alibi>.
 What-Answer-positive-objective -> What happened was, I <Action>. | What I remember is that I <Action>. |I <Alibi>. | I <Action>.
-What-Answer-negative-subjective -> I'm telling you, I wasn't anywhere near <Residence>. You can ask <Company>. I <Action>. | I would like to have my lawyer. 
-What-Answer-negative-objective -> That's not right, where did this happen? | That's not right, when did this happen? | That's not right, why did this occur?
-What-Answer-neutral-subjective -> Okay, where did this happen? | Okay, when did this happen? | okay, why did this occur?
-What-Answer-neutral-objective -> Okay, where did this happen? | Okay, when did this happen? | okay, why did this occur?
-
-Who-Answer-positive-subjective -> Sounds right, where did this happen? | Sounds right, when did this happen? | Sounds right, why did this occur? 
-Who-Answer-positive-objective -> Right, where did this happen? | Right, when did this happen? | Right, why did this occur?
-Who-Answer-negative-subjective -> I'm not sure about that, where did this happen? | I'm not sure about that, when did this happen? | I'm not sure about that, why did this occur?
-Who-Answer-negative-objective -> That's not right, where did this happen? | That's not right, when did this happen? | That's not right, why did this occur?
-Who-Answer-neutral-subjective -> Okay, where did this happen? | Okay, when did this happen? | okay, why did this occur?
-Who-Answer-neutral-objective -> Okay, where did this happen? | Okay, when did this happen? | okay, why did this occur?
-
-Where-Answer-positive-subjective -> Sounds right, where did this happen? | Sounds right, when did this happen? | Sounds right, why did this occur? 
-Where-Answer-positive-objective -> Right, where did this happen? | Right, when did this happen? | Right, why did this occur?
-Where-Answer-negative-subjective -> I'm not sure about that, where did this happen? | I'm not sure about that, when did this happen? | I'm not sure about that, why did this occur?
-Where-Answer-negative-objective -> That's not right, where did this happen? | That's not right, when did this happen? | That's not right, why did this occur?
-Where-Answer-neutral-subjective -> Okay, where did this happen? | Okay, when did this happen? | okay, why did this occur?
-Where-Answer-neutral-objective -> Okay, where did this happen? | Okay, when did this happen? | okay, why did this occur?
-
-How-Answer-positive-subjective -> Sounds right, where did this happen? | Sounds right, when did this happen? | Sounds right, why did this occur? 
-How-Answer-positive-objective -> Right, where did this happen? | Right, when did this happen? | Right, why did this occur?
-How-Answer-negative-subjective -> I'm not sure about that, where did this happen? | I'm not sure about that, when did this happen? | I'm not sure about that, why did this occur?
-How-Answer-negative-objective -> That's not right, where did this happen? | That's not right, when did this happen? | That's not right, why did this occur?
-How-Answer-neutral-subjective -> Okay, where did this happen? | Okay, when did this happen? | okay, why did this occur?
-How-Answer-neutral-objective -> Okay, where did this happen? | Okay, when did this happen? | okay, why did this occur?
-
-Why-Answer-positive-subjective -> Sounds right, where did this happen? | Sounds right, when did this happen? | Sounds right, why did this occur? 
-Why-Answer-positive-objective -> Right, where did this happen? | Right, when did this happen? | Right, why did this occur?
-Why-Answer-negative-subjective -> I'm not sure about that, where did this happen? | I'm not sure about that, when did this happen? | I'm not sure about that, why did this occur?
-Why-Answer-negative-objective -> That's not right, where did this happen? | That's not right, when did this happen? | That's not right, why did this occur?
-Why-Answer-neutral-subjective -> Okay, where did this happen? | Okay, when did this happen? | okay, why did this occur?
-Why-Answer-neutral-objective -> Okay, where did this happen? | Okay, when did this happen? | okay, why did this occur?
-
+What-Answer-negative-subjective -> I'm telling you, I wasn't anywhere near <Residence>. You can ask <Company>. I <Action>. | I would like to speak with my lawyer. 
+What-Answer-negative-objective -> I <Action>. | I <Alibi>.
+What-Answer-neutral-subjective -> I <Action>. | I <Alibi>.
+What-Answer-neutral-objective -> I <Action>. | I <Alibi>.
+Who-Answer-positive-subjective -> I think it was <Person_to_be_Blamed> who did it. They were always somehow suspcious. | <Victim> was friends with <Person_to_be_Blamed>. But they had an odd vibe about them. 
+Who-Answer-positive-objective ->  I think it was <Person_to_be_Blamed> who did it. They were always somehow suspcious. | <Victim> was friends with <Person_to_be_Blamed>. But they had an odd vibe about them. 
+Who-Answer-negative-subjective -> I think it was <Person_to_be_Blamed> who did it. They were always somehow suspcious. | <Victim> was friends with <Person_to_be_Blamed>. But they had an odd vibe about them. 
+Who-Answer-negative-objective -> I think it was <Person_to_be_Blamed> who did it. They were always somehow suspcious. | <Victim> was friends with <Person_to_be_Blamed>. But they had an odd vibe about them. 
+Who-Answer-neutral-subjective -> I think it was <Person_to_be_Blamed> who did it. They were always somehow suspcious. | <Victim> was friends with <Person_to_be_Blamed>. But they had an odd vibe about them. 
+Who-Answer-neutral-objective -> I think it was <Person_to_be_Blamed> who did it. They were always somehow suspcious. | <Victim> was friends with <Person_to_be_Blamed>. But they had an odd vibe about them. 
+Where-Answer-positive-subjective -> Oh yeah, at the time I was at the <Location>. | Oh yeah, at the time I was at <Residence>.
+Where-Answer-positive-objective -> Oh yeah, at the time I was at the <Location>. | Oh yeah, at the time I was at <Residence>.
+Where-Answer-negative-subjective -> I mean, I was at the <Location> at the time. | I mean, I was at <Residence> at the time.
+Where-Answer-negative-objective -> I mean, I was at the <Location>. | I mean, I was at <Residence> the whole time.
+Where-Answer-neutral-subjective -> I was at the <Location>. | I was at <Residence>.
+Where-Answer-neutral-objective -> I was at the <Location>. | I was at <Residence>.
+How-Answer-positive-subjective -> Well, <Time_Last_Seen_Victim> is when I last saw <Victim>. | The last time I saw <Victim>, I think I <Action>.
+How-Answer-positive-objective -> <Time_Last_Seen_Victim> is when I last saw <Victim>. | The last time I saw <Victim>, I <Action>.
+How-Answer-negative-subjective -> I'm telling you, <Time_Last_Seen_Victim> is when I last saw <Victim>. | I know you don't believe me, but the last time I saw <Victim>, I <Action>.
+How-Answer-negative-objective -> I'm telling you, <Time_Last_Seen_Victim> is when I last saw <Victim>. | I know you don't believe me, but the last time I saw <Victim>, I <Action>.
+How-Answer-neutral-subjective -> <Time_Last_Seen_Victim> is when I last saw <Victim>. | The last time I saw <Victim>, I <Action>.
+How-Answer-neutral-objective -> <Time_Last_Seen_Victim> is when I last saw <Victim>. | The last time I saw <Victim>, I <Action>.
+Why-Answer-positive-subjective -> I <Reason>I <Reason>, but I would never have killed him, he was everything to me. 
+Why-Answer-positive-objective -> I <Reason>I <Reason>, but I would never have killed him, he was everything to me. 
+Why-Answer-negative-subjective -> I <Reason>, but I would never have killed him, he was everything to me. 
+Why-Answer-negative-objective -> I <Reason>, but I would never have killed him, he was everything to me. 
+Why-Answer-neutral-subjective -> I <Reason>, but I would never have killed him, he was everything to me. 
+Why-Answer-neutral-objective -> I <Reason>, but I would never have killed him, he was everything to me. 
+When-Answer-positive-subjective -> <Time_Last_Seen_Victim> is when I last saw <Victim>. 
+When-Answer-positive-objective -> <Time_Last_Seen_Victim> is when I last saw <Victim>. 
+When-Answer-negative-subjective -> <Time_Last_Seen_Victim> is when I last saw <Victim>.
+When-Answer-negative-objective -> <Time_Last_Seen_Victim> is when I last saw <Victim>. 
+When-Answer-neutral-subjective -> <Time_Last_Seen_Victim> is when I last saw <Victim>. 
+When-Answer-neutral-objective -> <Time_Last_Seen_Victim> is when I last saw <Victim>. 
 No answers-positive-subjective -> Nope. | Not at all.
 No answers-positive-objective -> No.
 No answers-negative-subjective -> No, never. | Not at all.

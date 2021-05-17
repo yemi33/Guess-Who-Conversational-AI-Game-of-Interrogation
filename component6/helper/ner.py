@@ -1,6 +1,9 @@
 import spacy
 
 class Ner:
+    '''
+    Sub module responsible for recognizing named entities in user inputs.
+    '''
     def find_named_entities(self, message):
         named_entities = {}
         nlp = spacy.load("en_core_web_sm")
