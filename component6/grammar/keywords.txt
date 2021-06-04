@@ -1,15 +1,14 @@
-Name:James Potter
-Location:dorm
+Name:Ginger Jones
+Age:19
+Location:lounge
 Victim:Tyler Bowdin
-Age:21
 Residence:Nourse Hall
-Location:Biology Lab
-Relationship:roomate
-Fact:I killed Tyler with a knife
-Action:I drank a whole bottle of Vodka
-Reason:I felt like I was falling behind on school work.
-Time_Last_Seen_Victim:10pm
-Company:Ginger
-Alibi:I was at the biology lab at 10pm
-Memory_with_Victim:We would study everyday together at the library.
-Person_to_be_Blamed:Ginger
+Location:Baker Street
+Relationship:girlfriend
+Action:I had an argument with Tyler
+Reason:I suspected that Tyler had cheated on her
+Time_Last_Seen_Victim:9pm
+Company:friend
+Alibi:I was with a friend at 10pm
+Memory_with_Victim:We would go to Sayles every Friday night to have snacks.
+Person_to_be_Blamed:James

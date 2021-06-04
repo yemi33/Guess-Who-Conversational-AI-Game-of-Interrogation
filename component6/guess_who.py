@@ -112,7 +112,7 @@ def print_case_file(case_file):
   print("-----------------------------------------")
 
 if __name__ == "__main__":
-  guess_who = GuessWho(verbose=True)
+  guess_who = GuessWho(verbose=False)
   user_answer = input("Would you like to play GuessWho??? (Yes/No): ")
   if user_answer.lower() == "yes" or user_answer.lower() == "y":
     guess_who.start_game()
